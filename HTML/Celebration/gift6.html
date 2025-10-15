@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最後のプレゼント</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../CSS/gift.css">
+    <link rel="stylesheet" href="../../CSS/gift6.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="animated-title">Celebrating 20 Years</h1>
+    </header>
+
+    <div class="game-container">
+        <h2 class="game-title">🎯 ヒット＆ブロー 🎯</h2>
+
+        <div class="game-instructions">
+            <h3>ゲームルール</h3>
+            <p>1. コンピューターが4色（青・赤・緑・黄・紫・白から重複なし）を決める</p>
+            <p>2. あなたは4色を予想して選択する</p>
+            <p>3. <strong>ヒット</strong>：色と位置が両方正しい</p>
+            <p>4. <strong>ブロー</strong>：色は正しいが位置が違う</p>
+            <p>5. 10回以内にフォーヒットでプレゼントをゲット！</p>
+        </div>
+
+        <div id="game-message" class="game-message">
+            スタートボタンを押してゲーム開始！
+        </div>
+
+        <button id="start-btn" class="start-btn">🎮 ゲームスタート</button>
+
+        <div id="game-area" class="game-area hidden">
+            <div class="color-selection">
+                <h3>4色を選択してください</h3>
+                <div class="available-colors">
+                    <div class="color-option blue" data-color="blue" title="青">🔵</div>
+                    <div class="color-option red" data-color="red" title="赤">🔴</div>
+                    <div class="color-option green" data-color="green" title="緑">🟢</div>
+                    <div class="color-option yellow" data-color="yellow" title="黄">🟡</div>
+                    <div class="color-option purple" data-color="purple" title="紫">🟣</div>
+                    <div class="color-option white" data-color="white" title="白">⚪</div>
+                </div>
+
+                <div class="selected-colors">
+                    <h4>あなたの予想</h4>
+                    <div class="color-slots">
+                        <div class="color-slot" data-position="0">❓</div>
+                        <div class="color-slot" data-position="1">❓</div>
+                        <div class="color-slot" data-position="2">❓</div>
+                        <div class="color-slot" data-position="3">❓</div>
+                    </div>
+                    <button id="clear-btn" class="clear-btn">🗑️ クリア</button>
+                </div>
+
+                <button id="guess-btn" class="guess-btn">予想する</button>
+                <p id="input-error" class="input-error hidden">4色すべて異なる色を選択してください</p>
+            </div>
+
+            <div class="game-info">
+                <div class="attempts">残り回数: <span id="remaining-attempts">10</span></div>
+                <div class="target-hint">目標: フォーヒット（4ヒット）</div>
+            </div>
+
+            <div class="history-section">
+                <h3>予想履歴</h3>
+                <div id="guess-history" class="guess-history"></div>
+            </div>
+        </div>
+
+        <button id="reset-btn" class="reset-btn hidden">🔄 新しいゲームを始める</button>
+
+        <!-- プレゼント開封ボタンセクション（初期状態は非表示） -->
+        <div class="win-section hidden">
+            <h3>🎉 フォーヒット達成！🎉</h3>
+            <p id="win-message">おめでとう！さすがだわ</p>
+            <button id="open-gift-btn" class="open-gift-btn">🎁 プレゼントを開封する</button>
+        </div>
+
+        <!-- ゲームオーバーセクション（初期状態は非表示） -->
+        <div class="lose-section hidden">
+            <h3>ゲームオーバー</h3>
+            <p>残念！正解は <span id="correct-answer"></span> でした。</p>
+            <p>また挑戦してねー！</p>
+            <button id="retry-btn" class="reset-btn">🔄 再挑戦する</button>
+        </div>
+
+        <!-- プレゼント表示エリア（初期状態は非表示） -->
+        <div class="gift-reveal hidden">
+            <h2>おめでとう！プレゼントゲット！</h2>
+            <div class="gift-details">
+                <p><strong>🎁 プレゼント：</strong> <span id="gift-title">9/1日無料券</span></p>
+                <p><strong>📝 詳細：</strong> <span id="gift-description">9/1日限定でなんでも買っていいよ！</span></p>
+                <p><strong>🍽️ 利用方法：</strong> <span id="gift-utilization"></span>特になし！</span></p>
+                <p><strong>⏰ 有効期限：</strong> <span id="gift-expiration">9/1日23:59まで</span></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Celebrating 20 Years. All Rights Reserved.</p>
+    </footer>
+
+    <!-- <script src="../../JS/inputkeys.js"></script> -->
+    <script src="../../JS/gift6.js"></script>
+    <script defer src="../../JS/background.js"></script>
+</body>
+
+</html>

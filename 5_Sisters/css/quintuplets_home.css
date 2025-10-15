@@ -1,0 +1,83 @@
+/* ホームに戻るボタンを上部中央に配置 */
+.home-back-btn {
+    margin: 2vh auto 1.5vh auto;
+    display: block;
+    width: fit-content;
+    min-width: 180px;
+    max-width: 400px;
+    font-size: 1.1rem !important;
+    padding: 0.7rem 2.5rem !important;
+    border-radius: 2em !important;
+    background: #fff6fa !important;
+    border: 2px solid #f7b5d6 !important;
+    color: #e75480 !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 8px rgba(231,84,128,0.08) !important;
+    transition: background 0.2s, color 0.2s !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    overflow: visible !important;
+    text-align: center !important;
+    z-index: 10;
+}
+.home-back-btn:hover {
+    background: #ffe0ef !important;
+    color: #b93b6c !important;
+}
+body {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a8e6cf 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.home-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #d94f70;
+    text-shadow: 1px 1px 8px #fff;
+}
+.home-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 90%;
+    max-width: 400px;
+    align-items: center;
+}
+.home-btn {
+    font-size: 1.2rem !important;
+    padding: 1rem 0 !important;
+    border-radius: 1.5rem !important;
+    border: none !important;
+    background: linear-gradient(90deg, #ffb6c1, #ffe4e1) !important;
+    color: #d94f70 !important;
+    font-weight: bold !important;
+    box-shadow: 0 2px 8px rgba(255,182,193,0.2) !important;
+    cursor: pointer !important;
+    transition: background 0.2s, transform 0.2s !important;
+    letter-spacing: 0.05em !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    min-width: 180px !important;
+    text-align: center !important;
+    display: block !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    overflow: visible !important;
+}
+.home-btn::after {
+    content: none !important;
+}
+.home-btn:hover {
+    background: linear-gradient(90deg, #ffe4e1, #ffb6c1);
+    transform: scale(1.05);
+}
+@media (max-width: 600px) {
+    .home-title { font-size: 1.3rem; }
+    .home-btn { font-size: 1rem; padding: 0.8rem 0; }
+}

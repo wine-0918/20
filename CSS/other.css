@@ -1,0 +1,202 @@
+/* 全体のレイアウト */
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: #f0f4f8;  /* 少し淡い色に変更 */
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* header部分 */
+header {
+    background: linear-gradient(135deg, #ff6f61, #d23f31);
+    color: white;
+    padding: 40px 20px;
+    border-bottom: 5px solid #ffcc00; /* ヘッダーにボーダーを追加 */
+}
+
+/* タイトルのアニメーションとスタイル */
+.animated-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    animation: animateTitle 6s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes animateTitle {
+    0% {
+        transform: scale(1) rotate(0deg);
+        color: #ff6f61;
+    }
+    25% {
+        transform: scale(1.2) rotate(10deg);
+        color: #ffcc00;
+    }
+    50% {
+        transform: scale(1) rotate(-10deg);
+        color: #66cc33;
+    }
+    75% {
+        transform: scale(1.2) rotate(10deg);
+        color: #3399ff;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        color: #9966ff;
+    }
+}
+
+/* 付き合って何日？セクション */
+.dating-days-section {
+    background: rgba(255, 255, 255, 0.9);  /* 背景を半透明にして少しおしゃれに */
+    padding: 40px 20px;
+    margin-top: 40px;
+    border-radius: 15px;  /* セクションに角丸を追加 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* 軽いシャドウを追加 */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;  /* セクションを中央寄せ */
+}
+
+.dating-days-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;  /* 見出しを大文字にして力強く */
+    letter-spacing: 1px;
+}
+
+#dating-days p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    background: linear-gradient(135deg, #ff6f61, #d23f31); /* グラデーションを文字に */
+    -webkit-background-clip: text;
+    color: transparent;  /* 文字の色を透明にして背景色を文字に反映 */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* カレンダー全体に左右余白を追加 */
+.calendar-section {
+    background: #ffffffcc;
+    padding: 40px 40px; /* ←左右のpaddingを20→40に */
+    margin-top: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px; /* ←少し広げてもOK */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* カレンダーグリッドレイアウト */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+/* 曜日名（上の7列）に適用される */
+.calendar-grid > div:nth-child(-n+7) {
+    font-weight: bold;
+    background: #eee;
+}
+
+/* 全ての枠に共通するベーススタイル */
+.calendar-grid div {
+    padding: 10px;
+    border: 1px solid #000; /* 黒枠 */
+    border-radius: 8px;
+    min-height: 50px;
+    position: relative;
+    cursor: pointer;
+    background-color: #ffffff; /* 平日：白背景 */
+    color: #000; /* 平日：黒文字 */
+}
+
+/* 日曜（赤） */
+.calendar-grid div:nth-child(7n+1):not(:nth-child(-n+7)) {
+    background-color: #ff6f61;
+    color: white;
+}
+
+/* 土曜（青） */
+.calendar-grid div:nth-child(7n):not(:nth-child(-n+7)) {
+    background-color: #3399ff;
+    color: white;
+}
+
+/* タイトル付き日付 */
+.calendar-grid .has-title {
+    font-weight: bold;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* カレンダーのタイトル */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* 予定セクション */
+.plans {
+    margin-top: 40px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* フッター部分 */
+footer {
+    background: linear-gradient(135deg, #ff6f61, #d23f31);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    border-top: 5px solid #ffcc00; /* フッターにもボーダーを追加 */
+}
+
+/* 画面がPC以外の場合 */
+@media screen and (max-width: 768px) {
+    /* カレンダー全体の左右paddingを調整（スマホ・タブレット向け） */
+    .calendar-section {
+        padding: 20px 10px;
+    }
+
+    /* カレンダーセルの文字を小さめにして、高さも確保 */
+    .calendar-grid div {
+        font-size: 0.85rem;
+        padding: 8px 4px;
+        min-height: 45px;
+    }
+
+    /* カレンダーの列数を7列→2列（スクロールで対応）にする案もあるけど、今回は横スクロールを追加 */
+    .calendar-grid {
+        grid-template-columns: repeat(7, minmax(40px, 1fr));
+        overflow-x: auto;
+    }
+}
+
+/* 超小型デバイス（iPhone SEなど）への対応 */
+@media screen and (max-width: 480px) {
+    .calendar-grid div {
+        font-size: 0.75rem;
+        padding: 6px 2px;
+        min-height: 40px;
+    }
+}

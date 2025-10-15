@@ -1,0 +1,1195 @@
+/* ヒット＆ブローゲーム専用CSS */
+
+/* ゲームコンテナ */
+.game-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.game-title {
+    color: #d63384;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+.game-instructions {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #20c997;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-instructions h3 {
+    color: #495057;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.game-instructions p {
+    margin: 0.3rem 0;
+    color: #6c757d;
+    text-align: left;
+    width: fit-content;
+}
+
+.game-message {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    min-height: 2rem;
+    color: #495057;
+}
+
+/* ゲームエリア */
+.game-area {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+}
+
+/* 色選択セクション */
+.color-selection {
+    margin-bottom: 2rem;
+}
+
+.color-selection h3 {
+    color: #495057;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.available-colors {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    padding: 0.5rem;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.color-option.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.selected-colors {
+    margin: 2rem 0;
+}
+
+.selected-colors h4 {
+    color: #495057;
+    margin-bottom: 1rem;
+}
+
+.color-slots {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.color-slot {
+    width: 60px;
+    height: 60px;
+    border: 3px dashed #d63384;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.color-slot.filled {
+    border-style: solid;
+    background: linear-gradient(45deg, #fff, #f8f9fa);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clear-btn {
+    background: linear-gradient(45deg, #6c757d, #5a6268);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.clear-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+}
+
+.guess-btn {
+    background: linear-gradient(45deg, #d63384, #e75480);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem;
+    box-shadow: 0 4px 12px rgba(214, 51, 132, 0.3);
+}
+
+.guess-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(214, 51, 132, 0.4);
+}
+
+.guess-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.input-error {
+    color: #dc3545;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* ゲーム情報 */
+.game-info {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: space-around;
+    background: #e9ecef;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.attempts, .target-hint {
+    font-weight: 600;
+    color: #495057;
+}
+
+/* 履歴セクション */
+.history-section {
+    margin-top: 2rem;
+}
+
+.history-section h3 {
+    color: #495057;
+    margin-bottom: 1rem;
+}
+
+.guess-history {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #20c997;
+}
+
+.history-colors {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.history-color {
+    font-size: 1.5rem;
+}
+
+.history-result {
+    font-weight: 600;
+    color: #495057;
+}
+
+.hit {
+    color: #28a745;
+}
+
+.blow {
+    color: #fd7e14;
+}
+
+/* ゲームボタン共通スタイル */
+.start-btn, .next-btn, .reset-btn {
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.start-btn {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.next-btn {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.reset-btn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.start-btn:hover, .next-btn:hover, .reset-btn:hover {
+    transform: translateY(-3px);
+}
+
+.start-btn:hover {
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+}
+
+.next-btn:hover {
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+}
+
+.reset-btn:hover {
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+.start-btn:active, .next-btn:active, .reset-btn:active {
+    transform: scale(0.95);
+}
+
+/* プレゼント開封セクション */
+.open-gift-section {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.open-gift-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    font-weight: bold;
+}
+
+.open-gift-section p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #f8f9fa;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+}
+
+.open-gift-btn {
+    background: linear-gradient(45deg, #ffd700, #ffeb3b);
+    color: #2c3e50;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+    text-shadow: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.open-gift-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(45deg, #ffed4a, #f7dc6f);
+}
+
+.open-gift-btn:active {
+    transform: scale(0.95);
+}
+
+/* プレゼント表示エリア */
+.gift-reveal {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: linear-gradient(45deg, #ffd700, #ffeb3b);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
+}
+
+.gift-details {
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.gift-details p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+/* ユーティリティクラス */
+.hidden {
+    display: none;
+}
+
+/* 紙吹雪アニメーション */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* タブレット対応 */
+@media (max-width: 1024px) {
+    .game-container {
+        margin: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .scrambled-word {
+        font-size: 2.2rem;
+        letter-spacing: 0.4rem;
+    }
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+    .game-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .game-title {
+        font-size: 1.6rem;
+    }
+    
+    .scrambled-word {
+        font-size: 1.8rem;
+        letter-spacing: 0.3rem;
+        min-height: 60px;
+        padding: 0.8rem;
+    }
+    
+    #answer-input {
+        width: 90%;
+        font-size: 1.1rem;
+        padding: 0.7rem;
+    }
+    
+    .answer-btn, .hint-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .start-btn, .next-btn, .reset-btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        margin: 0.8rem;
+    }
+    
+    .game-instructions {
+        padding: 0.8rem;
+    }
+    
+    .game-instructions h3 {
+        font-size: 1.1rem;
+    }
+    
+    .game-instructions p {
+        font-size: 0.9rem;
+    }
+    
+    .game-area {
+        padding: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .problem-section h3 {
+        font-size: 1rem;
+    }
+}
+
+/* iPhone SE, iPhone 12 mini対応 */
+@media (max-width: 480px) {
+    .game-container {
+        margin: 0.5rem;
+        padding: 0.8rem;
+    }
+    
+    .game-title {
+        font-size: 1.4rem;
+    }
+    
+    .scrambled-word {
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+        min-height: 50px;
+        padding: 0.6rem;
+    }
+    
+    #answer-input {
+        width: 95%;
+        font-size: 1rem;
+        padding: 0.6rem;
+    }
+    
+    .answer-btn, .hint-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+        margin: 0.3rem;
+    }
+    
+    .start-btn, .next-btn, .reset-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        margin: 0.6rem;
+    }
+    
+    .game-message {
+        font-size: 1rem;
+        min-height: 1.5rem;
+    }
+    
+    .game-instructions {
+        margin-bottom: 1.5rem;
+        padding: 0.6rem;
+    }
+    
+    .game-instructions h3 {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .game-instructions p {
+        font-size: 0.85rem;
+        margin: 0.2rem 0;
+    }
+    
+    .game-area {
+        padding: 0.8rem;
+        margin: 1rem 0;
+    }
+    
+    .problem-section {
+        margin-bottom: 1.5rem;
+    }
+    
+    .problem-section h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .answer-result {
+        font-size: 1rem;
+        margin-top: 0.8rem;
+    }
+    
+    .hint-text {
+        padding: 0.8rem;
+        margin: 0.8rem 0;
+        font-size: 0.9rem;
+    }
+    
+    .open-gift-section {
+        margin-top: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .open-gift-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    .open-gift-section p {
+        font-size: 1rem;
+    }
+    
+    .open-gift-btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+    }
+    
+    .gift-reveal {
+        padding: 1.5rem;
+    }
+    
+    .gift-details p {
+        font-size: 1rem;
+    }
+}
+
+/* iPhone SE (第1世代)対応 */
+@media (max-width: 375px) {
+    .game-container {
+        margin: 0.3rem;
+        padding: 0.6rem;
+    }
+    
+    .game-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .scrambled-word {
+        font-size: 1.3rem;
+        letter-spacing: 0.1rem;
+        min-height: 45px;
+        padding: 0.5rem;
+    }
+    
+    #answer-input {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    
+    .answer-btn, .hint-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .start-btn, .next-btn, .reset-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin: 0.5rem;
+    }
+    
+    .game-instructions {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .game-instructions h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .game-instructions p {
+        font-size: 0.8rem;
+        margin: 0.1rem 0;
+    }
+    
+    .game-area {
+        padding: 0.6rem;
+        margin: 0.8rem 0;
+    }
+    
+    .problem-section h3 {
+        font-size: 0.85rem;
+        margin-bottom: 0.6rem;
+    }
+}
+
+/* 横向きのiPhone対応 */
+@media (orientation: landscape) and (max-height: 480px) {
+    .game-container {
+        margin: 0.5rem auto;
+        padding: 0.5rem;
+    }
+    
+    .game-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .game-instructions {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .game-instructions h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .game-instructions p {
+        font-size: 0.8rem;
+        margin: 0.1rem 0;
+    }
+    
+    .scrambled-word {
+        font-size: 1.4rem;
+        letter-spacing: 0.2rem;
+        min-height: 40px;
+        padding: 0.4rem;
+        margin: 0.5rem 0;
+    }
+    
+    .game-area {
+        padding: 0.8rem;
+        margin: 0.8rem 0;
+    }
+    
+    .problem-section {
+        margin-bottom: 1rem;
+    }
+    
+    .problem-section h3 {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    #answer-input {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+    
+    .answer-btn, .hint-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        margin: 0.2rem;
+    }
+    
+    .start-btn, .next-btn, .reset-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin: 0.5rem;
+    }
+    
+    .game-message {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        min-height: 1.2rem;
+    }
+    
+    .answer-result {
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+    
+    .hint-text {
+        padding: 0.6rem;
+        margin: 0.5rem 0;
+        font-size: 0.8rem;
+    }
+    
+    .open-gift-section {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+    
+    .open-gift-section h3 {
+        font-size: 1.1rem;
+    }
+    
+    .open-gift-section p {
+        font-size: 0.9rem;
+    }
+    
+    .open-gift-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .gift-reveal {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+    
+    .gift-details p {
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+    }
+}
+
+/* アクセシビリティ: 動きを減らす設定 */
+@media (prefers-reduced-motion: reduce) {
+    .scrambled-word,
+    #answer-input,
+    .answer-btn,
+    .hint-btn,
+    .start-btn,
+    .next-btn,
+    .reset-btn,
+    .open-gift-btn {
+        transition: none;
+    }
+    
+    .answer-btn:hover,
+    .hint-btn:hover,
+    .start-btn:hover,
+    .next-btn:hover,
+    .reset-btn:hover,
+    .open-gift-btn:hover {
+        transform: none;
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    .game-container {
+        background: rgba(33, 37, 41, 0.95);
+        color: #f8f9fa;
+    }
+    
+    .game-instructions {
+        background: #495057;
+        border-left-color: #20c997;
+    }
+    
+    .game-instructions h3 {
+        color: #f8f9fa;
+    }
+    
+    .game-instructions p {
+        color: #dee2e6;
+    }
+    
+    .game-message {
+        color: #f8f9fa;
+    }
+    
+    .game-area {
+        background: #495057;
+        border-color: #6c757d;
+    }
+    
+    .problem-section h3 {
+        color: #f8f9fa;
+    }
+    
+    .scrambled-word {
+        background: linear-gradient(45deg, #495057, #6c757d);
+        color: #f8f9fa;
+        border-color: #d63384;
+    }
+    
+    #answer-input {
+        background: #495057;
+        color: #f8f9fa;
+        border-color: #d63384;
+    }
+    
+    #answer-input::placeholder {
+        color: #adb5bd;
+    }
+    
+    .hint-text {
+        background: linear-gradient(45deg, #495057, #6c757d);
+        border-color: #ffc107;
+        color: #f8f9fa;
+    }
+}
+
+/* タッチデバイス用の追加スタイル */
+@media (hover: none) and (pointer: coarse) {
+    .answer-btn:hover,
+    .hint-btn:hover,
+    .start-btn:hover,
+    .next-btn:hover,
+    .reset-btn:hover,
+    .open-gift-btn:hover {
+        transform: none;
+        box-shadow: inherit;
+    }
+    
+    .answer-btn:active,
+    .hint-btn:active,
+    .start-btn:active,
+    .next-btn:active,
+    .reset-btn:active,
+    .open-gift-btn:active {
+        transform: scale(0.95);
+    }
+    
+    #answer-input:focus {
+        transform: none;
+    }
+}
+
+/* タブレット対応 */
+@media (max-width: 1024px) {
+    .game-container {
+        margin: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .game-board {
+        max-width: 450px;
+    }
+}
+
+/* スマートフォン対応 */
+@media (max-width: 768px) {
+    .game-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+    
+    .game-board {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        max-width: 320px;
+    }
+
+    .card-face {
+        font-size: 2rem;
+    }
+
+    .game-title {
+        font-size: 1.6rem;
+    }
+    
+    .game-message {
+        font-size: 1rem;
+    }
+    
+    .game-instructions {
+        padding: 0.8rem;
+    }
+    
+    .game-instructions h3 {
+        font-size: 1.1rem;
+    }
+    
+    .game-instructions p {
+        font-size: 0.9rem;
+    }
+}
+
+/* iPhone SE, iPhone 12 mini対応 */
+@media (max-width: 480px) {
+    .game-container {
+        margin: 0.5rem;
+        padding: 0.8rem;
+    }
+
+    .game-board {
+        max-width: 280px;
+        gap: 6px;
+        padding: 0.5rem;
+    }
+
+    .card-face {
+        font-size: 1.8rem;
+    }
+    
+    .game-title {
+        font-size: 1.4rem;
+    }
+    
+    .game-message {
+        font-size: 0.95rem;
+        min-height: 1.5rem;
+    }
+    
+    .reset-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    
+    .start-btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        margin: 1.5rem;
+    }
+    
+    .open-gift-section {
+        margin-top: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .open-gift-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    .open-gift-section p {
+        font-size: 1rem;
+    }
+    
+    .open-gift-btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+    }
+    
+    .gift-reveal {
+        padding: 1.5rem;
+    }
+    
+    .gift-details p {
+        font-size: 1rem;
+    }
+}
+
+/* iPhone SE (第1世代)対応 */
+@media (max-width: 375px) {
+    .game-container {
+        margin: 0.3rem;
+        padding: 0.6rem;
+    }
+    
+    .game-board {
+        max-width: 260px;
+        gap: 5px;
+    }
+    
+    .card-face {
+        font-size: 1.6rem;
+    }
+    
+    .game-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .game-instructions {
+        margin-bottom: 1.5rem;
+        padding: 0.6rem;
+    }
+    
+    .game-instructions h3 {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .game-instructions p {
+        font-size: 0.85rem;
+        margin: 0.2rem 0;
+    }
+}
+
+/* 縦向きのiPhone対応 */
+@media (orientation: portrait) and (max-width: 480px) {
+    .game-board {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* 横向きのiPhone対応 */
+@media (orientation: landscape) and (max-height: 480px) {
+    .game-container {
+        margin: 0.5rem auto;
+        padding: 0.5rem;
+    }
+    
+    .game-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .game-instructions {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .game-instructions h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .game-instructions p {
+        font-size: 0.8rem;
+        margin: 0.1rem 0;
+    }
+    
+    .game-board {
+        grid-template-columns: repeat(5, 1fr);
+        max-width: 400px;
+        gap: 5px;
+        margin: 0 auto 1rem;
+    }
+    
+    .card-face {
+        font-size: 1.4rem;
+    }
+    
+    .game-message {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        min-height: 1.2rem;
+    }
+    
+    .reset-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        margin: 0.5rem;
+    }
+    
+    .start-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        margin: 1rem;
+    }
+    
+    .open-gift-section {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+    
+    .open-gift-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .open-gift-section p {
+        font-size: 1rem;
+    }
+    
+    .open-gift-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    
+    .gift-reveal {
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+    
+    .gift-details p {
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+    }
+}
+
+/* iPhone Pro Max対応 */
+@media (max-width: 428px) and (min-width: 415px) {
+    .game-board {
+        max-width: 300px;
+    }
+    
+    .card-face {
+        font-size: 1.9rem;
+    }
+}
+
+/* iPhone 14 Pro Max対応 */
+@media (max-width: 430px) and (min-width: 428px) {
+    .game-board {
+        max-width: 310px;
+    }
+}
+
+/* 高DPIディスプレイ対応 */
+@media (-webkit-min-device-pixel-ratio: 2) {
+    .memory-card {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    
+    .memory-card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* アクセシビリティ: 動きを減らす設定 */
+@media (prefers-reduced-motion: reduce) {
+    .memory-card,
+    .card-face,
+    .reset-btn {
+        transition: none;
+    }
+    
+    .memory-card:hover {
+        transform: none;
+    }
+    
+    .memory-card.flipped {
+        transform: none;
+    }
+    
+    .memory-card.matched {
+        transform: none;
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    .game-container {
+        background: rgba(33, 37, 41, 0.95);
+        color: #f8f9fa;
+    }
+    
+    .game-instructions {
+        background: #495057;
+        border-left-color: #20c997;
+    }
+    
+    .game-instructions h3 {
+        color: #f8f9fa;
+    }
+    
+    .game-instructions p {
+        color: #dee2e6;
+    }
+    
+    .game-message {
+        color: #f8f9fa;
+    }
+}
+
+/* タッチデバイス用の追加スタイル */
+@media (hover: none) and (pointer: coarse) {
+    .memory-card:hover {
+        transform: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .memory-card:active {
+        transform: scale(0.98);
+    }
+    
+    .reset-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .reset-btn:active {
+        transform: scale(0.95);
+        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+    }
+}

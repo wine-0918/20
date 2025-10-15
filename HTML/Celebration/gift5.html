@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プレゼント⑤</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../CSS/gift.css">
+    <link rel="stylesheet" href="../../CSS/gift5.css">
+</head>
+<body>
+    <header>
+        <h1 class="animated-title">Celebrating 20 Years</h1>
+    </header>
+    
+    <div class="game-container">
+        <h2 class="game-title">🔤 アナグラムクイズ 🔤</h2>
+        
+        <div class="game-instructions">
+            <h3>ゲームルール</h3>
+            <p>1. スタートボタンを押してゲーム開始</p>
+            <p>2. バラバラになった文字を並び替えよう</p>
+            <p>3. 正しい単語を入力して答えよう</p>
+            <p>4. 正解したらプレゼントがもらえるよ！</p>
+            <p>5. 答えは全部ひらがなで書いてねー</p>
+        </div>
+
+        <div id="game-message" class="game-message">
+            スタートボタンを押してゲーム開始！
+        </div>
+
+        <button id="start-btn" class="start-btn">🎮 ゲームスタート</button>
+
+        <div id="game-area" class="game-area hidden">
+            <div class="problem-section">
+                <h3>この文字を並び替えて正しい単語にしよう！</h3>
+                <div id="scrambled-word" class="scrambled-word"></div>
+            </div>
+            
+            <div class="answer-section">
+                <input type="text" id="answer-input" placeholder="答えをひらがなで入力してね" maxlength="20">
+                <button id="answer-submit" class="answer-btn">答える</button>
+                <p id="answer-result" class="answer-result"></p>
+            </div>
+            
+            <button id="hint-btn" class="hint-btn">💡 ヒントを見る</button>
+            <div id="hint-text" class="hint-text hidden"></div>
+            
+            <button id="next-btn" class="next-btn hidden">次の問題へ</button>
+        </div>
+
+        <button id="reset-btn" class="reset-btn hidden">🔄 最初からやり直す</button>
+
+        <!-- プレゼント開封ボタンセクション（初期状態は非表示） -->
+        <div class="open-gift-section hidden">
+            <h3>🎉 全問正解！🎉</h3>
+            <p>おめでとう！すべての問題をクリアしました！</p>
+            <button id="open-gift-btn" class="open-gift-btn">🎁 プレゼントを開封する</button>
+        </div>
+
+        <!-- プレゼント表示エリア（初期状態は非表示） -->
+        <div class="gift-reveal hidden">
+            <h2>おめでとう！プレゼントゲット！</h2>
+            <div class="gift-details">
+                <p><strong>🎁 プレゼント：</strong> カラオケ3回分 + 映画3回分無料券！</p>
+                <p><strong>📝 詳細：</strong> 特になし！</p>
+                <p><strong>🍽️ 利用方法：</strong> すきなタイミングで使ってOK！</p>
+                <p><strong>⏰ 有効期限：</strong> なし</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Celebrating 20 Years. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="../../JS/inputkeys.js"></script>
+    <script src="../../JS/gift5.js"></script>
+    <script defer src="../../JS/background.js"></script>
+</body>
+</html>

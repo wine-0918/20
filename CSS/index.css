@@ -1,0 +1,55 @@
+/* CSS/index.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#welcome-screen {
+    background-color: #ffeb3b; 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#welcome-screen h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #d23f31;
+    margin-bottom: 20px;
+}
+
+input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 80%;
+}
+
+#go-to-page {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#go-to-page:hover {
+    background-color: #d23f31;
+}
+
+#error-message {
+    margin-top: 10px;
+    font-size: 14px;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>モンストのあのゲーム</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>モンストのあのゲーム</h1>
+
+  <!-- ボタンセクションを追加 -->
+  <section class="color-buttons-section">
+    <div id="game-container">
+      <div class="circle-buttons">
+        <button class="color-btn">1</button>
+        <button class="color-btn">2</button>
+        <button class="color-btn">3</button>
+        <button class="color-btn">4</button>
+        <button class="color-btn">5</button>
+        <button class="color-btn">6</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="initial-color-setup">
+  <h2>初期色の設定（任意）</h2>
+  <div class="color-setters">
+    <div>
+      <label for="color-0">①：</label>
+      <select id="color-0" class="set-color" data-index="0">
+        <option value="">ランダム</option>
+        <option value="red">赤</option>
+        <option value="blue">青</option>
+        <option value="yellow">黄色</option>
+      </select>
+    </div>
+    <div>
+      <label for="color-1">②：</label>
+      <select id="color-1" class="set-color" data-index="1">
+        <option value="">ランダム</option>
+        <option value="red">赤</option>
+        <option value="blue">青</option>
+        <option value="yellow">黄色</option>
+      </select>
+    </div>
+    <div>
+      <label for="color-2">③：</label>
+      <select id="color-2" class="set-color" data-index="2">
+        <option value="">ランダム</option>
+        <option value="red">赤</option>
+        <option value="blue">青</option>
+        <option value="yellow">黄色</option>
+      </select>
+    </div>
+    <div>
+      <label for="color-3">④：</label>
+      <select id="color-3" class="set-color" data-index="3">
+        <option value="">ランダム</option>
+        <option value="red">赤</option>
+        <option value="blue">青</option>
+        <option value="yellow">黄色</option>
+      </select>
+    </div>
+    <div>
+      <label for="color-4">⑤：</label>
+      <select id="color-4" class="set-color" data-index="4">
+        <option value="">ランダム</option>
+        <option value="red">赤</option>
+        <option value="blue">青</option>
+        <option value="yellow">黄色</option>
+      </select>
+    </div>
+    <div>
+      <label for="color-5">⑥：</label>
+      <select id="color-5" class="set-color" data-index="5">
+        <option value="">ランダム</option>
+        <option value="red">赤</option>
+        <option value="blue">青</option>
+        <option value="yellow">黄色</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+    <button id="apply-colors">初期色を反映</button>
+  </div>
+
+  <div class="control-panel">
+    <h2>目標色・数を設定</h2>
+    <label for="target-color">目標色：</label>
+    <select id="target-color">
+      <option value="any">最短の色（おすすめ）</option>
+      <option value="red">赤</option>
+      <option value="blue">青</option>
+      <option value="yellow">黄色</option>
+    </select>
+
+    <label for="target-count">そろえる数：</label>
+    <select id="target-count">
+      <option value="4">4つ</option>
+      <option value="5">5つ</option>
+      <option value="6">6つ</option>
+    </select>
+
+    <button id="decide-button">最短手順を検索</button>
+  </div>
+
+  <div class="solution">
+    <h2>最短手順</h2>
+    <div id="solution-output">未決定</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

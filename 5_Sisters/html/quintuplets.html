@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5等分の花嫁 イベント旅行</title>
+    <link rel="stylesheet" href="../css/quintuplets.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <button class="home-btn" onclick="location.href='quintuplets_home.html'">🏠 Homeに戻る</button>
+        <h1>🌸 5等分の花嫁 イベント旅行 🌸</h1>
+        <p>2026年5月2日 トヨタアリーナ</p>
+    </header>
+
+    <main>
+        <section class="plan-selector">
+            <h2>宿泊プランを選択</h2>
+            <div class="plan-buttons">
+                <button class="plan-btn" data-nights="0">日帰り</button>
+                <button class="plan-btn" data-nights="1">1泊2日</button>
+                <button class="plan-btn" data-nights="2">2泊3日</button>
+                <button class="plan-btn" data-nights="3">3泊4日</button>
+            </div>
+        </section>
+
+        <section class="event-selector">
+            <h2>追加イベントプランを選択（複数選択可）</h2>
+            <div class="event-buttons">
+                <button class="event-btn" data-event="potter">
+                    <span class="checkbox">☐</span> ハリーポッターミュージアム
+                </button>
+                <button class="event-btn" data-event="noodles">
+                    <span class="checkbox">☐</span> カップヌードルミュージアム
+                </button>
+                <button class="event-btn" data-event="mongol">
+                    <span class="checkbox">☐</span> 蒙古タンメン中本
+                </button>
+                <button class="event-btn" data-event="calbee">
+                    <span class="checkbox">☐</span> カルビープラス（新千歳空港）
+                </button>
+            </div>
+        </section>
+
+        <section class="calculation-section">
+            <div class="input-section">
+                <h3>料金設定</h3>
+                <div class="input-group">
+                    <label for="flight-price">往復航空券 (円):</label>
+                    <input type="number" id="flight-price" value="65000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="hotel-price">ホテル1泊 (円):</label>
+                    <input type="number" id="hotel-price" value="15000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="dinner-price">夕食1回 (円):</label>
+                    <input type="number" id="dinner-price" value="5000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="meal-price">朝昼食1日 (円):</label>
+                    <input type="number" id="meal-price" value="2500" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="transport-price">現地交通費1日 (円):</label>
+                    <input type="number" id="transport-price" value="1500" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="event-price">5等分イベントチケット (円):</label>
+                    <input type="number" id="event-price" value="12000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="potter-price">ハリーポッターミュージアム (円):</label>
+                    <input type="number" id="potter-price" value="6800" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="noodles-price">カップヌードルミュージアム (円):</label>
+                    <input type="number" id="noodles-price" value="1000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="mongol-price">蒙古タンメン中本 (円):</label>
+                    <input type="number" id="mongol-price" value="1500" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="souvenir-price">お土産代 (円):</label>
+                    <input type="number" id="souvenir-price" value="10000" min="0" step="100">
+                </div>
+                <div class="input-group">
+                    <label for="calbee-price">カルビープラス（新千歳空港）(円):</label>
+                    <input type="number" id="calbee-price" value="2000" min="0" step="100">
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h3>旅行プラン詳細</h3>
+                <div id="plan-details" class="plan-details">
+                    <p>プランを選択してください</p>
+                </div>
+                <div class="input-group" id="dinner-checkbox-group" style="display:none; margin-top: 1em;">
+                    <label>
+                        <input type="checkbox" id="add-dinner-checkbox"> 日帰りでも夕食を追加する（+1回分）
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section class="schedule-section">
+            <h3>スケジュール例</h3>
+            <div class="input-group" id="flight-time-group">
+                <label for="flight-departure">新千歳空港 出発時刻：</label>
+                <input type="time" id="flight-departure" value="07:00">
+                <label for="flight-arrival">羽田空港 到着時刻：</label>
+                <input type="time" id="flight-arrival" value="08:40">
+                <label for="flight-return">羽田空港 帰り出発：</label>
+                <input type="time" id="flight-return" value="20:00">
+            </div>
+            <div id="schedule-details" class="schedule-details">
+                <p>プランを選択するとスケジュールが表示されます</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 5等分の花嫁 旅行プラン</p>
+    </footer>
+
+    <script src="../js/quintuplets.js"></script>
+    <script src="../js/quintuplets-background.js"></script>
+</body>
+</html>

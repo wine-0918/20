@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プレゼント④</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../CSS/gift.css">
+</head>
+<body>
+    <header>
+        <h1 class="animated-title">Celebrating 20 Years</h1>
+    </header>
+    
+    <section class="gift-content">
+        <h2>プレゼント④</h2>
+        <div class="gift-description">
+            <div class="content-box">
+                <p class="hidden-content">さぁなんでしょうか？</p>
+            </div>
+            <button class="hint-btn">ヒントを見てみる</button>
+            <div class="hints">
+                <p class="hint">ヒント１</p>
+                <button class="more-hints">1つ目のヒントを見る</button>
+                <p class="hint">ヒント２</p>
+                <button class="more-hints">2つ目のヒントを見る</button>
+                <p class="hint">ヒント３</p>
+                <button class="more-hints">3つ目のヒントを見る</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="answer-section">
+        <h2>プレゼントの答えは？</h2>
+        <input type="text" id="answer-input" placeholder="答えを入力">
+        <button id="answer-submit">送信</button>
+        <p id="answer-result"></p>
+    </section>
+
+    <!-- プレゼント開封ボタン（正解後に表示） -->
+    <section class="open-gift-section hidden">
+        <button id="open-gift-btn">プレゼントを開封する</button>
+    </section>
+
+    <!-- 詳細ページセクション（初期状態は非表示） -->
+    <section class="details-section hidden">
+        <h2>🎁 プレゼントの詳細 🎁</h2>
+        <div class="details-content">
+            <p><strong>プレゼント：</strong> 外食5回分チケット</p>
+            <p><strong>詳細：</strong> 好きなレストランやお店で5回分の無料！</p>
+            <p><strong>利用方法：</strong> 使いたいときはいつでも言ってね</p>
+            <p><strong>有効期限：</strong> なし</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Celebrating 20 Years. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="../../JS/inputkeys.js"></script>
+    <script src="../../JS/gift4.js"></script>    
+    <script src="../../JS/gift4-play.js"></script>    
+    <script defer src="../../JS/background.js"></script>
+</body>
+</html>

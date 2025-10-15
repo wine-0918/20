@@ -1,0 +1,71 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #ffb6c1 0%, #ffe4e1 50%, #a8e6cf 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+.notes-section {
+    background: rgba(255,255,255,0.95);
+    border-radius: 2rem;
+    margin: 2.5rem 0 2.5rem 0;
+    width: 100%;
+    max-width: 750px;
+    padding: 2.5rem 2rem 2rem 2rem;
+    box-shadow: 0 4px 24px 0 rgba(255,182,193,0.25), 0 1.5px 8px 0 rgba(168,230,207,0.10);
+    border: 2px solid #ffb6c1;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.notes-section h3 {
+    font-size: 1.7rem;
+    color: #d94f70;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px #fff7fa;
+}
+.checklist h4, .tips h4 {
+    color: #ffb6c1;
+    font-size: 1.2rem;
+    margin-top: 1.5em;
+}
+.checklist ul, .tips ul {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+    text-align: left;
+}
+.checklist li, .tips li {
+    font-size: 1.05em;
+    margin-bottom: 0.3em;
+}
+.home-btn {
+    margin: 1.5rem 0 0 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 1rem;
+    border: none;
+    background: linear-gradient(90deg, #ffb6c1, #ffe4e1);
+    color: #d94f70;
+    font-weight: bold;
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255,182,193,0.15);
+    transition: background 0.2s, transform 0.2s;
+}
+.home-btn:hover {
+    background: linear-gradient(90deg, #ffe4e1, #ffb6c1);
+    transform: scale(1.05);
+}
+main, .notes-section { position: relative; z-index: 2; }
+@media (max-width: 600px) {
+    .notes-section { padding: 1rem; }
+    .home-btn { font-size: 1rem; padding: 0.5rem 1rem; }
+}

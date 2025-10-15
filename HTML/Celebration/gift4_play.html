@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    <title>プレゼント④</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../CSS/gift.css">
+    <link rel="stylesheet" href="../../CSS/gift4_play.css">
+</head>
+<body>
+
+<body>
+    <header>
+        <h1 class="animated-title">Celebrating 20 Years</h1>
+    </header>
+    
+    <div class="game-container">
+        <h2 class="game-title">🍽️ 料理記憶ゲーム 🍽️</h2>
+        
+        <div class="game-instructions">
+            <h3>ゲームルール</h3>
+            <p> スタートボタンを押してゲーム開始</p>
+            <p> 最初に7秒間、全てのカードが表示されるよ</p>
+            <p> 同じ料理のペアを見つけよう！</p>
+            <p> マッチしたカードは消えるよん</p>
+            <p> 全てのペアを揃えたらプレゼントゲット！</p>
+        </div>
+
+        <div id="game-message" class="game-message">
+            スタートボタンを押してゲーム開始！
+        </div>
+
+        <button id="start-btn" class="start-btn">🎮 ゲームスタート</button>
+
+        <div id="game-board" class="game-board">
+            <!-- ゲームカードがここに生成されます -->
+        </div>
+
+        <button id="reset-btn" class="reset-btn hidden">🔄 もう一度遊ぶ</button>
+
+        <!-- プレゼント開封ボタンセクション（初期状態は非表示） -->
+        <div class="open-gift-section hidden">
+            <h3>🎉 ゲームクリア！🎉</h3>
+            <p>おめでとう！！！</p>
+            <button id="open-gift-btn" class="open-gift-btn">🎁 プレゼントを開封する</button>
+        </div>
+
+        <!-- プレゼント表示エリア（初期状態は非表示） -->
+        <div class="gift-reveal hidden">
+            <h2>🎉 おめでとう！プレゼントゲット！ 🎉</h2>
+            <div class="gift-details">
+                <p><strong>🎁 プレゼント：</strong> 外食5回分チケット</p>
+                <p><strong>📝 詳細：</strong> 好きなお店で5回分の食事が無料！！</p>
+                <p><strong>🍽️ 利用方法：</strong> 行きたいお店を教えてね</p>
+                <p><strong>⏰ 有効期限：</strong> なし</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Celebrating 20 Years. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="../../JS/inputkeys.js"></script>
+    <script src="../../JS/gift4_play.js"></script>
+    <script defer src="../../JS/background.js"></script>
+</body>
+</html>
