@@ -120,7 +120,7 @@ function calculateTotalValue() {
 // カウントアップアニメーション
 function animateCounter() {
     const amountElement = document.querySelector('.amount');
-    const targetValue = 25200;
+    const targetValue = 23200; // 8000(ファッション) + 5200(コスメ) + 10000(製菓) = 23200
     let currentValue = 0;
     const increment = targetValue / 50;
     
