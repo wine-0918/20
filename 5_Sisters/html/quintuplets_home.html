@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5等分の花嫁 イベントプランナー Home</title>
-    <link rel="stylesheet" href="../css/quintuplets.css">
+    <title>五等分の花嫁 イベント - ホーム</title>
     <link rel="stylesheet" href="../css/quintuplets_home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button class="home-btn home-back-btn" onclick="location.href='../../HTML/home.html'">🏠 ホームに戻る</button>
-    <div class="home-title">5等分の花嫁 旅行計画</div>
-    <div class="home-btns">
-        <button class="home-btn" onclick="location.href='../html/quintuplets.html'">費用計算ページへ</button>
-        <button class="home-btn" onclick="location.href='../html/quintuplets_items.html'">持ち物リストページへ</button>
+    <button class="home-back-btn" onclick="location.href='../../HTML/home.html'">🏠 ホームに戻る</button>
+    
+    <div class="container">
+        <header class="page-header">
+            <div class="decorative-line"></div>
+            <h1 class="main-title">五等分の花嫁</h1>
+            <p class="subtitle">Special Event</p>
+            <div class="decorative-line"></div>
+        </header>
+
+        <nav class="navigation">
+            <button class="nav-button" onclick="location.href='quintuplets.html'">
+                <span class="icon">📅</span>
+                <span class="button-text">しおり</span>
+            </button>
+            <button class="nav-button" onclick="location.href='quintuplets_items.html'">
+                <span class="icon">🎒</span>
+                <span class="button-text">持ち物</span>
+            </button>
+        </nav>
     </div>
 </body>
-    <script src="../js/quintuplets-background.js"></script>
 </html>

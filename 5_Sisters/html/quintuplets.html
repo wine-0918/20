@@ -3,129 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5等分の花嫁 イベント旅行</title>
+    <title>五等分の花嫁 - しおり</title>
     <link rel="stylesheet" href="../css/quintuplets.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <button class="home-btn" onclick="location.href='quintuplets_home.html'">🏠 Homeに戻る</button>
-        <h1>🌸 5等分の花嫁 イベント旅行 🌸</h1>
-        <p>2026年5月2日 トヨタアリーナ</p>
-    </header>
-
-    <main>
-        <section class="plan-selector">
-            <h2>宿泊プランを選択</h2>
-            <div class="plan-buttons">
-                <button class="plan-btn" data-nights="0">日帰り</button>
-                <button class="plan-btn" data-nights="1">1泊2日</button>
-                <button class="plan-btn" data-nights="2">2泊3日</button>
-                <button class="plan-btn" data-nights="3">3泊4日</button>
+    <button class="home-back-btn" onclick="location.href='quintuplets_home.html'">← ホームに戻る</button>
+    
+    <div class="container">
+        <header class="page-header">
+            <div class="decorative-line"></div>
+            <h1 class="main-title">しおり</h1>
+            <p class="event-info">五等分の花嫁 イベント</p>
+            <div class="event-details">
+                <p class="venue">TOYOTA ARENA TOKYO</p>
+                <p class="time">開場 15:30 / 開演 17:00</p>
+                <a href="https://www.tbs.co.jp/anime/5hanayome/event/" target="_blank" class="event-link">イベント詳細 →</a>
             </div>
-        </section>
+            <div class="decorative-line"></div>
+        </header>
 
-        <section class="event-selector">
-            <h2>追加イベントプランを選択（複数選択可）</h2>
-            <div class="event-buttons">
-                <button class="event-btn" data-event="potter">
-                    <span class="checkbox">☐</span> ハリーポッターミュージアム
-                </button>
-                <button class="event-btn" data-event="noodles">
-                    <span class="checkbox">☐</span> カップヌードルミュージアム
-                </button>
-                <button class="event-btn" data-event="mongol">
-                    <span class="checkbox">☐</span> 蒙古タンメン中本
-                </button>
-                <button class="event-btn" data-event="calbee">
-                    <span class="checkbox">☐</span> カルビープラス（新千歳空港）
-                </button>
-            </div>
-        </section>
+        <nav class="day-selector">
+            <button class="day-button active" data-day="1">1日目</button>
+            <button class="day-button" data-day="2">2日目</button>
+            <button class="day-button" data-day="3">3日目</button>
+        </nav>
 
-        <section class="calculation-section">
-            <div class="input-section">
-                <h3>料金設定</h3>
-                <div class="input-group">
-                    <label for="flight-price">往復航空券 (円):</label>
-                    <input type="number" id="flight-price" value="65000" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="hotel-price">ホテル1泊 (円):</label>
-                    <input type="number" id="hotel-price" value="15000" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="dinner-price">夕食1回 (円):</label>
-                    <input type="number" id="dinner-price" value="5000" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="meal-price">朝昼食1日 (円):</label>
-                    <input type="number" id="meal-price" value="2500" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="transport-price">現地交通費1日 (円):</label>
-                    <input type="number" id="transport-price" value="1500" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="event-price">5等分イベントチケット (円):</label>
-                    <input type="number" id="event-price" value="12000" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="potter-price">ハリーポッターミュージアム (円):</label>
-                    <input type="number" id="potter-price" value="6800" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="noodles-price">カップヌードルミュージアム (円):</label>
-                    <input type="number" id="noodles-price" value="1000" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="mongol-price">蒙古タンメン中本 (円):</label>
-                    <input type="number" id="mongol-price" value="1500" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="souvenir-price">お土産代 (円):</label>
-                    <input type="number" id="souvenir-price" value="10000" min="0" step="100">
-                </div>
-                <div class="input-group">
-                    <label for="calbee-price">カルビープラス（新千歳空港）(円):</label>
-                    <input type="number" id="calbee-price" value="2000" min="0" step="100">
+        <!-- 1日目 -->
+        <div class="schedule-content active" id="day-1">
+            <h2 class="day-title">1日目</h2>
+            
+            <div class="route-section">
+                <h3 class="section-title">移動スケジュール</h3>
+                <div class="route-flow">
+                    <span class="route-point">家</span>
+                    <span class="route-arrow">→</span>
+                    <span class="route-point">新千歳空港</span>
+                    <span class="route-arrow">→</span>
+                    <span class="route-point">羽田空港</span>
+                    <span class="route-arrow">→</span>
+                    <span class="route-point">ホテル</span>
                 </div>
             </div>
 
-            <div class="result-section">
-                <h3>旅行プラン詳細</h3>
-                <div id="plan-details" class="plan-details">
-                    <p>プランを選択してください</p>
+            <div class="schedule-timeline">
+                <div class="timeline-item">
+                    <div class="time">20:10</div>
+                    <div class="content">
+                        <div class="content-title">羽田空港 着</div>
+                    </div>
                 </div>
-                <div class="input-group" id="dinner-checkbox-group" style="display:none; margin-top: 1em;">
-                    <label>
-                        <input type="checkbox" id="add-dinner-checkbox"> 日帰りでも夕食を追加する（+1回分）
-                    </label>
+
+                <div class="timeline-item">
+                    <div class="time">20:55</div>
+                    <div class="content">
+                        <div class="content-title">リムジンバス 発</div>
+                        <div class="content-note">※1ヶ月前から予約可能</div>
+                        <a href="https://www.limousinebus.co.jp/ja/timetable/detail/Haneda-Toyosu/" target="_blank" class="link">時刻表を見る</a>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time">未定</div>
+                    <div class="content">
+                        <div class="content-title">ホテル到着・チェックイン</div>
+                        <div class="content-detail">宿泊：ホテルJALシティ東京 豊洲</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time">-</div>
+                    <div class="content">
+                        <div class="content-title">就寝</div>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <section class="schedule-section">
-            <h3>スケジュール例</h3>
-            <div class="input-group" id="flight-time-group">
-                <label for="flight-departure">新千歳空港 出発時刻：</label>
-                <input type="time" id="flight-departure" value="07:00">
-                <label for="flight-arrival">羽田空港 到着時刻：</label>
-                <input type="time" id="flight-arrival" value="08:40">
-                <label for="flight-return">羽田空港 帰り出発：</label>
-                <input type="time" id="flight-return" value="20:00">
+            <div class="note-box">
+                <div class="note-title">📝 補足</div>
+                <ul>
+                    <li>羽田空港で夜ご飯を購入予定</li>
+                    <li>仕事がなければ朝から出発し、カルビープラス に行く</li>
+                </ul>
             </div>
-            <div id="schedule-details" class="schedule-details">
-                <p>プランを選択するとスケジュールが表示されます</p>
-            </div>
-        </section>
-    </main>
+        </div>
 
-    <footer>
-        <p>&copy; 2026 5等分の花嫁 旅行プラン</p>
-    </footer>
+        <!-- 2日目 -->
+        <div class="schedule-content" id="day-2">
+            <h2 class="day-title">2日目 <span class="day-label">（イベント当日）</span></h2>
+            
+            <div class="schedule-timeline">
+                <div class="timeline-section">
+                    <div class="section-header">朝</div>
+                    
+                    <div class="timeline-item">
+                        <div class="time">9:00</div>
+                        <div class="content">
+                            <div class="content-title">起床</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">未定</div>
+                        <div class="content">
+                            <div class="content-title">準備</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <div class="section-header">午前</div>
+                    
+                    <div class="timeline-item">
+                        <div class="time">未定</div>
+                        <div class="content">
+                            <div class="content-title">豊洲市場 で朝ごはん</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">未定</div>
+                        <div class="content">
+                            <div class="content-title">一旦ホテルへ戻る</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <div class="section-header">昼</div>
+                    
+                    <div class="timeline-item">
+                        <div class="time">未定</div>
+                        <div class="content">
+                            <div class="content-title">グッズ持参</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">未定</div>
+                        <div class="content">
+                            <div class="content-title">つけ麺を食べに行く</div>
+                            <div class="content-note">場所未定</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-section event-section">
+                    <div class="section-header">イベント</div>
+                    
+                    <div class="timeline-item">
+                        <div class="time">15:30</div>
+                        <div class="content">
+                            <div class="content-title">開場</div>
+                            <div class="content-detail">TOYOTA ARENA TOKYO</div>
+                            <a href="https://x.gd/6mPRo" target="_blank" class="link">ホテル → 会場</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">17:00</div>
+                        <div class="content">
+                            <div class="content-title">開演</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">未定</div>
+                        <div class="content">
+                            <div class="content-title">会場付近で夜ごはん</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">未定</div>
+                        <div class="content">
+                            <div class="content-title">ホテルへ戻る</div>
+                            <a href="https://x.gd/81EvB" target="_blank" class="link">会場 → ホテル</a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="time">-</div>
+                        <div class="content">
+                            <div class="content-title">就寝</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3日目 -->
+        <div class="schedule-content" id="day-3">
+            <h2 class="day-title">3日目</h2>
+            
+            <div class="schedule-timeline">
+                <div class="timeline-item">
+                    <div class="time">未定</div>
+                    <div class="content">
+                        <div class="content-title">起床</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time">未定</div>
+                    <div class="content">
+                        <div class="content-title">つけ麺を食べに行く</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time">未定</div>
+                    <div class="content">
+                        <div class="content-title">近場を観光</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time">未定</div>
+                    <div class="content">
+                        <div class="content-title">羽田空港へ移動</div>
+                        <div class="content-detail">ブルーシール を食べる</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="time">未定</div>
+                    <div class="content">
+                        <div class="content-title">新千歳空港へ帰る</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <div class="note-title">📝 補足</div>
+                <ul>
+                    <li>1日目に仕事があった場合のみ、この日にカルビープラスへ行く</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <script src="../js/quintuplets.js"></script>
-    <script src="../js/quintuplets-background.js"></script>
 </body>
 </html>

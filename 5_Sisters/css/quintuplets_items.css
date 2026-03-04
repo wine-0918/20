@@ -1,71 +1,232 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(120deg, #ffb6c1 0%, #ffe4e1 50%, #a8e6cf 100%);
-    min-height: 100vh;
+* {
     margin: 0;
     padding: 0;
-    position: relative;
-    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif JP', serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #fff5f7 50%, #ffe8f0 100%);
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    padding: 20px;
 }
-.notes-section {
-    background: rgba(255,255,255,0.95);
-    border-radius: 2rem;
-    margin: 2.5rem 0 2.5rem 0;
-    width: 100%;
-    max-width: 750px;
-    padding: 2.5rem 2rem 2rem 2rem;
-    box-shadow: 0 4px 24px 0 rgba(255,182,193,0.25), 0 1.5px 8px 0 rgba(168,230,207,0.10);
-    border: 2px solid #ffb6c1;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.notes-section h3 {
-    font-size: 1.7rem;
-    color: #d94f70;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 8px #fff7fa;
-}
-.checklist h4, .tips h4 {
-    color: #ffb6c1;
-    font-size: 1.2rem;
-    margin-top: 1.5em;
-}
-.checklist ul, .tips ul {
-    margin-left: 1.5em;
-    margin-bottom: 1em;
-    text-align: left;
-}
-.checklist li, .tips li {
-    font-size: 1.05em;
-    margin-bottom: 0.3em;
-}
-.home-btn {
-    margin: 1.5rem 0 0 1.5rem;
-    font-size: 1.1rem;
-    border-radius: 1rem;
-    border: none;
-    background: linear-gradient(90deg, #ffb6c1, #ffe4e1);
-    color: #d94f70;
-    font-weight: bold;
-    padding: 0.7rem 1.5rem;
+
+/* ホームに戻るボタン */
+.home-back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 12px 24px;
+    background: white;
+    border: 2px solid #ff85b3;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ff1493;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(255,182,193,0.15);
-    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 133, 179, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    font-family: 'Noto Serif JP', serif;
 }
-.home-btn:hover {
-    background: linear-gradient(90deg, #ffe4e1, #ffb6c1);
-    transform: scale(1.05);
+
+.home-back-btn:hover {
+    background: #ff85b3;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 133, 179, 0.3);
 }
-main, .notes-section { position: relative; z-index: 2; }
-@media (max-width: 600px) {
-    .notes-section { padding: 1rem; }
-    .home-btn { font-size: 1rem; padding: 0.5rem 1rem; }
+
+/* コンテナ */
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+}
+
+/* ヘッダー */
+.page-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.decorative-line {
+    height: 2px;
+    background: linear-gradient(to right, transparent, #ffb6d9, transparent);
+    margin: 20px auto;
+    width: 60%;
+}
+
+.main-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ff1493;
+    letter-spacing: 0.2em;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: #ff69b4;
+    font-style: italic;
+    letter-spacing: 0.2em;
+}
+
+/* アイテムグリッド */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.item-card {
+    background: linear-gradient(135deg, #fff5f7, #ffeef8);
+    border: 2px solid #ffb6d9;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.item-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(255, 133, 179, 0.3);
+    background: linear-gradient(135deg, #ffb6d9, #ff85b3);
+}
+
+.item-card:hover .item-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.item-card:hover .item-name,
+.item-card:hover .item-detail {
+    color: white;
+}
+
+.item-card.special {
+    border-color: #ff1493;
+    background: linear-gradient(135deg, #fff0f5, #ffe4e8);
+}
+
+.item-card.special:hover {
+    background: linear-gradient(135deg, #ff1493, #dc143c);
+}
+
+.item-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.item-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff1493;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.item-detail {
+    font-size: 1rem;
+    color: #ff69b4;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 30px;
+    }
+
+    .main-title {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .items-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .item-card {
+        padding: 35px 25px;
+    }
+
+    .item-icon {
+        font-size: 3.5rem;
+    }
+
+    .item-name {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 35px 20px;
+        margin: 0 auto;
+    }
+
+    .main-title {
+        font-size: 1.8rem;
+        letter-spacing: 0.15em;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .decorative-line {
+        width: 70%;
+    }
+
+    .items-grid {
+        gap: 20px;
+    }
+
+    .item-card {
+        padding: 35px 25px;
+        /* タップしやすいサイズ */
+        min-height: 150px;
+    }
+
+    .item-icon {
+        font-size: 3.5rem;
+        margin-bottom: 15px;
+    }
+
+    .item-name {
+        font-size: 1.25rem;
+    }
+
+    .item-detail {
+        font-size: 0.95rem;
+    }
+
+    .home-back-btn {
+        top: 15px;
+        left: 15px;
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
 }
