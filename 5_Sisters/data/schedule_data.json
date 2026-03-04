@@ -1,0 +1,209 @@
+{
+  "eventInfo": {
+    "title": "五等分の花嫁 SPECIAL EVENT 2026",
+    "venue": "TOYOTA ARENA TOKYO",
+    "openTime": "15:30",
+    "startTime": "17:00",
+    "detailUrl": "https://www.tbs.co.jp/anime/5hanayome/event/"
+  },
+  "schedule": {
+    "day1": {
+      "title": "1日目",
+      "route": {
+        "title": "移動スケジュール",
+        "points": ["家", "新千歳空港", "羽田空港", "ホテル"]
+      },
+      "timeline": [
+        {
+          "time": "20:10",
+          "title": "羽田空港 着",
+          "detail": "",
+          "note": ""
+        },
+        {
+          "time": "20:55",
+          "title": "リムジンバス 発",
+          "detail": "",
+          "note": "※1ヶ月前から予約可能",
+          "link": {
+            "text": "時刻表を見る",
+            "url": "https://www.limousinebus.co.jp/ja/timetable/detail/Haneda-Toyosu/"
+          }
+        },
+        {
+          "time": "未定",
+          "title": "ホテル到着・チェックイン",
+          "detail": "宿泊：ホテルJALシティ東京 豊洲",
+          "note": ""
+        },
+        {
+          "time": "-",
+          "title": "就寝",
+          "detail": "",
+          "note": ""
+        }
+      ],
+      "notes": [
+        "羽田空港で夜ご飯を購入予定",
+        "仕事がなければ朝から出発し、カルビープラス に行く"
+      ]
+    },
+    "day2": {
+      "title": "2日目",
+      "subtitle": "（イベント当日）",
+      "sections": [
+        {
+          "sectionName": "朝",
+          "timeline": [
+            {
+              "time": "9:00",
+              "title": "起床",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "未定",
+              "title": "準備",
+              "detail": "",
+              "note": ""
+            }
+          ]
+        },
+        {
+          "sectionName": "午前",
+          "timeline": [
+            {
+              "time": "未定",
+              "title": "豊洲市場 で朝ごはん",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "未定",
+              "title": "一旦ホテルへ戻る",
+              "detail": "",
+              "note": ""
+            }
+          ]
+        },
+        {
+          "sectionName": "昼",
+          "timeline": [
+            {
+              "time": "未定",
+              "title": "グッズ持参",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "未定",
+              "title": "つけ麺を食べに行く",
+              "detail": "",
+              "note": "場所未定"
+            }
+          ]
+        },
+        {
+          "sectionName": "イベント",
+          "isEvent": true,
+          "timeline": [
+            {
+              "time": "15:30",
+              "title": "開場",
+              "detail": "TOYOTA ARENA TOKYO",
+              "note": "",
+              "link": {
+                "text": "ホテル → 会場",
+                "url": "https://x.gd/QAktZ"
+              }
+            },
+            {
+              "time": "17:00",
+              "title": "開演",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "未定",
+              "title": "会場付近で夜ごはん",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "未定",
+              "title": "ホテルへ戻る",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "会場 → ホテル",
+                "url": "https://x.gd/81EvB"
+              }
+            },
+            {
+              "time": "-",
+              "title": "就寝",
+              "detail": "",
+              "note": ""
+            }
+          ]
+        }
+      ]
+    },
+    "day3": {
+      "title": "3日目",
+      "timeline": [
+        {
+          "time": "未定",
+          "title": "起床",
+          "detail": "",
+          "note": ""
+        },
+        {
+          "time": "未定",
+          "title": "つけ麺を食べに行く",
+          "detail": "",
+          "note": ""
+        },
+        {
+          "time": "未定",
+          "title": "近場を観光",
+          "detail": "",
+          "note": ""
+        },
+        {
+          "time": "未定",
+          "title": "羽田空港へ移動",
+          "detail": "ブルーシール を食べる",
+          "note": ""
+        },
+        {
+          "time": "未定",
+          "title": "新千歳空港へ帰る",
+          "detail": "",
+          "note": ""
+        }
+      ],
+      "notes": [
+        "1日目に仕事があった場合のみ、この日にカルビープラスへ行く"
+      ]
+    }
+  },
+  "items": [
+    {
+      "icon": "🎒",
+      "name": "リュック",
+      "detail": ""
+    },
+    {
+      "icon": "🧳",
+      "name": "スーツケース",
+      "detail": ""
+    },
+    {
+      "icon": "👜",
+      "name": "手提げ",
+      "detail": "（五等分の花嫁）",
+      "special": true
+    }
+  ]
+}
