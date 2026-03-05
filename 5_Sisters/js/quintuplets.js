@@ -122,7 +122,35 @@ function generateDay2(day2Data) {
         html += ` <span class="day-label">${day2Data.subtitle}</span>`;
     }
     
-    html += `</h2><div class="schedule-timeline">`;
+    html += `</h2>`;
+    
+    // ルートセクション（アコーディオン形式）
+    if (day2Data.route) {
+        html += `
+            <div class="route-section">
+                <div class="route-section-header">
+                    <h3 class="section-title">${day2Data.route.title}</h3>
+                    <span class="route-toggle-icon">▼</span>
+                </div>
+                <div class="route-content">
+                    <div class="route-flow">
+        `;
+        
+        day2Data.route.points.forEach((point, index) => {
+            html += `<span class="route-point">${point}</span>`;
+            if (index < day2Data.route.points.length - 1) {
+                html += `<span class="route-arrow">→</span>`;
+            }
+        });
+        
+        html += `
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    html += `<div class="schedule-timeline">`;
     
     // セクションごとに処理
     day2Data.sections.forEach(section => {
@@ -148,6 +176,32 @@ function generateDay2(day2Data) {
 function generateDay3(day3Data) {
     const container = document.getElementById('day-3');
     let html = `<h2 class="day-title">${day3Data.title}</h2>`;
+    
+    // ルートセクション（アコーディオン形式）
+    if (day3Data.route) {
+        html += `
+            <div class="route-section">
+                <div class="route-section-header">
+                    <h3 class="section-title">${day3Data.route.title}</h3>
+                    <span class="route-toggle-icon">▼</span>
+                </div>
+                <div class="route-content">
+                    <div class="route-flow">
+        `;
+        
+        day3Data.route.points.forEach((point, index) => {
+            html += `<span class="route-point">${point}</span>`;
+            if (index < day3Data.route.points.length - 1) {
+                html += `<span class="route-arrow">→</span>`;
+            }
+        });
+        
+        html += `
+                    </div>
+                </div>
+            </div>
+        `;
+    }
     
     html += `<div class="schedule-timeline">`;
     
