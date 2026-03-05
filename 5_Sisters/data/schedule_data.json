@@ -15,6 +15,24 @@
       },
       "timeline": [
         {
+          "time": "16:30",
+          "title": "家 出発",
+          "detail": "",
+          "note": ""
+        },
+        {
+          "time": "17:30",
+          "title": "新千歳空港 着",
+          "detail": "",
+          "note": ""
+        },
+        {
+          "time": "18:30",
+          "title": "飛行機 出発",
+          "detail": "",
+          "note": ""
+        },
+        {
           "time": "20:10",
           "title": "羽田空港 着",
           "detail": "",
@@ -31,13 +49,23 @@
           }
         },
         {
-          "time": "未定",
+          "time": "21:30",
+          "title": "豊洲駅→JALホテル",
+          "detail": "",
+          "note": "",
+          "link": {
+            "text": "ルートを見る",
+            "url": "https://x.gd/g4YgK"
+          }
+        },
+        {
+          "time": "22:00",
           "title": "ホテル到着・チェックイン",
           "detail": "宿泊：ホテルJALシティ東京 豊洲",
           "note": ""
         },
         {
-          "time": "-",
+          "time": "24:00",
           "title": "就寝",
           "detail": "",
           "note": ""
@@ -56,33 +84,48 @@
           "sectionName": "朝",
           "timeline": [
             {
-              "time": "9:00",
+              "time": "6:30",
               "title": "起床",
               "detail": "",
               "note": ""
             },
             {
-              "time": "未定",
-              "title": "準備",
-              "detail": "",
-              "note": ""
-            }
-          ]
-        },
-        {
-          "sectionName": "午前",
-          "timeline": [
-            {
-              "time": "未定",
-              "title": "豊洲市場 で朝ごはん",
+              "time": "8:30",
+              "title": "準備完了",
               "detail": "",
               "note": ""
             },
             {
-              "time": "未定",
-              "title": "一旦ホテルへ戻る",
+              "time": "8:45",
+              "title": "豊洲市場 へ行く",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "ルートを見る",
+                "url": "https://x.gd/Unifu"
+              }
+            },
+            {
+              "time": "9:00",
+              "title": "朝ごはん 開始",
+              "detail": "豊洲市場",
+              "note": ""
+            },
+            {
+              "time": "10:30",
+              "title": "朝ごはん 終了",
               "detail": "",
               "note": ""
+            },
+            {
+              "time": "10:45",
+              "title": "ホテルへ戻る",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "ルートを見る",
+                "url": "https://x.gd/Unifu"
+              }
             }
           ]
         },
@@ -90,16 +133,22 @@
           "sectionName": "昼",
           "timeline": [
             {
-              "time": "未定",
-              "title": "グッズ持参",
-              "detail": "",
+              "time": "11:00",
+              "title": "ホテル出発",
+              "detail": "グッズ持参",
               "note": ""
             },
             {
-              "time": "未定",
-              "title": "つけ麺を食べに行く",
+              "time": "12:00",
+              "title": "麺屋鈴春",
+              "detail": "つけ麺",
+              "note": "待ち時間含む"
+            },
+            {
+              "time": "13:00",
+              "title": "つけ麺 終了",
               "detail": "",
-              "note": "場所未定"
+              "note": ""
             }
           ]
         },
@@ -108,14 +157,20 @@
           "isEvent": true,
           "timeline": [
             {
-              "time": "15:30",
-              "title": "開場",
-              "detail": "TOYOTA ARENA TOKYO",
+              "time": "14:30",
+              "title": "トヨタアリーナ 到着",
+              "detail": "",
               "note": "",
               "link": {
                 "text": "ホテル → 会場",
-                "url": "https://x.gd/QAktZ"
+                "url": "https://x.gd/6mPRo"
               }
+            },
+            {
+              "time": "15:30",
+              "title": "開場",
+              "detail": "TOYOTA ARENA TOKYO",
+              "note": ""
             },
             {
               "time": "17:00",
@@ -124,13 +179,19 @@
               "note": ""
             },
             {
-              "time": "未定",
-              "title": "会場付近で夜ごはん",
+              "time": "20:00",
+              "title": "終わり（仮定）",
+              "detail": "会場付近で夜ご飯",
+              "note": ""
+            },
+            {
+              "time": "21:00",
+              "title": "ご飯食べる",
               "detail": "",
               "note": ""
             },
             {
-              "time": "未定",
+              "time": "21:30",
               "title": "ホテルへ戻る",
               "detail": "",
               "note": "",
@@ -140,7 +201,7 @@
               }
             },
             {
-              "time": "-",
+              "time": "23:00",
               "title": "就寝",
               "detail": "",
               "note": ""
@@ -153,32 +214,44 @@
       "title": "3日目",
       "timeline": [
         {
-          "time": "未定",
+          "time": "6:00",
           "title": "起床",
           "detail": "",
           "note": ""
         },
         {
-          "time": "未定",
-          "title": "つけ麺を食べに行く",
+          "time": "7:30",
+          "title": "ホテル 出発",
           "detail": "",
           "note": ""
         },
         {
-          "time": "未定",
+          "time": "-",
+          "title": "みそきん",
+          "detail": "レッドロック 高田馬場店",
+          "note": "無理だったらつけ麺を食べに行く"
+        },
+        {
+          "time": "-",
           "title": "近場を観光",
           "detail": "",
           "note": ""
         },
         {
-          "time": "未定",
+          "time": "-",
           "title": "羽田空港へ移動",
           "detail": "ブルーシール を食べる",
           "note": ""
         },
         {
-          "time": "未定",
-          "title": "新千歳空港へ帰る",
+          "time": "13:00",
+          "title": "飛行機 出発",
+          "detail": "",
+          "note": ""
+        },
+        {
+          "time": "14:35",
+          "title": "新千歳空港 到着",
           "detail": "",
           "note": ""
         }
@@ -190,17 +263,17 @@
   },
   "items": [
     {
-      "icon": "🎒",
+      "icon": "",
       "name": "リュック",
       "detail": ""
     },
     {
-      "icon": "🧳",
+      "icon": "",
       "name": "スーツケース",
       "detail": ""
     },
     {
-      "icon": "👜",
+      "icon": "",
       "name": "手提げ",
       "detail": "（五等分の花嫁）",
       "special": true

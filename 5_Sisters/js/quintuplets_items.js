@@ -26,9 +26,14 @@ function displayItems(items) {
         const specialClass = item.special ? ' special' : '';
         html += `
             <div class="item-card${specialClass}">
-                <div class="item-icon">${item.icon}</div>
-                <div class="item-name">${item.name}</div>
         `;
+        
+        // アイコンがある場合のみ表示
+        if (item.icon) {
+            html += `<div class="item-icon">${item.icon}</div>`;
+        }
+        
+        html += `<div class="item-name">${item.name}</div>`;
         
         if (item.detail) {
             html += `<div class="item-detail">${item.detail}</div>`;

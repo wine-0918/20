@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // 日程切り替え機能を設定
     setupDaySelector();
+    
+    // アコーディオン機能を設定
+    setupAccordion();
 });
 
 // JSONデータの読み込み
@@ -59,11 +62,15 @@ function generateDay1(day1Data) {
     const container = document.getElementById('day-1');
     let html = `<h2 class="day-title">${day1Data.title}</h2>`;
     
-    // ルートセクション
+    // ルートセクション（アコーディオン形式）
     html += `
         <div class="route-section">
-            <h3 class="section-title">${day1Data.route.title}</h3>
-            <div class="route-flow">
+            <div class="route-section-header">
+                <h3 class="section-title">${day1Data.route.title}</h3>
+                <span class="route-toggle-icon">▼</span>
+            </div>
+            <div class="route-content">
+                <div class="route-flow">
     `;
     
     day1Data.route.points.forEach((point, index) => {
@@ -74,6 +81,7 @@ function generateDay1(day1Data) {
     });
     
     html += `
+                </div>
             </div>
         </div>
         <div class="schedule-timeline">
@@ -90,7 +98,7 @@ function generateDay1(day1Data) {
     if (day1Data.notes && day1Data.notes.length > 0) {
         html += `
             <div class="note-box">
-                <div class="note-title">📝 補足</div>
+                <div class="note-title">補足</div>
                 <ul>
         `;
         day1Data.notes.forEach(note => {
@@ -154,7 +162,7 @@ function generateDay3(day3Data) {
     if (day3Data.notes && day3Data.notes.length > 0) {
         html += `
             <div class="note-box">
-                <div class="note-title">📝 補足</div>
+                <div class="note-title">補足</div>
                 <ul>
         `;
         day3Data.notes.forEach(note => {
@@ -216,4 +224,22 @@ function setupDaySelector() {
             document.getElementById(`day-${day}`).classList.add('active');
         });
     });
+}
+
+// アコーディオン機能の設定
+function setupAccordion() {
+    // 動的に生成されたコンテンツを待つためにsetTimeoutを使用
+    setTimeout(() => {
+        const routeSections = document.querySelectorAll('.route-section');
+        
+        routeSections.forEach(section => {
+            const header = section.querySelector('.route-section-header');
+            
+            if (header) {
+                header.addEventListener('click', function() {
+                    section.classList.toggle('open');
+                });
+            }
+        });
+    }, 100);
 }
