@@ -560,6 +560,8 @@ body {
 .day-button {
     padding: 15px 35px;
     background: white;
+    background-size: cover;
+    background-position: center;
     border: 2px solid #ffb6d9;
     border-radius: 30px;
     font-size: 1.1rem;
@@ -569,11 +571,44 @@ body {
     transition: all 0.3s ease;
     font-family: 'Noto Serif JP', serif;
     letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+}
+
+.day-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0.80;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.day-button {
+    padding: 15px 35px;
+}
+
+.day-button[data-day="1"] {
+    background-image: url('../../Pictures/5_sisters/Banner/Miku/miku-day1.png');
+}
+
+.day-button[data-day="2"] {
+    background-image: url('../../Pictures/5_sisters/Banner/Miku/miku-day2.jpg');
+}
+
+.day-button[data-day="3"] {
+    background-image: url('../../Pictures/5_sisters/Banner/Miku/miku-day3.png');
 }
 
 .day-button:hover {
     background: #fff5f7;
     transform: translateY(-2px);
+}
+
+.day-button:not(.active) {
+    position: relative;
+    z-index: 1;
 }
 
 .day-button.active {

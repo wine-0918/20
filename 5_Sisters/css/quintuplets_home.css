@@ -160,7 +160,10 @@ body::after {
     justify-content: center;
     gap: 15px;
     padding: 25px 40px;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
     border: 2px solid #ffb6d9;
     border-radius: 15px;
     font-size: 1.3rem;
@@ -171,6 +174,30 @@ body::after {
     box-shadow: 0 4px 15px rgba(255, 182, 217, 0.2);
     font-family: 'Noto Serif JP', serif;
     backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.nav-button[data-page="schedule"] {
+    background-image: url('../../Pictures/5_sisters/Banner/Miku/miku-home.png');
+    background-position: center top;
+}
+
+.nav-button[data-page="items"] {
+    background-image: url('../../Pictures/5_sisters/Banner/Ituki/ituki-home.jpg');
+    background-position: center 30%;
 }
 
 .nav-button .icon {

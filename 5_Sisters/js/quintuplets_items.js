@@ -133,10 +133,18 @@ class ItemsChecklistApp {
             container.innerHTML = bagData.checklist
                 .map((item, index) => {
                     const itemId = `${bagType}-${index}`;
+                    // item が文字列の場合とオブジェクトの場合に対応
+                    const itemText = typeof item === 'string' ? item : item.item;
+                    const description = typeof item === 'string' ? '' : (item.description || '');
+                    const descriptionHtml = description ? `<span class="item-description">${description}</span>` : '';
+                    
                     return `
                         <div class="checklist-item">
                             <input type="checkbox" id="${itemId}" data-bag="${bagType}" data-index="${index}">
-                            <label for="${itemId}" class="item-label">${item}</label>
+                            <label for="${itemId}" class="item-label">
+                                <span class="item-text">${itemText}</span>
+                                ${descriptionHtml}
+                            </label>
                         </div>
                     `;
                 })
