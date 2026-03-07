@@ -527,6 +527,15 @@ function setupFilters() {
 
 // Manifestファイルを更新
 function updateManifest() {
+    // アイコン名のマッピング
+    const iconMap = {
+        'icon1': 'itika',
+        'icon2': 'nino',
+        'icon3': 'miku',
+        'icon4': 'yotuba',
+        'icon5': 'ituki'
+    };
+    
     // 既存のmanifest linkを削除
     const existingLink = document.querySelector('link[rel="manifest"]');
     if (existingLink) {
@@ -538,6 +547,17 @@ function updateManifest() {
     link.rel = 'manifest';
     link.href = `../manifest-${appIcon}.json`;
     document.head.appendChild(link);
+    
+    // apple-touch-iconも更新
+    const existingAppleIcon = document.querySelector('link[rel="apple-touch-icon"]');
+    if (existingAppleIcon) {
+        existingAppleIcon.remove();
+    }
+    
+    const appleIcon = document.createElement('link');
+    appleIcon.rel = 'apple-touch-icon';
+    appleIcon.href = `../../Pictures/5_sisters/${iconMap[appIcon]}.png`;
+    document.head.appendChild(appleIcon);
 }
 
 // モーダル機能の設定
