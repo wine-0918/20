@@ -21,10 +21,32 @@ self.addEventListener('install', event => {
         return cache.addAll(urlsToCache);
       })
   );
+
+  self.skipWaiting();
 });
 
 // リクエスト時にキャッシュから返す
 self.addEventListener('fetch', event => {
+  const requestUrl = new URL(event.request.url);
+
+  // スケジュールデータは常に最新を優先（network first）
+  if (requestUrl.pathname.endsWith('/data/schedule_data.json')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -70,4 +92,6 @@ self.addEventListener('activate', event => {
       );
     })
   );
+
+  event.waitUntil(self.clients.claim());
 });

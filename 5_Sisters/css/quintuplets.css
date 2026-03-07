@@ -1722,3 +1722,15 @@ body.dark-mode .icon-option input[type="radio"]:checked + .icon-preview {
 body.dark-mode .icon-option input[type="radio"]:checked + .icon-preview::after {
     background: #ff85b3;
 }
+.link-menu {
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 165, 0, 0.3);
+}
+
+.link-menu:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 165, 0, 0.4);
+}
+
+.link-map {

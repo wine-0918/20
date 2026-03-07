@@ -92,7 +92,12 @@
             "time": "14:30",
             "title": "カルビープラスで遊ぶ",
             "detail": "",
-            "note": ""
+            "note": "",
+            "link": {
+              "text": "メニューを見る",
+              "url": "https://www.calbee.co.jp/calbeestore/common/pdf/shop/a3_2025.10_shinchitose.pdf",
+              "type": "menu"
+            }
           },
           {
             "time": "18:30",
@@ -352,7 +357,12 @@
               "time": "14:50",
               "title": "カルビープラスで遊ぶ",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "メニューを見る",
+                "url": "https://www.calbee.co.jp/calbeestore/common/pdf/shop/a3_2025.10_shinchitose.pdf",
+                "type": "menu"
+              }
             },
             {
               "time": "15:00",
@@ -429,7 +439,12 @@
               "time": "14:50",
               "title": "カルビープラスで遊ぶ",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "メニューを見る",
+                "url": "https://www.calbee.co.jp/calbeestore/common/pdf/shop/a3_2025.10_shinchitose.pdf",
+                "type": "menu"
+              }
             },
             {
               "time": "15:00",

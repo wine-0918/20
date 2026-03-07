@@ -324,18 +324,28 @@ function generateTimelineItem(item) {
     }
     
     if (item.link) {
-        // URLにx.gdが含まれる場合はマップリンクとして扱う
-        const isMapLink = item.link.url.includes('x.gd') || item.link.url.includes('maps.app.goo.gl');
-        const linkClass = isMapLink ? 'link link-map' : 'link';
+        // リンクタイプに基づいてクラスを設定
+        let linkClass = 'link';
+        if (item.link.type === 'menu') {
+            linkClass = 'link link-menu';
+        } else {
+            const isMapLink = item.link.url.includes('x.gd') || item.link.url.includes('maps.app.goo.gl');
+            linkClass = isMapLink ? 'link link-map' : 'link';
+        }
         html += `<a href="${item.link.url}" target="_blank" class="${linkClass}">${item.link.text}</a>`;
     }
     
     if (item.links && item.links.length > 0) {
         html += `<div class="links-container">`;
         item.links.forEach(link => {
-            // URLにx.gdが含まれる場合はマップリンクとして扱う
-            const isMapLink = link.url.includes('x.gd') || link.url.includes('maps.app.goo.gl');
-            const linkClass = isMapLink ? 'link link-map' : 'link';
+            // リンクタイプに基づいてクラスを設定
+            let linkClass = 'link';
+            if (link.type === 'menu') {
+                linkClass = 'link link-menu';
+            } else {
+                const isMapLink = link.url.includes('x.gd') || link.url.includes('maps.app.goo.gl');
+                linkClass = isMapLink ? 'link link-map' : 'link';
+            }
             html += `<a href="${link.url}" target="_blank" class="${linkClass}">${link.text}</a>`;
         });
         html += `</div>`;
