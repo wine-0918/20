@@ -2,7 +2,8 @@
   "name": "五等分の花嫁 - しおり",
   "short_name": "五等分しおり",
   "description": "五等分の花嫁イベントのスケジュール管理アプリ",
-  "start_url": "./html/quintuplets.html",
+  "start_url": "/20/5_Sisters/html/quintuplets.html",
+  "scope": "/20/5_Sisters/",
   "display": "standalone",
   "background_color": "#ffeef8",
   "theme_color": "#ff1493",
@@ -10,21 +11,8 @@
   "icons": [
     {
       "src": "/20/Pictures/5_sisters/itika.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/20/Pictures/5_sisters/itika.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/20/Pictures/5_sisters/itika.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }

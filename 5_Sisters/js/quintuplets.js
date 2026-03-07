@@ -671,7 +671,13 @@ function updateCountdownDisplay() {
         countdownElement = document.createElement('div');
         countdownElement.id = 'countdown-bar';
         countdownElement.className = 'countdown-bar';
-        document.body.insertBefore(countdownElement, document.body.firstChild);
+        // day-selectorの次に挿入
+        const daySelector = document.querySelector('.day-selector');
+        if (daySelector && daySelector.parentNode) {
+            daySelector.parentNode.insertBefore(countdownElement, daySelector.nextSibling);
+        } else {
+            document.body.insertBefore(countdownElement, document.body.firstChild);
+        }
     }
     
     // 現在の時刻を取得
