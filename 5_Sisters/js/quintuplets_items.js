@@ -1,6 +1,13 @@
 // 持ち物ページ - JSONから動的に生成
 let itemsData = null;
 let currentBag = 'backpack';
+const ICON_MAP = {
+    icon1: 'itika',
+    icon2: 'nino',
+    icon3: 'miku',
+    icon4: 'yotuba',
+    icon5: 'ituki'
+};
 
 document.addEventListener('DOMContentLoaded', async function() {
     await loadItems();
@@ -53,6 +60,11 @@ function displayItems(items) {
             checkbox.addEventListener('change', function() {
                 saveChecklistState();
                 updateProgress(bagType);
+
+                // 準備モチベ用のバースト演出（チェック時のみ）
+                if (this.checked) {
+                    playIconBurst(this);
+                }
             });
         });
     });
@@ -155,4 +167,60 @@ function setupBulkActions() {
         saveChecklistState();
         updateProgress(currentBag);
     });
+}
+
+function getSelectedIconSrc() {
+    const selectedIconKey = localStorage.getItem('appIcon') || 'icon3';
+    const iconName = ICON_MAP[selectedIconKey] || ICON_MAP.icon3;
+    return `../../Pictures/5_sisters/${iconName}.png`;
+}
+
+function playIconBurst(checkboxElement) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    const rect = checkboxElement.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height / 2;
+    const iconSrc = getSelectedIconSrc();
+
+    const layer = document.createElement('div');
+    layer.className = 'icon-burst-layer';
+    document.body.appendChild(layer);
+
+    const ring = document.createElement('div');
+    ring.className = 'icon-burst-ring';
+    ring.style.left = `${originX}px`;
+    ring.style.top = `${originY}px`;
+    layer.appendChild(ring);
+
+    const particleCount = 9;
+    const baseDistance = 72;
+
+    for (let i = 0; i < particleCount; i += 1) {
+        const angle = (Math.PI * 2 * i) / particleCount;
+        const distance = baseDistance + Math.random() * 36;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+        const rotation = Math.floor(Math.random() * 220 - 110);
+        const delay = Math.floor(Math.random() * 70);
+
+        const particle = document.createElement('img');
+        particle.className = 'icon-burst-particle';
+        particle.src = iconSrc;
+        particle.alt = '';
+        particle.draggable = false;
+        particle.style.left = `${originX}px`;
+        particle.style.top = `${originY}px`;
+        particle.style.setProperty('--dx', `${dx}px`);
+        particle.style.setProperty('--dy', `${dy}px`);
+        particle.style.setProperty('--rot', `${rotation}deg`);
+        particle.style.setProperty('--delay', `${delay}ms`);
+        layer.appendChild(particle);
+    }
+
+    setTimeout(() => {
+        layer.remove();
+    }, 1200);
 }
