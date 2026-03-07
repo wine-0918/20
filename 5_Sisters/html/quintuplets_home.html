@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff1493">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="五等分しおり">
+    <link rel="apple-touch-icon" href="/20/Pictures/5_sisters/miku.png">
     <title>五等分の花嫁 イベント - ホーム</title>
     <link rel="stylesheet" href="../css/quintuplets_home.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest-icon3.json">
 </head>
 <body>
     <button class="home-back-btn" onclick="location.href='../../HTML/home.html'">🏠 ホームに戻る</button>
@@ -26,6 +33,63 @@
                 <span class="button-text">持ち物</span>
             </button>
         </nav>
+
+        <button class="settings-button" id="openIconSettingsBtn">
+            <span class="settings-icon">⚙</span>
+            <span class="settings-text">アイコン設定</span>
+        </button>
     </div>
+
+    <!-- アイコン設定モーダル -->
+    <div class="modal-overlay" id="iconSettingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">アプリアイコン選択</h3>
+                <button class="modal-close" id="closeIconSettingsBtn">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="icon-description">ホーム画面のアイコンを選択できます。変更後、一度アプリを削除して再度追加してください。</p>
+                
+                <div class="icon-selector">
+                    <label class="icon-option">
+                        <input type="radio" name="appIcon" value="icon1">
+                        <div class="icon-preview">
+                            <img src="/20/Pictures/5_sisters/itika.png" alt="一花">
+                        </div>
+                    </label>
+                    
+                    <label class="icon-option">
+                        <input type="radio" name="appIcon" value="icon2">
+                        <div class="icon-preview">
+                            <img src="/20/Pictures/5_sisters/nino.png" alt="二乃">
+                        </div>
+                    </label>
+                    
+                    <label class="icon-option">
+                        <input type="radio" name="appIcon" value="icon3" checked>
+                        <div class="icon-preview">
+                            <img src="/20/Pictures/5_sisters/miku.png" alt="三玖">
+                        </div>
+                    </label>
+                    
+                    <label class="icon-option">
+                        <input type="radio" name="appIcon" value="icon4">
+                        <div class="icon-preview">
+                            <img src="/20/Pictures/5_sisters/yotuba.png" alt="四葉">
+                        </div>
+                    </label>
+                    
+                    <label class="icon-option">
+                        <input type="radio" name="appIcon" value="icon5">
+                        <div class="icon-preview">
+                            <img src="/20/Pictures/5_sisters/ituki.png" alt="五月">
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/quintuplets_home.js"></script>
 </body>
 </html>

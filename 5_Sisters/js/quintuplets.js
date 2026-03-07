@@ -434,11 +434,6 @@ function loadSettings() {
         radio.checked = radio.value === lunchOption;
     });
     
-    const iconRadios = document.querySelectorAll('input[name="appIcon"]');
-    iconRadios.forEach(radio => {
-        radio.checked = radio.value === appIcon;
-    });
-    
     // チェックボックスの状態を設定
     const highlightCheckbox = document.getElementById('highlightCurrentTime');
     if (highlightCheckbox) highlightCheckbox.checked = highlightCurrentTime;
@@ -511,18 +506,7 @@ function setupFilters() {
             applyDarkMode();
         });
     }
-    
-    // アイコン選択のラジオボタン
-    const iconRadios = document.querySelectorAll('input[name="appIcon"]');
-    iconRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                appIcon = this.value;
-                localStorage.setItem('appIcon', appIcon);
-                updateManifest();
-            }
-        });
-    });
+
 }
 
 // Manifestファイルを更新
