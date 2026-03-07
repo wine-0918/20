@@ -1,12 +1,16 @@
-const CACHE_NAME = 'gotoubun-shiori-v20260307-18';
+const CACHE_NAME = 'gotoubun-shiori-v20260307-19';
 const urlsToCache = [
   './html/quintuplets.html',
   './html/quintuplets_home.html',
+  './html/quintuplets_items.html',
   './css/quintuplets.css',
   './css/quintuplets_home.css',
+  './css/quintuplets_items.css',
   './js/quintuplets.js',
   './js/quintuplets_home.js',
+  './js/quintuplets_items.js',
   './data/schedule_data.json',
+  './data/items_data.json',
   '../Pictures/5_sisters/itika.png',
   '../Pictures/5_sisters/nino.png',
   '../Pictures/5_sisters/miku.png',
@@ -41,14 +45,14 @@ self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
 
   // 画面本体とデータは常に最新を優先（network first）
-  const isScheduleData = requestUrl.pathname.endsWith('/data/schedule_data.json');
+  const isJsonData = requestUrl.pathname.includes('/data/') && requestUrl.pathname.endsWith('.json');
   const isAppShell =
     event.request.mode === 'navigate' ||
     requestUrl.pathname.endsWith('.html') ||
     requestUrl.pathname.endsWith('.js') ||
     requestUrl.pathname.endsWith('.css');
 
-  if (isScheduleData || isAppShell) {
+  if (isJsonData || isAppShell) {
     event.respondWith(
       fetch(event.request)
         .then(response => {
