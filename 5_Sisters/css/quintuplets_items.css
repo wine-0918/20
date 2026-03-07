@@ -56,10 +56,10 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: url('../../Pictures/5_sisters/Banner/Ituki/ituki-bg.jpg') no-repeat center;
+    background: url('../../Pictures/5_sisters/Banner/Ituki/ituki-bg.jpg') repeat-y center top;
     background-size: 100% auto;
     background-position: center top;
-    opacity: 0.15;
+    opacity: 0.20;
     pointer-events: none;
     z-index: 0;
 }
