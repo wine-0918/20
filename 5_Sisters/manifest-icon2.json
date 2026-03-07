@@ -9,19 +9,19 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "../Pictures/5_sisters/nino.png",
+      "src": "/20/Pictures/5_sisters/nino.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "../Pictures/5_sisters/nino.png",
+      "src": "/20/Pictures/5_sisters/nino.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "../Pictures/5_sisters/nino.png",
+      "src": "/20/Pictures/5_sisters/nino.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"

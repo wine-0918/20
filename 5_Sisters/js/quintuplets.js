@@ -556,7 +556,7 @@ function updateManifest() {
     
     const appleIcon = document.createElement('link');
     appleIcon.rel = 'apple-touch-icon';
-    appleIcon.href = `../../Pictures/5_sisters/${iconMap[appIcon]}.png`;
+    appleIcon.href = `/20/Pictures/5_sisters/${iconMap[appIcon]}.png`;
     document.head.appendChild(appleIcon);
 }
 
