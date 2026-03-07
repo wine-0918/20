@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gotoubun-shiori-v4';
+const CACHE_NAME = 'gotoubun-shiori-v' + Math.floor(Date.now() / 1000);
 const urlsToCache = [
   './html/quintuplets.html',
   './css/quintuplets.css',
