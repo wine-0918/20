@@ -204,7 +204,12 @@
               "time": "12:00",
               "title": "麺屋鈴春（待ち時間込み）",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "メニューを見る",
+                "url": "https://tabelog.com/tokyo/A1310/A131004/13250293/dtlmenu/",
+                "type": "menu"
+              }
             },
             {
               "time": "13:00",
