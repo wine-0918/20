@@ -1732,6 +1732,3 @@ body.dark-mode .icon-option input[type="radio"]:checked + .icon-preview::after {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(255, 165, 0, 0.4);
 }
-
-.link-map {
-}
