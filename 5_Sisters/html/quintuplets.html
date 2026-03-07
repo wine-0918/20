@@ -14,13 +14,11 @@
         <header class="page-header">
             <div class="decorative-line"></div>
             <h1 class="main-title">しおり</h1>
-            <p class="event-info" id="event-title">読み込み中...</p>
-            <div class="event-details">
-                <p class="venue" id="event-venue">-</p>
-                <p class="time" id="event-time">開場 - / 開演 -</p>
-                <a href="#" target="_blank" class="event-link" id="event-link">イベント詳細 →</a>
-            </div>
             <div class="decorative-line"></div>
+            <button class="settings-button" id="openSettingsBtn">
+                <span class="settings-icon">⚙</span>
+                <span class="settings-text">設定</span>
+            </button>
         </header>
 
         <nav class="day-selector">
@@ -32,6 +30,46 @@
         <div class="schedule-content active" id="day-1"></div>
         <div class="schedule-content" id="day-2"></div>
         <div class="schedule-content" id="day-3"></div>
+    </div>
+
+    <!-- 設定モーダル -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">スケジュール設定</h3>
+                <button class="modal-close-btn" id="closeSettingsBtn">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="filter-group">
+                    <div class="filter-label">1日目の仕事</div>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="radio" name="hasWork" value="true" checked>
+                            <span>仕事あり</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="hasWork" value="false">
+                            <span>仕事なし</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-label">3日目の昼ごはん</div>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="radio" name="lunchOption" value="misokichi" checked>
+                            <span>みそきん</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="lunchOption" value="redrock">
+                            <span>レッドロック</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="../js/quintuplets.js"></script>

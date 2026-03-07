@@ -113,6 +113,221 @@ body {
     box-shadow: 0 6px 16px rgba(255, 133, 179, 0.4);
 }
 
+/* 設定ボタン */
+.settings-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #ffb6d9, #ff85b3);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(255, 133, 179, 0.3);
+    font-family: 'Noto Serif JP', serif;
+}
+
+.settings-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 133, 179, 0.4);
+}
+
+.settings-icon {
+    font-size: 1.2rem;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    0%, 90% {
+        transform: rotate(0deg);
+    }
+    95% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* モーダル */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, #ffebf5, #fff5f7);
+    border-bottom: 2px solid #ffb6d9;
+}
+
+.modal-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ff1493;
+    margin: 0;
+    font-family: 'Noto Serif JP', serif;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #ff1493;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.modal-close-btn:hover {
+    background: #ffb6d9;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 25px;
+    max-height: calc(80vh - 80px);
+    overflow-y: auto;
+}
+
+/* スケジュールフィルター */
+.schedule-filter-container {
+    background: white;
+    border-radius: 20px;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.filter-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ff1493;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Noto Serif JP', serif;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+.filter-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+    font-family: 'Noto Serif JP', serif;
+}
+
+.filter-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 20px;
+    background: #f8f8f8;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.filter-option:hover {
+    background: #fff5f7;
+    border-color: #ffb6d9;
+}
+
+.filter-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+    accent-color: #ff85b3;
+}
+
+.filter-option input[type="radio"]:checked + span {
+    color: #ff1493;
+    font-weight: 700;
+}
+
+.filter-option:has(input[type="radio"]:checked) {
+    background: linear-gradient(135deg, #ffebf5, #fff5f7);
+    border-color: #ff85b3;
+    box-shadow: 0 2px 8px rgba(255, 133, 179, 0.2);
+}
+
 /* 日付切り替えボタン */
 .day-selector {
     display: flex;
@@ -190,6 +405,12 @@ body {
     background: linear-gradient(135deg, #fff5f7, #ffeef8);
     border-radius: 15px;
     border-left: 4px solid #ff85b3;
+    box-shadow: 0 2px 10px rgba(255, 133, 179, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.route-section:hover {
+    box-shadow: 0 4px 20px rgba(255, 133, 179, 0.2);
 }
 
 .route-section-header {
@@ -198,17 +419,33 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 15px;
 }
 
 .route-section-header:hover {
-    background: rgba(255, 182, 217, 0.1);
+    background: rgba(255, 182, 217, 0.25);
+    transform: translateY(-1px);
+}
+
+.route-header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.route-hint {
+    font-size: 0.85rem;
+    color: #ff69b4;
+    font-weight: 500;
+    opacity: 0.8;
 }
 
 .route-toggle-icon {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #ff85b3;
     transition: transform 0.3s ease;
+    font-weight: bold;
 }
 
 .route-section.open .route-toggle-icon {
@@ -355,6 +592,26 @@ body {
     transform: translateX(3px);
 }
 
+/* マップリンク（ルートを見る）専用スタイル */
+.link-map {
+    background: #4da6ff;
+}
+
+.link-map:hover {
+    background: #0080ff;
+}
+
+.links-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.links-container .link {
+    margin-top: 0;
+}
+
 /* 注意書きボックス */
 .note-box {
     margin-top: 40px;
@@ -416,6 +673,55 @@ body {
         font-size: 1.1rem;
     }
 
+    .settings-button {
+        top: 15px;
+        right: 15px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .settings-icon {
+        font-size: 1.1rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+
+    .modal-header {
+        padding: 18px 20px;
+    }
+
+    .modal-title {
+        font-size: 1.2rem;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .schedule-filter-container {
+        padding: 20px 20px;
+    }
+
+    .filter-title {
+        font-size: 1.1rem;
+    }
+
+    .filter-label {
+        font-size: 0.9rem;
+    }
+
+    .filter-options {
+        gap: 10px;
+    }
+
+    .filter-option {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
     .day-title {
         font-size: 1.6rem;
     }
@@ -452,6 +758,20 @@ body {
 
     .route-section-header {
         padding: 20px 15px;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .route-header-content {
+        gap: 3px;
+    }
+
+    .route-hint {
+        font-size: 0.75rem;
+    }
+
+    .route-toggle-icon {
+        font-size: 1.3rem;
     }
 
     .route-content {
@@ -508,6 +828,75 @@ body {
     .event-link {
         padding: 8px 20px;
         font-size: 0.9rem;
+    }
+
+    .settings-button {
+        top: 10px;
+        right: 10px;
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        gap: 4px;
+    }
+
+    .settings-icon {
+        font-size: 1rem;
+    }
+
+    .settings-text {
+        display: none;
+    }
+
+    .modal-content {
+        width: 95%;
+        max-height: 90vh;
+        border-radius: 15px;
+    }
+
+    .modal-header {
+        padding: 15px 18px;
+    }
+
+    .modal-title {
+        font-size: 1.1rem;
+    }
+
+    .modal-close-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1.8rem;
+    }
+
+    .modal-body {
+        padding: 18px 15px;
+    }
+
+    .schedule-filter-container {
+        padding: 18px 15px;
+    }
+
+    .filter-title {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .filter-group {
+        margin-bottom: 15px;
+    }
+
+    .filter-label {
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+    }
+
+    .filter-options {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .filter-option {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        width: 100%;
     }
 
     .day-title {
@@ -570,6 +959,18 @@ body {
 
     .route-section {
         padding: 20px 15px;
+    }
+
+    .route-section-header {
+        padding: 15px 12px;
+    }
+
+    .route-hint {
+        font-size: 0.7rem;
+    }
+
+    .route-toggle-icon {
+        font-size: 1.2rem;
     }
 
     .route-point {

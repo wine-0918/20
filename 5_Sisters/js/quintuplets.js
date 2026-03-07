@@ -1,12 +1,14 @@
 // JSONデータを読み込んでスケジュールを動的に生成
 let scheduleData = null;
+let hasWork = true; // デフォルトは仕事ありの状態
+let lunchOption = 'misokichi'; // デフォルトはみそきん
 
 document.addEventListener('DOMContentLoaded', async function() {
     // JSONデータを読み込み
     await loadScheduleData();
     
-    // イベント情報を表示
-    displayEventInfo();
+    // ローカルストレージから設定を読み込み
+    loadSettings();
     
     // スケジュールを生成
     generateSchedule();
@@ -16,6 +18,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // アコーディオン機能を設定
     setupAccordion();
+    
+    // フィルター機能を設定
+    setupFilters();
+    
+    // モーダル機能を設定
+    setupModal();
 });
 
 // JSONデータの読み込み
@@ -60,22 +68,34 @@ function generateSchedule() {
 // 1日目の生成
 function generateDay1(day1Data) {
     const container = document.getElementById('day-1');
-    let html = `<h2 class="day-title">${day1Data.title}</h2>`;
+    const data = hasWork ? day1Data.hasWork : day1Data.noWork;
+    const routeData = hasWork ? day1Data.route : day1Data.noWork.route;
+    
+    let html = `<h2 class="day-title">${day1Data.title}`;
+    
+    if (day1Data.subtitle) {
+        html += ` <span class="day-label">${day1Data.subtitle}</span>`;
+    }
+    
+    html += `</h2>`;
     
     // ルートセクション（アコーディオン形式）
     html += `
         <div class="route-section">
             <div class="route-section-header">
-                <h3 class="section-title">${day1Data.route.title}</h3>
+                <div class="route-header-content">
+                    <h3 class="section-title">${routeData.title}</h3>
+                    <span class="route-hint">クリックして開閉</span>
+                </div>
                 <span class="route-toggle-icon">▼</span>
             </div>
             <div class="route-content">
                 <div class="route-flow">
     `;
     
-    day1Data.route.points.forEach((point, index) => {
+    routeData.points.forEach((point, index) => {
         html += `<span class="route-point">${point}</span>`;
-        if (index < day1Data.route.points.length - 1) {
+        if (index < routeData.points.length - 1) {
             html += `<span class="route-arrow">→</span>`;
         }
     });
@@ -88,20 +108,20 @@ function generateDay1(day1Data) {
     `;
     
     // タイムライン
-    day1Data.timeline.forEach(item => {
+    data.timeline.forEach(item => {
         html += generateTimelineItem(item);
     });
     
     html += `</div>`;
     
     // 補足
-    if (day1Data.notes && day1Data.notes.length > 0) {
+    if (data.notes && data.notes.length > 0) {
         html += `
             <div class="note-box">
                 <div class="note-title">補足</div>
                 <ul>
         `;
-        day1Data.notes.forEach(note => {
+        data.notes.forEach(note => {
             html += `<li>${note}</li>`;
         });
         html += `
@@ -129,7 +149,10 @@ function generateDay2(day2Data) {
         html += `
             <div class="route-section">
                 <div class="route-section-header">
-                    <h3 class="section-title">${day2Data.route.title}</h3>
+                    <div class="route-header-content">
+                        <h3 class="section-title">${day2Data.route.title}</h3>
+                        <span class="route-hint">クリックして開閉</span>
+                    </div>
                     <span class="route-toggle-icon">▼</span>
                 </div>
                 <div class="route-content">
@@ -169,29 +192,51 @@ function generateDay2(day2Data) {
     
     html += `</div>`;
     
+    // 補足
+    if (day2Data.notes && day2Data.notes.length > 0) {
+        html += `
+            <div class="note-box">
+                <div class="note-title">補足</div>
+                <ul>
+        `;
+        day2Data.notes.forEach(note => {
+            html += `<li>${note}</li>`;
+        });
+        html += `
+                </ul>
+            </div>
+        `;
+    }
+    
     container.innerHTML = html;
 }
 
 // 3日目の生成
 function generateDay3(day3Data) {
     const container = document.getElementById('day-3');
+    const workData = hasWork ? day3Data.hasWork : day3Data.noWork;
+    const data = workData[lunchOption]; // みそきん or レッドロック
+    
     let html = `<h2 class="day-title">${day3Data.title}</h2>`;
     
     // ルートセクション（アコーディオン形式）
-    if (day3Data.route) {
+    if (data.route) {
         html += `
             <div class="route-section">
                 <div class="route-section-header">
-                    <h3 class="section-title">${day3Data.route.title}</h3>
+                    <div class="route-header-content">
+                        <h3 class="section-title">${data.route.title}</h3>
+                        <span class="route-hint">クリックして開閉</span>
+                    </div>
                     <span class="route-toggle-icon">▼</span>
                 </div>
                 <div class="route-content">
                     <div class="route-flow">
         `;
         
-        day3Data.route.points.forEach((point, index) => {
+        data.route.points.forEach((point, index) => {
             html += `<span class="route-point">${point}</span>`;
-            if (index < day3Data.route.points.length - 1) {
+            if (index < data.route.points.length - 1) {
                 html += `<span class="route-arrow">→</span>`;
             }
         });
@@ -206,20 +251,20 @@ function generateDay3(day3Data) {
     html += `<div class="schedule-timeline">`;
     
     // タイムライン
-    day3Data.timeline.forEach(item => {
+    data.timeline.forEach(item => {
         html += generateTimelineItem(item);
     });
     
     html += `</div>`;
     
     // 補足
-    if (day3Data.notes && day3Data.notes.length > 0) {
+    if (data.notes && data.notes.length > 0) {
         html += `
             <div class="note-box">
                 <div class="note-title">補足</div>
                 <ul>
         `;
-        day3Data.notes.forEach(note => {
+        data.notes.forEach(note => {
             html += `<li>${note}</li>`;
         });
         html += `
@@ -249,7 +294,21 @@ function generateTimelineItem(item) {
     }
     
     if (item.link) {
-        html += `<a href="${item.link.url}" target="_blank" class="link">${item.link.text}</a>`;
+        // URLにx.gdが含まれる場合はマップリンクとして扱う
+        const isMapLink = item.link.url.includes('x.gd') || item.link.url.includes('maps.app.goo.gl');
+        const linkClass = isMapLink ? 'link link-map' : 'link';
+        html += `<a href="${item.link.url}" target="_blank" class="${linkClass}">${item.link.text}</a>`;
+    }
+    
+    if (item.links && item.links.length > 0) {
+        html += `<div class="links-container">`;
+        item.links.forEach(link => {
+            // URLにx.gdが含まれる場合はマップリンクとして扱う
+            const isMapLink = link.url.includes('x.gd') || link.url.includes('maps.app.goo.gl');
+            const linkClass = isMapLink ? 'link link-map' : 'link';
+            html += `<a href="${link.url}" target="_blank" class="${linkClass}">${link.text}</a>`;
+        });
+        html += `</div>`;
     }
     
     html += `
@@ -296,4 +355,88 @@ function setupAccordion() {
             }
         });
     }, 100);
+}
+
+// ローカルストレージから設定を読み込み
+function loadSettings() {
+    // 仕事の有無
+    const savedHasWork = localStorage.getItem('hasWork');
+    if (savedHasWork !== null) {
+        hasWork = savedHasWork === 'true';
+    }
+    
+    // 昼ごはんの選択
+    const savedLunchOption = localStorage.getItem('lunchOption');
+    if (savedLunchOption !== null) {
+        lunchOption = savedLunchOption;
+    }
+    
+    // ラジオボタンの状態を設定
+    const hasWorkRadios = document.querySelectorAll('input[name="hasWork"]');
+    hasWorkRadios.forEach(radio => {
+        radio.checked = radio.value === String(hasWork);
+    });
+    
+    const lunchRadios = document.querySelectorAll('input[name="lunchOption"]');
+    lunchRadios.forEach(radio => {
+        radio.checked = radio.value === lunchOption;
+    });
+}
+
+// フィルター機能の設定
+function setupFilters() {
+    // 仕事の有無のラジオボタン
+    const hasWorkRadios = document.querySelectorAll('input[name="hasWork"]');
+    hasWorkRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.checked) {
+                hasWork = this.value === 'true';
+                localStorage.setItem('hasWork', hasWork);
+                generateSchedule();
+                setupAccordion();
+            }
+        });
+    });
+    
+    // 昼ごはんのラジオボタン
+    const lunchRadios = document.querySelectorAll('input[name="lunchOption"]');
+    lunchRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.checked) {
+                lunchOption = this.value;
+                localStorage.setItem('lunchOption', lunchOption);
+                generateSchedule();
+                setupAccordion();
+            }
+        });
+    });
+}
+
+// モーダル機能の設定
+function setupModal() {
+    const openBtn = document.getElementById('openSettingsBtn');
+    const closeBtn = document.getElementById('closeSettingsBtn');
+    const modal = document.getElementById('settingsModal');
+    const modalOverlay = modal;
+    
+    // 設定ボタンをクリックしたらモーダルを開く
+    if (openBtn) {
+        openBtn.addEventListener('click', function() {
+            modal.classList.add('show');
+        });
+    }
+    
+    // 閉じるボタンをクリックしたらモーダルを閉じる
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('show');
+        });
+    }
+    
+    // モーダルの外側をクリックしたら閉じる
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
 }

@@ -9,78 +9,141 @@
   "schedule": {
     "day1": {
       "title": "1日目",
+      "subtitle": "（移動日）",
       "route": {
-        "title": "移動スケジュール",
+        "title": "移動ルート",
         "points": ["家", "新千歳空港", "羽田空港", "ホテル"]
       },
-      "timeline": [
-        {
-          "time": "16:30",
-          "title": "家 出発",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "17:30",
-          "title": "新千歳空港 着",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "18:30",
-          "title": "飛行機 出発",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "20:10",
-          "title": "羽田空港 着",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "20:55",
-          "title": "リムジンバス 発",
-          "detail": "",
-          "note": "※1ヶ月前から予約可能",
-          "link": {
-            "text": "時刻表を見る",
-            "url": "https://www.limousinebus.co.jp/ja/timetable/detail/Haneda-Toyosu/"
+      "hasWork": {
+        "timeline": [
+          {
+            "time": "16:30",
+            "title": "家 出発",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "18:30",
+            "title": "新千歳空港 発",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "20:10",
+            "title": "羽田空港 着",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "20:55",
+            "title": "リムジンバス 発",
+            "detail": "",
+            "note": "",
+            "link": {
+              "text": "時刻表を見る",
+              "url": "https://www.limousinebus.co.jp/ja/timetable/detail/Haneda-Toyosu/"
+            }
+          },
+          {
+            "time": "21:20",
+            "title": "豊洲駅着",
+            "detail": "",
+            "note": "",
+            "link": {
+              "text": "豊洲駅→ホテルJALシティ",
+              "url": "https://x.gd/nsfma"
+            }
+          },
+          {
+            "time": "22:00",
+            "title": "ホテルJALシティ東京 豊洲 到着",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "24:00",
+            "title": "就寝",
+            "detail": "",
+            "note": ""
           }
+        ],
+        "notes": [
+          "羽田空港で夜ご飯を購入予定"
+        ]
+      },
+      "noWork": {
+        "route": {
+          "title": "移動ルート",
+          "points": ["家", "カルビープラス", "新千歳空港", "羽田空港", "ホテル"]
         },
-        {
-          "time": "21:30",
-          "title": "豊洲駅→JALホテル",
-          "detail": "",
-          "note": "",
-          "link": {
-            "text": "ルートを見る",
-            "url": "https://x.gd/g4YgK"
+        "timeline": [
+          {
+            "time": "12:00",
+            "title": "家 出発",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "13:15",
+            "title": "軽く昼ごはん",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "14:30",
+            "title": "カルビープラスで遊ぶ",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "18:30",
+            "title": "新千歳空港 発",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "20:10",
+            "title": "羽田空港 着",
+            "detail": "",
+            "note": ""
+          },
+          {
+            "time": "20:55",
+            "title": "リムジンバス 発",
+            "detail": "",
+            "note": "",
+            "link": {
+              "text": "時刻表を見る",
+              "url": "https://www.limousinebus.co.jp/ja/timetable/detail/Haneda-Toyosu/"
+            }
+          },
+          {
+            "time": "22:00",
+            "title": "ホテルJALシティ東京 豊洲 到着",
+            "detail": "",
+            "note": "",
+            "link": {
+              "text": "豊洲駅→ホテルJALシティ",
+              "url": "https://x.gd/nsfma"
+            }
+          },
+          {
+            "time": "24:00",
+            "title": "就寝",
+            "detail": "",
+            "note": ""
           }
-        },
-        {
-          "time": "22:00",
-          "title": "ホテル到着・チェックイン",
-          "detail": "宿泊：ホテルJALシティ東京 豊洲",
-          "note": ""
-        },
-        {
-          "time": "24:00",
-          "title": "就寝",
-          "detail": "",
-          "note": ""
-        }
-      ],
-      "notes": [
-        "羽田空港で夜ご飯を購入予定",
-        "仕事がなければ朝から出発し、カルビープラス に行く"
-      ]
+        ],
+        "notes": [
+          "羽田空港で夜ご飯を購入予定"
+        ]
+      }
     },
     "day2": {
       "title": "2日目",
       "subtitle": "（イベント当日）",
       "route": {
-        "title": "移動スケジュール",
+        "title": "移動ルート",
         "points": ["ホテル", "豊洲市場", "ホテル", "麺屋鈴春", "トヨタアリーナ", "夜ご飯", "ホテル"]
       },
       "sections": [
@@ -88,109 +151,114 @@
           "sectionName": "朝",
           "timeline": [
             {
-              "time": "6:30",
-              "title": "起床",
+              "time": "06:30",
+              "title": "起床、準備",
               "detail": "",
               "note": ""
             },
             {
-              "time": "8:30",
-              "title": "準備完了",
-              "detail": "",
-              "note": ""
-            },
-            {
-              "time": "8:45",
-              "title": "豊洲市場 へ行く",
+              "time": "08:45",
+              "title": "豊洲市場へ移動",
               "detail": "",
               "note": "",
               "link": {
-                "text": "ルートを見る",
+                "text": "ホテル→豊洲市場",
                 "url": "https://x.gd/Unifu"
               }
             },
             {
-              "time": "9:00",
-              "title": "朝ごはん 開始",
-              "detail": "豊洲市場",
-              "note": ""
-            },
-            {
-              "time": "10:30",
-              "title": "朝ごはん 終了",
+              "time": "09:00",
+              "title": "朝ごはん",
               "detail": "",
               "note": ""
             },
             {
               "time": "10:45",
-              "title": "ホテルへ戻る",
+              "title": "ホテルへ戻り、持ち物を準備する",
               "detail": "",
               "note": "",
               "link": {
-                "text": "ルートを見る",
+                "text": "豊洲市場→ホテル",
                 "url": "https://x.gd/Unifu"
               }
             }
           ]
         },
         {
-          "sectionName": "昼",
+          "sectionName": "昼〜イベント",
           "timeline": [
             {
               "time": "11:00",
               "title": "ホテル出発",
-              "detail": "グッズ持参",
-              "note": ""
-            },
-            {
-              "time": "12:00",
-              "title": "麺屋鈴春",
-              "detail": "つけ麺",
-              "note": "待ち時間含む"
-            },
-            {
-              "time": "13:00",
-              "title": "つけ麺 終了",
-              "detail": "",
-              "note": ""
-            }
-          ]
-        },
-        {
-          "sectionName": "イベント",
-          "isEvent": true,
-          "timeline": [
-            {
-              "time": "14:30",
-              "title": "トヨタアリーナ 到着",
               "detail": "",
               "note": "",
               "link": {
-                "text": "ホテル → 会場",
+                "text": "ホテル→麺屋鈴春",
+                "url": "https://x.gd/9Enmi"
+              }
+            },
+            {
+              "time": "12:00",
+              "title": "麺屋鈴春（待ち時間込み）",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "13:00",
+              "title": "ホテルまたはトヨタアリーナへ向かう",
+              "detail": "",
+              "note": "",
+              "links": [
+                {
+                  "text": "麺屋鈴春→ホテル",
+                  "url": "https://x.gd/r29Bl"
+                },
+                {
+                  "text": "麺屋鈴春→トヨタアリーナ",
+                  "url": "https://x.gd/7o1Ey"
+                }
+              ]
+            },
+            {
+              "time": "14:30",
+              "title": "トヨタアリーナ到着",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "ホテル→トヨタアリーナ",
                 "url": "https://x.gd/6mPRo"
               }
             },
             {
               "time": "15:30",
               "title": "開場",
-              "detail": "TOYOTA ARENA TOKYO",
-              "note": ""
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "イベント詳細 →",
+                "url": "https://www.tbs.co.jp/anime/5hanayome/event/"
+              }
             },
             {
               "time": "17:00",
               "title": "開演",
               "detail": "",
               "note": ""
-            },
+            }
+          ]
+        },
+        {
+          "sectionName": "夜",
+          "timeline": [
             {
-              "time": "20:00",
-              "title": "終わり（仮定）",
-              "detail": "会場付近で夜ご飯",
+              "time": "20:00（仮）",
+              "title": "イベント終了",
+              "detail": "",
               "note": ""
             },
             {
-              "time": "21:00",
-              "title": "ご飯食べる",
+              "time": "20:00",
+              "title": "会場付近で夜ご飯",
               "detail": "",
               "note": ""
             },
@@ -200,7 +268,7 @@
               "detail": "",
               "note": "",
               "link": {
-                "text": "会場 → ホテル",
+                "text": "トヨタアリーナ→ホテル",
                 "url": "https://x.gd/81EvB"
               }
             },
@@ -212,61 +280,313 @@
             }
           ]
         }
+      ],
+      "notes": [
+        "イベントグッズ持参"
       ]
     },
     "day3": {
       "title": "3日目",
-      "route": {
-        "title": "移動スケジュール",
-        "points": ["ホテル", "みそきん(レッドロック)", "羽田空港", "新千歳空港", "カルビープラス"]
-      },
-      "timeline": [
-        {
-          "time": "6:00",
-          "title": "起床",
-          "detail": "",
-          "note": ""
+      "hasWork": {
+        "misokichi": {
+          "route": {
+            "title": "移動ルート",
+            "points": ["ホテル", "みそきん", "羽田空港", "新千歳空港", "カルビープラス"]
+          },
+          "timeline": [
+            {
+              "time": "06:00",
+              "title": "起床、準備",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "07:30",
+              "title": "ホテル出発",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "9:00",
+              "title": "みそきん",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "ホテル→みそきん",
+                "url": "https://x.gd/Ssngl"
+              }
+            },
+            {
+              "time": "10:30",
+              "title": "羽田空港へ向かう",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "みそきん→羽田空港",
+                "url": "https://x.gd/lmJ4D"
+              }
+            },
+            {
+              "time": "12:00",
+              "title": "羽田空港着、手続きなどを済ませる",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "12:20",
+              "title": "ブルーシールを食べる",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "13:00",
+              "title": "羽田空港 発",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "14:35",
+              "title": "新千歳空港 着",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "14:50",
+              "title": "カルビープラスで遊ぶ",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "15:00",
+              "title": "新千歳から家に帰る",
+              "detail": "",
+              "note": ""
+            }
+          ],
+          "notes": []
         },
-        {
-          "time": "7:30",
-          "title": "ホテル 出発",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "-",
-          "title": "みそきん",
-          "detail": "レッドロック 高田馬場店",
-          "note": "無理だったらつけ麺を食べに行く"
-        },
-        {
-          "time": "-",
-          "title": "近場を観光",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "-",
-          "title": "羽田空港へ移動",
-          "detail": "ブルーシール を食べる",
-          "note": ""
-        },
-        {
-          "time": "13:00",
-          "title": "飛行機 出発",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "14:35",
-          "title": "新千歳空港 到着",
-          "detail": "",
-          "note": ""
+        "redrock": {
+          "route": {
+            "title": "移動ルート",
+            "points": ["ホテル", "レッドロック", "羽田空港", "新千歳空港", "カルビープラス"]
+          },
+          "timeline": [
+            {
+              "time": "06:00",
+              "title": "起床、準備",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "07:30",
+              "title": "ホテル出発",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "9:00",
+              "title": "レッドロック高田馬場店",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "ホテル→レッドロック高田馬場店",
+                "url": "https://x.gd/7o1Ey"
+              }
+            },
+            {
+              "time": "10:30",
+              "title": "羽田空港へ向かう",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "レッドロック高田馬場店→羽田空港",
+                "url": "https://x.gd/d4WSc"
+              }
+            },
+            {
+              "time": "12:00",
+              "title": "羽田空港着、手続きなどを済ませる",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "12:20",
+              "title": "ブルーシールを食べる",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "13:00",
+              "title": "羽田空港 発",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "14:35",
+              "title": "新千歳空港 着",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "14:50",
+              "title": "カルビープラスで遊ぶ",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "15:00",
+              "title": "新千歳から家に帰る",
+              "detail": "",
+              "note": ""
+            }
+          ],
+          "notes": []
         }
-      ],
-      "notes": [
-        "1日目に仕事があった場合のみ、この日にカルビープラスへ行く"
-      ]
+      },
+      "noWork": {
+        "misokichi": {
+          "route": {
+            "title": "移動ルート",
+            "points": ["ホテル", "みそきん", "羽田空港", "新千歳空港", "家"]
+          },
+          "timeline": [
+            {
+              "time": "06:00",
+              "title": "起床、準備",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "07:30",
+              "title": "ホテル出発",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "9:00",
+              "title": "みそきん",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "ホテル→みそきん",
+                "url": "https://x.gd/Ssngl"
+              }
+            },
+            {
+              "time": "10:30",
+              "title": "羽田空港へ向かう",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "みそきん→羽田空港",
+                "url": "https://x.gd/lmJ4D"
+              }
+            },
+            {
+              "time": "12:00",
+              "title": "羽田空港着、手続きなどを済ませる",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "空港",
+              "title": "ブルーシールを食べる",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "13:00",
+              "title": "羽田空港 発",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "14:35",
+              "title": "新千歳空港 着",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "16:30",
+              "title": "新千歳から家に帰る",
+              "detail": "",
+              "note": ""
+            }
+          ],
+          "notes": []
+        },
+        "redrock": {
+          "route": {
+            "title": "移動ルート",
+            "points": ["ホテル", "レッドロック", "羽田空港", "新千歳空港", "家"]
+          },
+          "timeline": [
+            {
+              "time": "06:00",
+              "title": "起床、準備",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "07:30",
+              "title": "ホテル出発",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "9:00",
+              "title": "レッドロック高田馬場店",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "ホテル→レッドロック高田馬場店",
+                "url": "https://x.gd/7o1Ey"
+              }
+            },
+            {
+              "time": "10:30",
+              "title": "羽田空港へ向かう",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "レッドロック高田馬場店→羽田空港",
+                "url": "https://x.gd/d4WSc"
+              }
+            },
+            {
+              "time": "12:00",
+              "title": "羽田空港着、手続きなどを済ませる",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "空港",
+              "title": "ブルーシールを食べる",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "13:00",
+              "title": "羽田空港 発",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "14:35",
+              "title": "新千歳空港 着",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "16:30",
+              "title": "新千歳から家に帰る",
+              "detail": "",
+              "note": ""
+            }
+          ],
+          "notes": []
+        }
+      }
     }
   },
   "items": [
