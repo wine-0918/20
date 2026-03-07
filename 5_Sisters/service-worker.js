@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gotoubun-shiori-v20260307-5';
+const CACHE_NAME = 'gotoubun-shiori-v20260307-6';
 const urlsToCache = [
   './html/quintuplets.html',
   './html/quintuplets_home.html',

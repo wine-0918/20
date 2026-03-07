@@ -86,13 +86,13 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .bag-button {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 10px;
     padding: 20px 30px;
     background: linear-gradient(135deg, #fff 0%, #fff5f7 100%);
@@ -107,6 +107,29 @@ body {
     font-family: 'Noto Serif JP', serif;
 }
 
+.bag-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-badge {
+    background: white;
+    color: #ff1493;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 2px solid #ffb6d9;
+    transition: all 0.3s ease;
+}
+
+.progress-badge.complete {
+    background: #4ade80;
+    color: white;
+    border-color: #22c55e;
+}
+
 .bag-button:hover {
     background: linear-gradient(135deg, #ffb6d9 0%, #ff85b3 100%);
     color: white;
@@ -115,10 +138,58 @@ body {
     border-color: #ff85b3;
 }
 
+.bag-button:hover .progress-badge {
+    background: white;
+    color: #ff1493;
+}
+
 .bag-button.active {
     background: linear-gradient(135deg, #ffb6d9 0%, #ff85b3 100%);
     color: white;
     border-color: #ff85b3;
+}
+
+.bag-button.active .progress-badge {
+    background: white;
+    color: #ff1493;
+}
+
+.bag-button.active .progress-badge.complete {
+    background: #4ade80;
+    color: white;
+    border-color: #22c55e;
+}
+
+/* 一括操作ボタン */
+.bulk-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.bulk-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: white;
+    border: 2px solid #ffb6d9;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ff1493;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Serif JP', serif;
+}
+
+.bulk-btn:hover {
+    background: #ffb6d9;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 182, 217, 0.3);
+}
+
+.bulk-btn:active {
+    transform: translateY(0);
 }
 
 /* チェックリストコンテンツ */

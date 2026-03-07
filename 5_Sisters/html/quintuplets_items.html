@@ -19,10 +19,24 @@
         </header>
 
         <nav class="bag-selector">
-            <button class="bag-button active" data-bag="backpack">🎒 リュック</button>
-            <button class="bag-button" data-bag="suitcase">🧳 スーツケース</button>
-            <button class="bag-button" data-bag="tote">👜 手提げ</button>
+            <button class="bag-button active" data-bag="backpack">
+                <span class="bag-icon">🎒 リュック</span>
+                <span class="progress-badge" id="backpack-progress">0/0</span>
+            </button>
+            <button class="bag-button" data-bag="suitcase">
+                <span class="bag-icon">🧳 スーツケース</span>
+                <span class="progress-badge" id="suitcase-progress">0/0</span>
+            </button>
+            <button class="bag-button" data-bag="tote">
+                <span class="bag-icon">👜 手提げ</span>
+                <span class="progress-badge" id="tote-progress">0/0</span>
+            </button>
         </nav>
+
+        <div class="bulk-actions">
+            <button class="bulk-btn" id="check-all">✓ すべてチェック</button>
+            <button class="bulk-btn" id="uncheck-all">✕ すべて解除</button>
+        </div>
 
         <div class="items-content active" id="backpack-items"></div>
         <div class="items-content" id="suitcase-items"></div>

@@ -1,8 +1,13 @@
 // 持ち物ページ - JSONから動的に生成
+let itemsData = null;
+let currentBag = 'backpack';
+
 document.addEventListener('DOMContentLoaded', async function() {
     await loadItems();
     setupBagSelector();
+    setupBulkActions();
     loadChecklistState();
+    updateAllProgress();
 });
 
 // JSONデータから持ち物を読み込んで表示
@@ -12,6 +17,7 @@ async function loadItems() {
         const data = await response.json();
         
         if (data && data.items) {
+            itemsData = data.items;
             displayItems(data.items);
         }
     } catch (error) {
@@ -44,7 +50,10 @@ function displayItems(items) {
         
         // チェックボックスのイベントリスナーを設定
         container.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-            checkbox.addEventListener('change', saveChecklistState);
+            checkbox.addEventListener('change', function() {
+                saveChecklistState();
+                updateProgress(bagType);
+            });
         });
     });
 }
@@ -57,6 +66,7 @@ function setupBagSelector() {
     bagButtons.forEach(button => {
         button.addEventListener('click', function() {
             const bagType = this.dataset.bag;
+            currentBag = bagType;
             
             // アクティブクラスを更新
             bagButtons.forEach(btn => btn.classList.remove('active'));
@@ -98,5 +108,51 @@ function loadChecklistState() {
         if (checklistState[bagType] && checklistState[bagType][index]) {
             checkbox.checked = true;
         }
+    });
+}
+
+// 進捗表示を更新
+function updateProgress(bagType) {
+    const checkboxes = document.querySelectorAll(`input[data-bag="${bagType}"]`);
+    const total = checkboxes.length;
+    const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+    
+    const progressBadge = document.getElementById(`${bagType}-progress`);
+    if (progressBadge) {
+        progressBadge.textContent = `${checked}/${total}`;
+        
+        // 完了率に応じて色を変更
+        if (checked === total) {
+            progressBadge.classList.add('complete');
+        } else {
+            progressBadge.classList.remove('complete');
+        }
+    }
+}
+
+// すべての進捗を更新
+function updateAllProgress() {
+    ['backpack', 'suitcase', 'tote'].forEach(bagType => {
+        updateProgress(bagType);
+    });
+}
+
+// 一括操作ボタンのセットアップ
+function setupBulkActions() {
+    const checkAllBtn = document.getElementById('check-all');
+    const uncheckAllBtn = document.getElementById('uncheck-all');
+    
+    checkAllBtn.addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll(`#${currentBag}-items input[type="checkbox"]`);
+        checkboxes.forEach(cb => cb.checked = true);
+        saveChecklistState();
+        updateProgress(currentBag);
+    });
+    
+    uncheckAllBtn.addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll(`#${currentBag}-items input[type="checkbox"]`);
+        checkboxes.forEach(cb => cb.checked = false);
+        saveChecklistState();
+        updateProgress(currentBag);
     });
 }
