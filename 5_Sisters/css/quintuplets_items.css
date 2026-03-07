@@ -48,6 +48,46 @@ body {
     border-radius: 20px;
     padding: 50px;
     box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../../Pictures/5_sisters/Banner/Ituki/ituki-bg.jpg') no-repeat center;
+    background-size: 100% auto;
+    background-position: center top;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container > * {
+    position: relative;
+    z-index: 1;
+}
+
+.bag-button[data-bag="backpack"] {
+    background-image: url('../../Pictures/5_sisters/Banner/Ituki/ituki1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 42%;
+}
+
+.bag-button[data-bag="suitcase"] {
+    background-image: url('../../Pictures/5_sisters/Banner/Ituki/ituki2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 62%;
+}
+
+.bag-button[data-bag="tote"] {
+    background-image: url('../../Pictures/5_sisters/Banner/Ituki/ituki3.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 48%;
 }
 
 /* ヘッダー */
@@ -116,7 +156,7 @@ body {
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, #fff 0%, #fff5f7 100%);
-    opacity: 0.85;
+    opacity: 0.75;
     pointer-events: none;
     z-index: 0;
 }
@@ -130,6 +170,11 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 8px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(255, 182, 217, 0.2);
 }
 
 .progress-badge {
@@ -157,15 +202,30 @@ body {
     border-color: #ff85b3;
 }
 
+.bag-button:hover .bag-icon {
+    background: rgba(255, 255, 255, 0.8);
+    color: #ff1493;
+}
+
 .bag-button:hover .progress-badge {
     background: white;
     color: #ff1493;
 }
 
 .bag-button.active {
-    background: linear-gradient(135deg, #ffb6d9 0%, #ff85b3 100%);
-    color: white;
-    border-color: #ff85b3;
+    background-color: rgba(255, 182, 217, 0.28);
+    color: #ff1493;
+    border-color: #7fd3ff;
+    box-shadow: 0 0 0 2px rgba(127, 211, 255, 0.45), 0 8px 25px rgba(255, 133, 179, 0.3);
+}
+
+.bag-button.active::before {
+    opacity: 0.58;
+}
+
+.bag-button.active .bag-icon {
+    background: rgba(255, 255, 255, 0.9);
+    color: #ff1493;
 }
 
 .bag-button.active .progress-badge {

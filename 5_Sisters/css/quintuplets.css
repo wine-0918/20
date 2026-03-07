@@ -46,6 +46,25 @@ body {
     border-radius: 20px;
     padding: 50px;
     box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('../../Pictures/5_sisters/Banner/Miku/miku-bg.png') no-repeat center;
+    background-size: 100% auto;
+    background-position: center top;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container > * {
+    position: relative;
+    z-index: 1;
 }
 
 /* ヘッダー */
@@ -587,6 +606,9 @@ body {
 
 .day-button {
     padding: 15px 35px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .day-button[data-day="1"] {
@@ -602,7 +624,7 @@ body {
 }
 
 .day-button:hover {
-    background: #fff5f7;
+    background-color: #fff5f7;
     transform: translateY(-2px);
 }
 
@@ -612,10 +634,17 @@ body {
 }
 
 .day-button.active {
-    background: linear-gradient(135deg, #ffb6d9, #ff85b3);
-    color: white;
-    border-color: #ff85b3;
-    box-shadow: 0 4px 15px rgba(255, 133, 179, 0.3);
+    background-color: rgba(255, 182, 217, 0.28);
+    color: #c21875;
+    font-weight: 700;
+    border-color: #7fd3ff;
+    box-shadow: 0 0 0 2px rgba(127, 211, 255, 0.45), 0 4px 15px rgba(255, 133, 179, 0.3);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.day-button.active::before {
+    background: linear-gradient(135deg, #fff 0%, #fff5f7 100%);
+    opacity: 0.68;
 }
 
 /* スケジュールコンテンツ */
@@ -1524,11 +1553,17 @@ body.dark-mode .day-button {
     color: #ff85b3;
 }
 
-body.dark-mode .day-button:hover,
-body.dark-mode .day-button.active {
+body.dark-mode .day-button:hover {
     background: linear-gradient(135deg, #ff85b3, #ff69b4);
     color: white;
     border-color: #ff85b3;
+}
+
+body.dark-mode .day-button.active {
+    background: linear-gradient(135deg, #ff85b3, #ff69b4);
+    color: white;
+    border-color: #7fd3ff;
+    box-shadow: 0 0 0 2px rgba(127, 211, 255, 0.45), 0 4px 15px rgba(255, 133, 179, 0.3);
 }
 
 body.dark-mode .schedule-content {

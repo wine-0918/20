@@ -97,6 +97,17 @@ body::after {
     margin-bottom: 34px;
 }
 
+.title-hero-link {
+    display: block;
+    text-decoration: none;
+    border-radius: 18px;
+}
+
+.title-hero-link:focus-visible {
+    outline: 3px solid #7fd3ff;
+    outline-offset: 4px;
+}
+
 .title-hero {
     position: relative;
     overflow: hidden;
@@ -113,6 +124,13 @@ body::after {
         linear-gradient(135deg, #dca0c2, #b985b0);
     background-size: cover, cover, auto;
     box-shadow: 0 12px 28px rgba(255, 105, 180, 0.22);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.title-hero-link:hover .title-hero {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(255, 105, 180, 0.26);
 }
 
 .title-hero > * {
@@ -192,7 +210,7 @@ body::after {
 
 .nav-button[data-page="schedule"] {
     background-image: url('../../Pictures/5_sisters/Banner/Miku/miku-home.png');
-    background-position: center top;
+    background-position: center 15%;
 }
 
 .nav-button[data-page="items"] {
@@ -206,6 +224,12 @@ body::after {
 
 .nav-button .button-text {
     letter-spacing: 0.1em;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 8px 20px;
+    border-radius: 12px;
+    text-shadow: 0 1px 2px rgba(255, 20, 147, 0.2);
+    color: #ff1493;
 }
 
 .nav-button:hover {
