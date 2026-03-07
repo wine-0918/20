@@ -252,6 +252,112 @@ body {
     overflow-y: auto;
 }
 
+/* メモモーダル専用 */
+.note-modal-content {
+    max-width: 600px;
+}
+
+.note-modal-info {
+    display: flex;
+    gap: 15px;
+    align-items: baseline;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.note-time {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ff1493;
+}
+
+.note-event {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+}
+
+.note-textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Noto Serif JP', serif;
+    resize: vertical;
+    min-height: 200px;
+    transition: all 0.3s ease;
+}
+
+.note-textarea:focus {
+    outline: none;
+    border-color: #ff85b3;
+    box-shadow: 0 0 10px rgba(255, 133, 179, 0.2);
+}
+
+.note-modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.note-save-btn,
+.note-clear-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Serif JP', serif;
+}
+
+.note-save-btn {
+    background: linear-gradient(135deg, #ff85b3, #ff69b4);
+    color: white;
+}
+
+.note-save-btn:hover {
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+}
+
+.note-clear-btn {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.note-clear-btn:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* 設定セクション */
+.settings-section {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.settings-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ff1493;
+    margin-bottom: 20px;
+    font-family: 'Noto Serif JP', serif;
+}
+
 /* スケジュールフィルター */
 .schedule-filter-container {
     background: white;
@@ -326,6 +432,120 @@ body {
     background: linear-gradient(135deg, #ffebf5, #fff5f7);
     border-color: #ff85b3;
     box-shadow: 0 2px 8px rgba(255, 133, 179, 0.2);
+}
+
+/* チェックボックスグループ */
+.checkbox-group {
+    margin-bottom: 15px;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 12px 20px;
+    background: #f8f8f8;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.checkbox-option:hover {
+    background: #fff5f7;
+    border-color: #ffb6d9;
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: #ff85b3;
+}
+
+.checkbox-option:has(input[type="checkbox"]:checked) {
+    background: linear-gradient(135deg, #ffebf5, #fff5f7);
+    border-color: #ff85b3;
+    box-shadow: 0 2px 8px rgba(255, 133, 179, 0.2);
+}
+
+.checkbox-option:has(input[type="checkbox"]:checked) span {
+    color: #ff1493;
+    font-weight: 700;
+}
+
+/* アイコン選択 */
+.icon-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.icon-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.icon-option {
+    cursor: pointer;
+    position: relative;
+}
+
+.icon-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.icon-preview {
+    aspect-ratio: 1;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #e0e0e0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon-preview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.icon-label {
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.icon-option input[type="radio"]:checked + .icon-preview {
+    border-color: #ff1493;
+    box-shadow: 0 4px 20px rgba(255, 20, 147, 0.4);
+    transform: scale(1.1);
+}
+
+.icon-option input[type="radio"]:checked + .icon-preview::after {
+    content: "✓";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff1493;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(255, 20, 147, 0.4);
 }
 
 /* 日付切り替えボタン */
@@ -548,11 +768,38 @@ body {
     justify-content: flex-end;
 }
 
+/* 新しい構造用のクラス */
+.timeline-item .item-time {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ff1493;
+    text-align: right;
+    padding-right: 20px;
+    border-right: 2px solid #ffb6d9;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .timeline-item .content {
     display: flex;
     flex-direction: column;
     gap: 8px;
     justify-content: center;
+}
+
+.timeline-item .item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .content-title {
@@ -561,7 +808,20 @@ body {
     color: #333;
 }
 
+.item-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+}
+
 .content-detail {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+.item-detail {
     font-size: 1rem;
     color: #666;
     margin-top: 5px;
@@ -571,6 +831,54 @@ body {
     font-size: 0.9rem;
     color: #999;
     font-style: italic;
+}
+
+.item-note {
+    font-size: 0.9rem;
+    color: #999;
+    font-style: italic;
+}
+
+/* メモアイコン */
+.note-icon {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+    padding: 5px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.note-icon:hover {
+    opacity: 1;
+    background: rgba(255, 182, 217, 0.2);
+    transform: scale(1.1);
+}
+
+.note-icon.has-note {
+    opacity: 1;
+    background: linear-gradient(135deg, #ffebf5, #fff5f7);
+    border: 2px solid #ff85b3;
+}
+
+.note-icon.has-note:hover {
+    background: linear-gradient(135deg, #ff85b3, #ff69b4);
+}
+
+.note-icon.has-note .note-icon-text {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 .link {
@@ -799,6 +1107,19 @@ body {
         padding: 10px 18px;
         font-size: 0.85rem;
     }
+    
+    .icon-selector {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    
+    .icon-preview {
+        border-radius: 15px;
+    }
+    
+    .icon-label {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1005,4 +1326,402 @@ body {
         display: inline-flex;
         align-items: center;
     }
+    
+    .icon-selector {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .icon-preview {
+        border-radius: 12px;
+    }
+    
+    .icon-label {
+        font-size: 0.85rem;
+    }
+    
+    .icon-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* カウントダウンバー */
+.countdown-bar {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    background: linear-gradient(135deg, #ff85b3, #ff69b4);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    box-shadow: 0 6px 25px rgba(255, 105, 180, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    max-width: 90%;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.countdown-bar:hover {
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 105, 180, 0.5);
+}
+
+.countdown-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.countdown-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.countdown-time {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.countdown-event {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 5px 15px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+}
+
+/* 現在時刻ハイライト */
+.timeline-item.current-time {
+    background: linear-gradient(135deg, #fff5e6, #fffbf0);
+    border-left: 5px solid #ffa500;
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.2);
+}
+
+.timeline-item.current-time .item-time {
+    color: #ff8c00;
+    font-weight: 700;
+}
+
+.timeline-item.next-event {
+    background: linear-gradient(135deg, #e6f7ff, #f0f9ff);
+    border-left: 5px solid #4da6ff;
+    box-shadow: 0 4px 15px rgba(77, 166, 255, 0.2);
+}
+
+.timeline-item.next-event .item-time {
+    color: #1e90ff;
+    font-weight: 700;
+}
+
+/* ダークモード */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .container {
+    background: #1e1e2f;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .home-back-btn {
+    background: #2a2a3e;
+    border-color: #ff85b3;
+    color: #ff85b3;
+}
+
+body.dark-mode .home-back-btn:hover {
+    background: #ff85b3;
+    color: white;
+}
+
+body.dark-mode .main-title {
+    color: #ff85b3;
+}
+
+body.dark-mode .decorative-line {
+    background: linear-gradient(to right, transparent, #ff85b3, transparent);
+}
+
+body.dark-mode .settings-button {
+    background: #2a2a3e;
+    border-color: #ff85b3;
+    color: #ff85b3;
+}
+
+body.dark-mode .settings-button:hover {
+    background: #ff85b3;
+    color: white;
+}
+
+body.dark-mode .day-button {
+    background: #2a2a3e;
+    border-color: #ff85b3;
+    color: #ff85b3;
+}
+
+body.dark-mode .day-button:hover,
+body.dark-mode .day-button.active {
+    background: linear-gradient(135deg, #ff85b3, #ff69b4);
+    color: white;
+    border-color: #ff85b3;
+}
+
+body.dark-mode .schedule-content {
+    color: #e0e0e0;
+}
+
+body.dark-mode .day-title {
+    color: #ff85b3;
+}
+
+body.dark-mode .timeline-item {
+    background: #252538;
+    border-left-color: #ff85b3;
+}
+
+body.dark-mode .timeline-item:hover {
+    background: #2e2e45;
+    box-shadow: 0 6px 20px rgba(255, 133, 179, 0.3);
+}
+
+body.dark-mode .item-time {
+    color: #ff85b3;
+    border-right-color: #3a3a50;
+}
+
+body.dark-mode .item-title {
+    color: #ffffff;
+}
+
+body.dark-mode .item-detail,
+body.dark-mode .item-note {
+    color: #b0b0c0;
+}
+
+body.dark-mode .link {
+    background: #2a2a3e;
+    border-color: #ff85b3;
+    color: #ff85b3;
+}
+
+body.dark-mode .link:hover {
+    background: #ff85b3;
+    color: white;
+}
+
+body.dark-mode .link-map {
+    background: #1e3a5f;
+    border-color: #4da6ff;
+    color: #4da6ff;
+}
+
+body.dark-mode .link-map:hover {
+    background: #4da6ff;
+    color: white;
+}
+
+body.dark-mode .route-section {
+    background: #252538;
+}
+
+body.dark-mode .route-section-header {
+    background: #2a2a3e;
+}
+
+body.dark-mode .route-section-header:hover {
+    background: #333348;
+}
+
+body.dark-mode .section-title {
+    color: #ff85b3;
+}
+
+body.dark-mode .route-hint {
+    color: #9090a0;
+}
+
+body.dark-mode .route-point {
+    background: #2a2a3e;
+    color: #ffffff;
+}
+
+body.dark-mode .route-arrow {
+    color: #ff85b3;
+}
+
+body.dark-mode .note-box {
+    background: #252538;
+    border-left-color: #4da6ff;
+}
+
+body.dark-mode .note-title {
+    color: #4da6ff;
+}
+
+body.dark-mode .modal-content {
+    background: #1e1e2f;
+}
+
+body.dark-mode .modal-header {
+    background: #2a2a3e;
+    border-bottom-color: #3a3a50;
+}
+
+body.dark-mode .modal-title {
+    color: #ff85b3;
+}
+
+body.dark-mode .modal-close-btn {
+    color: #ff85b3;
+    border-color: #ff85b3;
+}
+
+body.dark-mode .modal-close-btn:hover {
+    background: #ff85b3;
+    color: white;
+}
+
+body.dark-mode .modal-body {
+    color: #e0e0e0;
+}
+
+body.dark-mode .section-title {
+    color: #ff85b3;
+}
+
+body.dark-mode .settings-section {
+    border-bottom-color: #3a3a50;
+}
+
+body.dark-mode .filter-label {
+    color: #c0c0d0;
+}
+
+body.dark-mode .filter-option,
+body.dark-mode .checkbox-option {
+    background: #252538;
+    border-color: #3a3a50;
+    color: #e0e0e0;
+}
+
+body.dark-mode .filter-option:hover,
+body.dark-mode .checkbox-option:hover {
+    background: #2e2e45;
+    border-color: #ff85b3;
+}
+
+body.dark-mode .filter-option:has(input:checked),
+body.dark-mode .checkbox-option:has(input:checked) {
+    background: rgba(255, 133, 179, 0.2);
+    border-color: #ff85b3;
+}
+
+body.dark-mode .filter-option:has(input:checked) span,
+body.dark-mode .checkbox-option:has(input:checked) span {
+    color: #ff85b3;
+}
+
+body.dark-mode .timeline-item.current-time {
+    background: rgba(255, 165, 0, 0.2);
+    border-left-color: #ffa500;
+}
+
+body.dark-mode .timeline-item.next-event {
+    background: rgba(77, 166, 255, 0.2);
+    border-left-color: #4da6ff;
+}
+
+/* ダークモード - メモ機能 */
+body.dark-mode .note-icon {
+    color: #ff85b3;
+}
+
+body.dark-mode .note-icon:hover {
+    background: rgba(255, 133, 179, 0.2);
+}
+
+body.dark-mode .note-icon.has-note {
+    background: rgba(255, 133, 179, 0.3);
+    border-color: #ff85b3;
+}
+
+body.dark-mode .note-icon.has-note:hover {
+    background: linear-gradient(135deg, rgba(255, 133, 179, 0.5), rgba(255, 105, 180, 0.5));
+}
+
+body.dark-mode .note-modal-info {
+    border-bottom-color: #3a3a50;
+}
+
+body.dark-mode .note-time {
+    color: #ff85b3;
+}
+
+body.dark-mode .note-event {
+    color: #e0e0e0;
+}
+
+body.dark-mode .note-textarea {
+    background: #252538;
+    border-color: #3a3a50;
+    color: #e0e0e0;
+}
+
+body.dark-mode .note-textarea:focus {
+    border-color: #ff85b3;
+    box-shadow: 0 0 10px rgba(255, 133, 179, 0.3);
+}
+
+body.dark-mode .note-save-btn {
+    background: linear-gradient(135deg, #ff85b3, #ff69b4);
+}
+
+body.dark-mode .note-save-btn:hover {
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+}
+
+body.dark-mode .note-clear-btn {
+    background: #2a2a3e;
+    color: #c0c0d0;
+}
+
+body.dark-mode .note-clear-btn:hover {
+    background: #333348;
+    color: #e0e0e0;
+}
+
+/* ダークモード - アイコン選択 */
+body.dark-mode .icon-description {
+    color: #c0c0d0;
+}
+
+body.dark-mode .icon-preview {
+    border-color: #3a3a50;
+}
+
+body.dark-mode .icon-option input[type="radio"]:checked + .icon-preview {
+    border-color: #ff85b3;
+    box-shadow: 0 4px 20px rgba(255, 133, 179, 0.4);
+}
+
+body.dark-mode .icon-option input[type="radio"]:checked + .icon-preview::after {
+    background: #ff85b3;
 }

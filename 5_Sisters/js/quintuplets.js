@@ -3,6 +3,25 @@ let scheduleData = null;
 let hasWork = true; // デフォルトは仕事ありの状態
 let lunchOption = 'misokichi'; // デフォルトはみそきん
 
+// 基本設定
+let highlightCurrentTime = true; // デフォルトで現在時刻ハイライトをON
+let showCountdown = true; // デフォルトでカウントダウン表示をON
+let darkMode = false; // デフォルトでダークモードをOFF
+let appIcon = 'icon3'; // デフォルトアイコン（三玖）
+
+// Service Workerの登録（PWA対応）
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('../service-worker.js')
+            .then(registration => {
+                console.log('ServiceWorker registration successful:', registration.scope);
+            })
+            .catch(err => {
+                console.log('ServiceWorker registration failed:', err);
+            });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', async function() {
     // JSONデータを読み込み
     await loadScheduleData();
@@ -24,6 +43,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // モーダル機能を設定
     setupModal();
+    
+    // メモ機能を設定
+    setupNoteModal();
 });
 
 // JSONデータの読み込み
@@ -278,19 +300,27 @@ function generateDay3(day3Data) {
 
 // タイムラインアイテムの生成（共通処理）
 function generateTimelineItem(item) {
+    // ユニークなIDを生成（時刻とタイトルから）
+    const itemId = `item-${item.time.replace(':', '')}-${item.title.replace(/\s+/g, '-')}`;
+    
     let html = `
-        <div class="timeline-item">
-            <div class="time">${item.time}</div>
-            <div class="content">
-                <div class="content-title">${item.title}</div>
+        <div class="timeline-item" data-item-id="${itemId}">
+            <div class="item-time">${item.time}</div>
+            <div class="item-content">
+                <div class="item-header">
+                    <div class="item-title">${item.title}</div>
+                    <button class="note-icon" data-item-id="${itemId}" data-time="${item.time}" data-title="${item.title}" title="メモを追加">
+                        <span class="note-icon-text">📝</span>
+                    </button>
+                </div>
     `;
     
     if (item.detail) {
-        html += `<div class="content-detail">${item.detail}</div>`;
+        html += `<div class="item-detail">${item.detail}</div>`;
     }
     
     if (item.note) {
-        html += `<div class="content-note">${item.note}</div>`;
+        html += `<div class="item-note">${item.note}</div>`;
     }
     
     if (item.link) {
@@ -371,6 +401,28 @@ function loadSettings() {
         lunchOption = savedLunchOption;
     }
     
+    // 基本設定
+    const savedHighlight = localStorage.getItem('highlightCurrentTime');
+    if (savedHighlight !== null) {
+        highlightCurrentTime = savedHighlight === 'true';
+    }
+    
+    const savedCountdown = localStorage.getItem('showCountdown');
+    if (savedCountdown !== null) {
+        showCountdown = savedCountdown === 'true';
+    }
+    
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode !== null) {
+        darkMode = savedDarkMode === 'true';
+    }
+    
+    // アイコン選択
+    const savedAppIcon = localStorage.getItem('appIcon');
+    if (savedAppIcon !== null) {
+        appIcon = savedAppIcon;
+    }
+    
     // ラジオボタンの状態を設定
     const hasWorkRadios = document.querySelectorAll('input[name="hasWork"]');
     hasWorkRadios.forEach(radio => {
@@ -381,6 +433,27 @@ function loadSettings() {
     lunchRadios.forEach(radio => {
         radio.checked = radio.value === lunchOption;
     });
+    
+    const iconRadios = document.querySelectorAll('input[name="appIcon"]');
+    iconRadios.forEach(radio => {
+        radio.checked = radio.value === appIcon;
+    });
+    
+    // チェックボックスの状態を設定
+    const highlightCheckbox = document.getElementById('highlightCurrentTime');
+    if (highlightCheckbox) highlightCheckbox.checked = highlightCurrentTime;
+    
+    const countdownCheckbox = document.getElementById('showCountdown');
+    if (countdownCheckbox) countdownCheckbox.checked = showCountdown;
+    
+    const darkModeCheckbox = document.getElementById('darkMode');
+    if (darkModeCheckbox) darkModeCheckbox.checked = darkMode;
+    
+    // ダークモードを適用
+    applyDarkMode();
+    
+    // アイコンを適用
+    updateManifest();
 }
 
 // フィルター機能の設定
@@ -410,6 +483,61 @@ function setupFilters() {
             }
         });
     });
+    
+    // 基本設定のチェックボックス
+    const highlightCheckbox = document.getElementById('highlightCurrentTime');
+    if (highlightCheckbox) {
+        highlightCheckbox.addEventListener('change', function() {
+            highlightCurrentTime = this.checked;
+            localStorage.setItem('highlightCurrentTime', highlightCurrentTime);
+            updateCurrentTimeHighlight();
+        });
+    }
+    
+    const countdownCheckbox = document.getElementById('showCountdown');
+    if (countdownCheckbox) {
+        countdownCheckbox.addEventListener('change', function() {
+            showCountdown = this.checked;
+            localStorage.setItem('showCountdown', showCountdown);
+            updateCountdownDisplay();
+        });
+    }
+    
+    const darkModeCheckbox = document.getElementById('darkMode');
+    if (darkModeCheckbox) {
+        darkModeCheckbox.addEventListener('change', function() {
+            darkMode = this.checked;
+            localStorage.setItem('darkMode', darkMode);
+            applyDarkMode();
+        });
+    }
+    
+    // アイコン選択のラジオボタン
+    const iconRadios = document.querySelectorAll('input[name="appIcon"]');
+    iconRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.checked) {
+                appIcon = this.value;
+                localStorage.setItem('appIcon', appIcon);
+                updateManifest();
+            }
+        });
+    });
+}
+
+// Manifestファイルを更新
+function updateManifest() {
+    // 既存のmanifest linkを削除
+    const existingLink = document.querySelector('link[rel="manifest"]');
+    if (existingLink) {
+        existingLink.remove();
+    }
+    
+    // 新しいmanifest linkを追加
+    const link = document.createElement('link');
+    link.rel = 'manifest';
+    link.href = `../manifest-${appIcon}.json`;
+    document.head.appendChild(link);
 }
 
 // モーダル機能の設定
@@ -437,6 +565,295 @@ function setupModal() {
     modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.classList.remove('show');
+        }
+    });
+}
+
+// ダークモードの適用
+function applyDarkMode() {
+    if (darkMode) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
+
+// 現在時刻ハイライトの更新
+function updateCurrentTimeHighlight() {
+    if (!highlightCurrentTime) {
+        // ハイライトをオフにする場合、すべてのハイライトを削除
+        document.querySelectorAll('.timeline-item.current-time').forEach(item => {
+            item.classList.remove('current-time');
+        });
+        document.querySelectorAll('.timeline-item.next-event').forEach(item => {
+            item.classList.remove('next-event');
+        });
+        return;
+    }
+    
+    // 現在の時刻を取得
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentTimeInMinutes = currentHour * 60 + currentMinute;
+    
+    // すべてのタイムライン項目を取得
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    let currentItem = null;
+    let nextItem = null;
+    
+    timelineItems.forEach(item => {
+        const timeText = item.querySelector('.item-time')?.textContent;
+        if (timeText) {
+            const [hour, minute] = timeText.split(':').map(num => parseInt(num));
+            const itemTimeInMinutes = hour * 60 + minute;
+            
+            // 現在時刻と比較
+            if (itemTimeInMinutes <= currentTimeInMinutes) {
+                currentItem = item;
+            } else if (!nextItem && itemTimeInMinutes > currentTimeInMinutes) {
+                nextItem = item;
+            }
+        }
+    });
+    
+    // すべてのハイライトクラスをクリア
+    timelineItems.forEach(item => {
+        item.classList.remove('current-time', 'next-event');
+    });
+    
+    // 現在のイベントをハイライト
+    if (currentItem) {
+        currentItem.classList.add('current-time');
+    }
+    
+    // 次のイベントをハイライト
+    if (nextItem) {
+        nextItem.classList.add('next-event');
+    }
+}
+
+// カウントダウン表示の更新
+function updateCountdownDisplay() {
+    let countdownElement = document.getElementById('countdown-bar');
+    
+    if (!showCountdown) {
+        // カウントダウンをオフにする場合、要素を削除
+        if (countdownElement) {
+            countdownElement.remove();
+        }
+        return;
+    }
+    
+    // カウントダウン要素が存在しない場合は作成
+    if (!countdownElement) {
+        countdownElement = document.createElement('div');
+        countdownElement.id = 'countdown-bar';
+        countdownElement.className = 'countdown-bar';
+        document.body.insertBefore(countdownElement, document.body.firstChild);
+    }
+    
+    // 現在の時刻を取得
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentSecond = now.getSeconds();
+    const currentTimeInSeconds = currentHour * 3600 + currentMinute * 60 + currentSecond;
+    
+    // すべてのタイムライン項目を取得
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    let nextItem = null;
+    let nextItemTime = null;
+    let nextItemTitle = null;
+    
+    timelineItems.forEach(item => {
+        const timeText = item.querySelector('.item-time')?.textContent;
+        const titleText = item.querySelector('.item-title')?.textContent;
+        if (timeText) {
+            const [hour, minute] = timeText.split(':').map(num => parseInt(num));
+            const itemTimeInSeconds = hour * 3600 + minute * 60;
+            
+            // 現在時刻より後の最初のイベントを見つける
+            if (itemTimeInSeconds > currentTimeInSeconds && !nextItem) {
+                nextItem = item;
+                nextItemTime = itemTimeInSeconds;
+                nextItemTitle = titleText;
+            }
+        }
+    });
+    
+    if (nextItem && nextItemTime) {
+        // 残り時間を計算
+        const remainingSeconds = nextItemTime - currentTimeInSeconds;
+        const hours = Math.floor(remainingSeconds / 3600);
+        const minutes = Math.floor((remainingSeconds % 3600) / 60);
+        
+        let timeText = '';
+        if (hours > 0) {
+            timeText = `あと ${hours}時間${minutes}分`;
+        } else {
+            timeText = `あと ${minutes}分`;
+        }
+        
+        countdownElement.innerHTML = `
+            <div class="countdown-content">
+                <div class="countdown-label">次のイベント</div>
+                <div class="countdown-time">${timeText}</div>
+                <div class="countdown-event">${nextItemTitle}</div>
+            </div>
+        `;
+        
+        // クリックでスクロール
+        countdownElement.onclick = function() {
+            nextItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
+    } else {
+        countdownElement.innerHTML = `
+            <div class="countdown-content">
+                <div class="countdown-label">本日のスケジュールは終了しました</div>
+            </div>
+        `;
+        countdownElement.onclick = null;
+    }
+}
+
+// 定期的に更新
+setInterval(() => {
+    if (highlightCurrentTime) {
+        updateCurrentTimeHighlight();
+    }
+    if (showCountdown) {
+        updateCountdownDisplay();
+    }
+}, 60000); // 1分ごとに更新
+
+// 初回実行（DOMContentLoaded後に呼ぶ）
+setTimeout(() => {
+    if (highlightCurrentTime) {
+        updateCurrentTimeHighlight();
+    }
+    if (showCountdown) {
+        updateCountdownDisplay();
+    }
+}, 1000);
+
+// メモ機能
+let currentNoteItemId = null;
+
+function setupNoteModal() {
+    const noteModal = document.getElementById('noteModal');
+    const closeNoteBtn = document.getElementById('closeNoteBtn');
+    const saveNoteBtn = document.getElementById('saveNoteBtn');
+    const clearNoteBtn = document.getElementById('clearNoteBtn');
+    const noteTextarea = document.getElementById('noteTextarea');
+    
+    // メモアイコンのクリックイベントを設定（イベント委譲）
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.note-icon')) {
+            const noteIcon = e.target.closest('.note-icon');
+            const itemId = noteIcon.dataset.itemId;
+            const time = noteIcon.dataset.time;
+            const title = noteIcon.dataset.title;
+            
+            openNoteModal(itemId, time, title);
+        }
+    });
+    
+    // 閉じるボタン
+    if (closeNoteBtn) {
+        closeNoteBtn.addEventListener('click', () => {
+            noteModal.classList.remove('show');
+        });
+    }
+    
+    // モーダルの外側をクリックしたら閉じる
+    noteModal.addEventListener('click', function(e) {
+        if (e.target === noteModal) {
+            noteModal.classList.remove('show');
+        }
+    });
+    
+    // 保存ボタン
+    if (saveNoteBtn) {
+        saveNoteBtn.addEventListener('click', () => {
+            saveNote();
+        });
+    }
+    
+    // クリアボタン
+    if (clearNoteBtn) {
+        clearNoteBtn.addEventListener('click', () => {
+            if (confirm('このメモを削除しますか？')) {
+                clearNote();
+            }
+        });
+    }
+    
+    // スケジュール生成後、保存済みメモを反映
+    updateNoteIcons();
+}
+
+function openNoteModal(itemId, time, title) {
+    currentNoteItemId = itemId;
+    
+    const noteModal = document.getElementById('noteModal');
+    const noteTime = document.getElementById('noteTime');
+    const noteEvent = document.getElementById('noteEvent');
+    const noteTextarea = document.getElementById('noteTextarea');
+    
+    // モーダルにアイテム情報を表示
+    noteTime.textContent = time;
+    noteEvent.textContent = title;
+    
+    // 保存済みのメモを読み込み
+    const savedNote = localStorage.getItem(`note-${itemId}`);
+    noteTextarea.value = savedNote || '';
+    
+    // モーダルを表示
+    noteModal.classList.add('show');
+    noteTextarea.focus();
+}
+
+function saveNote() {
+    const noteTextarea = document.getElementById('noteTextarea');
+    const noteText = noteTextarea.value.trim();
+    
+    if (noteText) {
+        localStorage.setItem(`note-${currentNoteItemId}`, noteText);
+    } else {
+        localStorage.removeItem(`note-${currentNoteItemId}`);
+    }
+    
+    // アイコンの表示を更新
+    updateNoteIcons();
+    
+    // モーダルを閉じる
+    document.getElementById('noteModal').classList.remove('show');
+}
+
+function clearNote() {
+    localStorage.removeItem(`note-${currentNoteItemId}`);
+    document.getElementById('noteTextarea').value = '';
+    
+    // アイコンの表示を更新
+    updateNoteIcons();
+    
+    // モーダルを閉じる
+    document.getElementById('noteModal').classList.remove('show');
+}
+
+function updateNoteIcons() {
+    // すべてのメモアイコンをチェック
+    document.querySelectorAll('.note-icon').forEach(icon => {
+        const itemId = icon.dataset.itemId;
+        const savedNote = localStorage.getItem(`note-${itemId}`);
+        
+        if (savedNote) {
+            icon.classList.add('has-note');
+        } else {
+            icon.classList.remove('has-note');
         }
     });
 }

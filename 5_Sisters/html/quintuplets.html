@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff1493">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="五等分しおり">
     <title>五等分の花嫁 - しおり</title>
     <link rel="stylesheet" href="../css/quintuplets.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest-icon3.json">
 </head>
 <body>
     <button class="home-back-btn" onclick="location.href='quintuplets_home.html'">← ホームに戻る</button>
@@ -36,37 +41,138 @@
     <div class="modal-overlay" id="settingsModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">スケジュール設定</h3>
+                <h3 class="modal-title">設定</h3>
                 <button class="modal-close-btn" id="closeSettingsBtn">×</button>
             </div>
             
             <div class="modal-body">
-                <div class="filter-group">
-                    <div class="filter-label">1日目の仕事</div>
-                    <div class="filter-options">
-                        <label class="filter-option">
-                            <input type="radio" name="hasWork" value="true" checked>
-                            <span>仕事あり</span>
+                <!-- スケジュール設定 -->
+                <div class="settings-section">
+                    <h4 class="section-title">スケジュール設定</h4>
+                    
+                    <div class="filter-group">
+                        <div class="filter-label">1日目の仕事</div>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="hasWork" value="true" checked>
+                                <span>仕事あり</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="hasWork" value="false">
+                                <span>仕事なし</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-label">3日目の昼ごはん</div>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="radio" name="lunchOption" value="misokichi" checked>
+                                <span>みそきん</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="radio" name="lunchOption" value="redrock">
+                                <span>レッドロック</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 基本設定 -->
+                <div class="settings-section">
+                    <h4 class="section-title">基本設定</h4>
+                    
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="highlightCurrentTime" checked>
+                            <span>現在時刻をハイライト</span>
                         </label>
-                        <label class="filter-option">
-                            <input type="radio" name="hasWork" value="false">
-                            <span>仕事なし</span>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="showCountdown" checked>
+                            <span>カウントダウン表示</span>
+                        </label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="darkMode">
+                            <span>ダークモード</span>
                         </label>
                     </div>
                 </div>
 
-                <div class="filter-group">
-                    <div class="filter-label">3日目の昼ごはん</div>
-                    <div class="filter-options">
-                        <label class="filter-option">
-                            <input type="radio" name="lunchOption" value="misokichi" checked>
-                            <span>みそきん</span>
+                <!-- アイコン設定 -->
+                <div class="settings-section">
+                    <h4 class="section-title">アプリアイコン選択</h4>
+                    <p class="icon-description">ホーム画面のアイコンを選択できます。変更後、一度アプリを削除して再度追加してください。</p>
+                    
+                    <div class="icon-selector">
+                        <label class="icon-option">
+                            <input type="radio" name="appIcon" value="icon1">
+                            <div class="icon-preview" style="background: linear-gradient(135deg, #ff1493, #ff69b4);">
+                                <span class="icon-label">一花</span>
+                            </div>
                         </label>
-                        <label class="filter-option">
-                            <input type="radio" name="lunchOption" value="redrock">
-                            <span>レッドロック</span>
+                        
+                        <label class="icon-option">
+                            <input type="radio" name="appIcon" value="icon2">
+                            <div class="icon-preview" style="background: linear-gradient(135deg, #ff69b4, #ffb6d9);">
+                                <span class="icon-label">二乃</span>
+                            </div>
+                        </label>
+                        
+                        <label class="icon-option">
+                            <input type="radio" name="appIcon" value="icon3" checked>
+                            <div class="icon-preview" style="background: linear-gradient(135deg, #ff1493, #ffb6d9);">
+                                <span class="icon-label">三玖</span>
+                            </div>
+                        </label>
+                        
+                        <label class="icon-option">
+                            <input type="radio" name="appIcon" value="icon4">
+                            <div class="icon-preview" style="background: linear-gradient(135deg, #4da6ff, #0080ff);">
+                                <span class="icon-label">四葉</span>
+                            </div>
+                        </label>
+                        
+                        <label class="icon-option">
+                            <input type="radio" name="appIcon" value="icon5">
+                            <div class="icon-preview" style="background: linear-gradient(135deg, #00c853, #00e676);">
+                                <span class="icon-label">五月</span>
+                            </div>
                         </label>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- メモモーダル -->
+    <div class="modal-overlay" id="noteModal">
+        <div class="modal-content note-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="noteModalTitle">メモ</h3>
+                <button class="modal-close-btn" id="closeNoteBtn">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="note-modal-info">
+                    <div class="note-time" id="noteTime"></div>
+                    <div class="note-event" id="noteEvent"></div>
+                </div>
+                <textarea 
+                    id="noteTextarea" 
+                    class="note-textarea" 
+                    placeholder="ここにメモを入力...&#10;例：&#10;• 写真を撮る&#10;• 〇〇を買う&#10;• △△に注意"
+                    rows="10"
+                ></textarea>
+                <div class="note-modal-actions">
+                    <button class="note-save-btn" id="saveNoteBtn">保存</button>
+                    <button class="note-clear-btn" id="clearNoteBtn">クリア</button>
                 </div>
             </div>
         </div>
