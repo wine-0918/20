@@ -12,13 +12,38 @@ let appIcon = 'icon3'; // デフォルトアイコン（三玖）
 // Service Workerの登録（PWA対応）
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('../service-worker.js')
+        navigator.serviceWorker.register('../service-worker.js', { updateViaCache: 'none' })
             .then(registration => {
                 console.log('ServiceWorker registration successful:', registration.scope);
+
+                // 起動時に更新確認
+                registration.update();
+
+                // 新しいSWが待機中なら即時有効化
+                if (registration.waiting) {
+                    registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                }
+
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    if (!newWorker) return;
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            newWorker.postMessage({ type: 'SKIP_WAITING' });
+                        }
+                    });
+                });
             })
             .catch(err => {
                 console.log('ServiceWorker registration failed:', err);
             });
+
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (refreshing) return;
+            refreshing = true;
+            window.location.reload();
+        });
     });
 }
 
@@ -51,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 // JSONデータの読み込み
 async function loadScheduleData() {
     try {
-        const response = await fetch('../data/schedule_data.json');
+        const response = await fetch(`../data/schedule_data.json?t=${Date.now()}`, { cache: 'no-store' });
         scheduleData = await response.json();
     } catch (error) {
         console.error('データの読み込みに失敗しました:', error);

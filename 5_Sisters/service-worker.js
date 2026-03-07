@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gotoubun-shiori-v' + Math.floor(Date.now() / 1000);
+const CACHE_NAME = 'gotoubun-shiori-v20260307-2';
 const urlsToCache = [
   './html/quintuplets.html',
   './css/quintuplets.css',
@@ -23,6 +23,13 @@ self.addEventListener('install', event => {
   );
 
   self.skipWaiting();
+});
+
+// ページ側からの指示で待機中SWを即時有効化
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 // リクエスト時にキャッシュから返す
