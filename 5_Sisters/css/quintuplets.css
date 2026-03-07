@@ -1046,14 +1046,29 @@ body {
     }
 
     .timeline-item {
-        grid-template-columns: 80px 1fr;
-        gap: 15px;
+        grid-template-columns: 1fr;
+        gap: 8px;
         padding: 15px;
     }
 
+    .timeline-item .item-time {
+        font-size: 1rem;
+        padding-right: 0;
+        padding-bottom: 8px;
+        border-right: none;
+        border-bottom: 2px solid #ffb6d9;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
     .timeline-item .time {
-        font-size: 1.1rem;
-        padding-right: 10px;
+        font-size: 1rem;
+        padding-right: 0;
+        padding-bottom: 8px;
+        border-right: none;
+        border-bottom: 2px solid #ffb6d9;
+        text-align: left;
+        justify-content: flex-start;
     }
 
     .content-title {
