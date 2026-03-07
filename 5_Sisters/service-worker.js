@@ -1,14 +1,18 @@
-const CACHE_NAME = 'gotoubun-shiori-v20260307-3';
+const CACHE_NAME = 'gotoubun-shiori-v20260307-4';
 const urlsToCache = [
   './html/quintuplets.html',
+  './html/quintuplets_home.html',
   './css/quintuplets.css',
+  './css/quintuplets_home.css',
   './js/quintuplets.js',
+  './js/quintuplets_home.js',
   './data/schedule_data.json',
   '../Pictures/5_sisters/itika.png',
   '../Pictures/5_sisters/nino.png',
   '../Pictures/5_sisters/miku.png',
   '../Pictures/5_sisters/yotuba.png',
   '../Pictures/5_sisters/ituki.png',
+  '../Pictures/5_sisters/background.jpg',
   'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+JP:wght@300;500;700&display=swap'
 ];
 
