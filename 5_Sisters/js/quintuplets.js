@@ -71,7 +71,37 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // メモ機能を設定
     setupNoteModal();
+
+    // iOSホーム画面アプリ復帰時に最新データへ同期
+    setupResumeRefresh();
 });
+
+function setupResumeRefresh() {
+    let isRefreshing = false;
+
+    const refreshScheduleData = async () => {
+        if (isRefreshing) return;
+        isRefreshing = true;
+        try {
+            await loadScheduleData();
+            generateSchedule();
+            setupAccordion();
+            setupNoteModal();
+        } finally {
+            isRefreshing = false;
+        }
+    };
+
+    window.addEventListener('pageshow', () => {
+        refreshScheduleData();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            refreshScheduleData();
+        }
+    });
+}
 
 // JSONデータの読み込み
 async function loadScheduleData() {
