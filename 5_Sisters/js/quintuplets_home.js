@@ -1,5 +1,12 @@
 // アイコン設定
 let appIcon = 'icon3'; // デフォルトアイコン（三玖）
+const ICON_MAP = {
+    'icon1': 'itika',
+    'icon2': 'nino',
+    'icon3': 'miku',
+    'icon4': 'yotuba',
+    'icon5': 'ituki'
+};
 
 // Service Workerの登録（PWA対応）
 if ('serviceWorker' in navigator) {
@@ -107,15 +114,6 @@ function setupModal() {
 
 // Manifestファイルとアイコンを更新
 function updateManifest() {
-    // アイコン名のマッピング
-    const iconMap = {
-        'icon1': 'itika',
-        'icon2': 'nino',
-        'icon3': 'miku',
-        'icon4': 'yotuba',
-        'icon5': 'ituki'
-    };
-    
     // 既存のmanifest linkを削除
     const existingLink = document.querySelector('link[rel="manifest"]');
     if (existingLink) {
@@ -136,8 +134,20 @@ function updateManifest() {
     
     const appleIcon = document.createElement('link');
     appleIcon.rel = 'apple-touch-icon';
-    appleIcon.href = `../../Pictures/5_sisters/${iconMap[appIcon]}.png`;
+    appleIcon.href = `../../Pictures/5_sisters/${ICON_MAP[appIcon]}.png`;
     document.head.appendChild(appleIcon);
+
+    // 設定ボタン右側の現在アイコンも更新
+    updateSettingsButtonPreview();
+}
+
+function updateSettingsButtonPreview() {
+    const preview = document.getElementById('currentIconPreview');
+    if (!preview) return;
+
+    const iconName = ICON_MAP[appIcon] || ICON_MAP.icon3;
+    preview.src = `../../Pictures/5_sisters/${iconName}.png`;
+    preview.alt = `現在のアイコン: ${iconName}`;
 }
 
 // 通知を表示
