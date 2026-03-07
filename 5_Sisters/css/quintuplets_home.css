@@ -406,6 +406,13 @@ body {
     transform: scale(1.1);
 }
 
+/* PWA アプリモード時のスタイル */
+@media (display-mode: standalone) {
+    .home-back-btn {
+        display: none;
+    }
+}
+
 .icon-option input[type="radio"]:checked + .icon-preview::after {
     content: "✓";
     position: absolute;
