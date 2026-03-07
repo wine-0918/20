@@ -4,8 +4,8 @@ let hasWork = true; // デフォルトは仕事ありの状態
 let lunchOption = 'misokichi'; // デフォルトはみそきん
 
 // 基本設定
-let highlightCurrentTime = true; // デフォルトで現在時刻ハイライトをON
-let showCountdown = true; // デフォルトでカウントダウン表示をON
+let highlightCurrentTime = false; // デフォルトで現在時刻ハイライトをOFF
+let showCountdown = false; // デフォルトでカウントダウン表示をOFF
 let darkMode = false; // デフォルトでダークモードをOFF
 let appIcon = 'icon3'; // デフォルトアイコン（三玖）
 
