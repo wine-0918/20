@@ -10,7 +10,10 @@ html {
 
 body {
     font-family: 'Noto Serif JP', serif;
-    background: linear-gradient(160deg, #fff2f8 0%, #ffe7f2 55%, #ffddec 100%);
+    background:
+        linear-gradient(160deg, rgba(255, 242, 248, 0.93) 0%, rgba(255, 231, 242, 0.92) 55%, rgba(255, 221, 236, 0.94) 100%),
+        url('../../Pictures/5_sisters/background.jpg') no-repeat center 32%;
+    background-size: cover;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -18,17 +21,6 @@ body {
     padding: 20px;
     position: relative;
     overflow-x: hidden;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: url('../../Pictures/5_sisters/background.jpg') no-repeat center 32%;
-    background-size: cover;
-    opacity: 0.07;
-    pointer-events: none;
-    z-index: -3;
 }
 
 /* 背景画像の上に半透明のオーバーレイを追加（削除）
