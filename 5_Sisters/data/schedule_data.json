@@ -182,7 +182,7 @@
               "note": "",
               "link": {
                 "text": "豊洲市場→ホテル",
-                "url": "https://x.gd/Unifu"
+                "url": "https://x.gd/cjFAL"
               }
             }
           ]
@@ -234,7 +234,7 @@
               "note": "",
               "link": {
                 "text": "ホテル→トヨタアリーナ",
-                "url": "https://x.gd/6mPRo"
+                "url": "https://x.gd/Uu54X"
               }
             },
             {
@@ -344,7 +344,12 @@
               "time": "12:20",
               "title": "ブルーシールを食べる",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "メニューを見る",
+                "url": "https://www.blueseal.co.jp/blueseal_topics/index.html",
+                "type": "menu"
+              }
             },
             {
               "time": "13:00",
@@ -403,7 +408,7 @@
               "note": "",
               "link": {
                 "text": "ホテル→レッドロック高田馬場店",
-                "url": "https://x.gd/7o1Ey"
+                "url": "https://x.gd/VTvUj"
               }
             },
             {
@@ -426,7 +431,12 @@
               "time": "12:20",
               "title": "ブルーシールを食べる",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "メニューを見る",
+                "url": "https://www.blueseal.co.jp/blueseal_topics/index.html",
+                "type": "menu"
+              }
             },
             {
               "time": "13:00",
@@ -510,7 +520,12 @@
               "time": "空港",
               "title": "ブルーシールを食べる",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "メニューを見る",
+                "url": "https://www.blueseal.co.jp/blueseal_topics/index.html",
+                "type": "menu"
+              }
             },
             {
               "time": "13:00",
@@ -558,7 +573,7 @@
               "note": "",
               "link": {
                 "text": "ホテル→レッドロック高田馬場店",
-                "url": "https://x.gd/7o1Ey"
+                "url": "https://x.gd/VTvUj"
               }
             },
             {
@@ -581,7 +596,12 @@
               "time": "空港",
               "title": "ブルーシールを食べる",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "メニューを見る",
+                "url": "https://www.blueseal.co.jp/blueseal_topics/index.html",
+                "type": "menu"
+              }
             },
             {
               "time": "13:00",
