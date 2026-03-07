@@ -18,10 +18,17 @@
             <div class="decorative-line"></div>
         </header>
 
-        <div class="items-grid" id="items-container">
-            <!-- JSONから動的に生成 -->
-        </div>
+        <nav class="bag-selector">
+            <button class="bag-button active" data-bag="backpack">🎒 リュック</button>
+            <button class="bag-button" data-bag="suitcase">🧳 スーツケース</button>
+            <button class="bag-button" data-bag="tote">👜 手提げ</button>
+        </nav>
+
+        <div class="items-content active" id="backpack-items"></div>
+        <div class="items-content" id="suitcase-items"></div>
+        <div class="items-content" id="tote-items"></div>
     </div>
+
     <script src="../js/quintuplets_items.js"></script>
 </body>
 </html>

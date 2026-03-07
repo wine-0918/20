@@ -81,68 +81,113 @@ body {
     letter-spacing: 0.2em;
 }
 
-/* アイテムグリッド */
-.items-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    padding: 20px 0;
+/* バッグセレクター */
+.bag-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
 }
 
-.item-card {
+.bag-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #fff 0%, #fff5f7 100%);
+    border: 2px solid #ffb6d9;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ff1493;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 182, 217, 0.2);
+    font-family: 'Noto Serif JP', serif;
+}
+
+.bag-button:hover {
+    background: linear-gradient(135deg, #ffb6d9 0%, #ff85b3 100%);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 133, 179, 0.3);
+    border-color: #ff85b3;
+}
+
+.bag-button.active {
+    background: linear-gradient(135deg, #ffb6d9 0%, #ff85b3 100%);
+    color: white;
+    border-color: #ff85b3;
+}
+
+/* チェックリストコンテンツ */
+.items-content {
+    display: none;
+}
+
+.items-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* チェックリストアイテム */
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
     background: linear-gradient(135deg, #fff5f7, #ffeef8);
     border: 2px solid #ffb6d9;
-    border-radius: 20px;
-    padding: 40px 30px;
-    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 15px;
     transition: all 0.3s ease;
-    cursor: default;
 }
 
-.item-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(255, 133, 179, 0.3);
+.checklist-item:hover {
     background: linear-gradient(135deg, #ffb6d9, #ff85b3);
+    box-shadow: 0 6px 20px rgba(255, 133, 179, 0.2);
 }
 
-.item-card:hover .item-icon {
-    transform: scale(1.2) rotate(10deg);
+.checklist-item input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #ff1493;
+    flex-shrink: 0;
 }
 
-.item-card:hover .item-name,
-.item-card:hover .item-detail {
+.checklist-item input[type="checkbox"]:checked + .item-label {
+    color: #999;
+    text-decoration: line-through;
+}
+
+.item-label {
+    font-size: 1.1rem;
+    color: #333;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.checklist-item:hover .item-label {
     color: white;
 }
 
-.item-card.special {
-    border-color: #ff1493;
-    background: linear-gradient(135deg, #fff0f5, #ffe4e8);
-}
-
-.item-card.special:hover {
-    background: linear-gradient(135deg, #ff1493, #dc143c);
-}
-
-.item-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-}
-
-.item-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ff1493;
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-    transition: color 0.3s ease;
-}
-
-.item-detail {
-    font-size: 1rem;
-    color: #ff69b4;
-    font-weight: 500;
-    transition: color 0.3s ease;
+.checklist-item input[type="checkbox"]:checked + .item-label {
+    color: #ccc;
 }
 
 /* レスポンシブ対応 */
@@ -159,21 +204,18 @@ body {
         font-size: 1.1rem;
     }
 
-    .items-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
+    .bag-button {
+        padding: 18px 25px;
+        font-size: 1.1rem;
     }
 
-    .item-card {
-        padding: 35px 25px;
+    .checklist-item {
+        padding: 18px;
+        margin-bottom: 12px;
     }
 
-    .item-icon {
-        font-size: 3.5rem;
-    }
-
-    .item-name {
-        font-size: 1.3rem;
+    .item-label {
+        font-size: 1rem;
     }
 }
 
@@ -200,26 +242,29 @@ body {
         width: 70%;
     }
 
-    .items-grid {
-        gap: 20px;
+    .bag-selector {
+        gap: 12px;
+        margin-bottom: 30px;
     }
 
-    .item-card {
-        padding: 35px 25px;
-        /* タップしやすいサイズ */
-        min-height: 150px;
+    .bag-button {
+        padding: 16px 20px;
+        font-size: 1rem;
+        gap: 8px;
     }
 
-    .item-icon {
-        font-size: 3.5rem;
-        margin-bottom: 15px;
+    .checklist-item {
+        padding: 16px;
+        margin-bottom: 10px;
+        gap: 12px;
     }
 
-    .item-name {
-        font-size: 1.25rem;
+    .checklist-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
     }
 
-    .item-detail {
+    .item-label {
         font-size: 0.95rem;
     }
 
