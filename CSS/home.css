@@ -184,18 +184,19 @@ header {
 
 /* お祝いメッセージセクション */
 .message {
-    background-color: #ffeb3b;
-    /* 明るい黄色 */
+    background-color: rgba(255, 235, 59, 0.95);
+    /* 明るい黄色 + 半透明 */
     border-radius: 10px;
     padding: 30px;
     margin: 20px auto;
     width: 80%;
     max-width: 1000px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     text-align: center;
     position: relative;
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
+    backdrop-filter: blur(5px);
 }
 
 /* メッセージタイトル */
@@ -522,13 +523,15 @@ header {
 
 /* ゲームセクション */
 .game-section {
-    background-color: #e8f5e9;
-    /* 薄い緑色 */
+    background-color: rgba(232, 245, 233, 0.95);
+    /* 薄い緑色 + 半透明 */
     padding: 40px 20px;
     border-radius: 8px;
     margin: 40px auto;
     width: 90%;
     max-width: 1200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
 }
 
 .game-container {
@@ -607,8 +610,9 @@ header {
 
 /* お知らせセクション */
 .news-section {
-    background-color: #f1f1f1;
+    background-color: rgba(241, 241, 241, 0.95);
     padding: 50px 20px;
+    backdrop-filter: blur(5px);
 }
 
 /* お知らせコンテナ */
@@ -616,9 +620,10 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
 }
 
 /* お知らせタイトル */
