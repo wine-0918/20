@@ -29,8 +29,15 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   const requestUrl = new URL(event.request.url);
 
-  // スケジュールデータは常に最新を優先（network first）
-  if (requestUrl.pathname.endsWith('/data/schedule_data.json')) {
+  // 画面本体とデータは常に最新を優先（network first）
+  const isScheduleData = requestUrl.pathname.endsWith('/data/schedule_data.json');
+  const isAppShell =
+    event.request.mode === 'navigate' ||
+    requestUrl.pathname.endsWith('.html') ||
+    requestUrl.pathname.endsWith('.js') ||
+    requestUrl.pathname.endsWith('.css');
+
+  if (isScheduleData || isAppShell) {
     event.respondWith(
       fetch(event.request)
         .then(response => {
