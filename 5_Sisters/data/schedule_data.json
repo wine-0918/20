@@ -25,7 +25,12 @@
             "time": "18:30",
             "title": "新千歳空港 発",
             "detail": "",
-            "note": ""
+            "note": "",
+            "link": {
+              "text": "航空券を表示する予定",
+              "disabled": true,
+              "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
+            }
           },
           {
             "time": "20:10",
@@ -103,7 +108,12 @@
             "time": "18:30",
             "title": "新千歳空港 発",
             "detail": "",
-            "note": ""
+            "note": "",
+            "link": {
+              "text": "航空券を表示する予定",
+              "disabled": true,
+              "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
+            }
           },
           {
             "time": "20:10",
@@ -367,7 +377,12 @@
               "time": "13:00",
               "title": "羽田空港 発",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "航空券を表示する予定",
+                "disabled": true,
+                "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
+              }
             },
             {
               "time": "14:35",
@@ -454,7 +469,12 @@
               "time": "13:00",
               "title": "羽田空港 発",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "航空券を表示する予定",
+                "disabled": true,
+                "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
+              }
             },
             {
               "time": "14:35",
@@ -543,7 +563,12 @@
               "time": "13:00",
               "title": "羽田空港 発",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "航空券を表示する予定",
+                "disabled": true,
+                "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
+              }
             },
             {
               "time": "14:35",
@@ -619,7 +644,12 @@
               "time": "13:00",
               "title": "羽田空港 発",
               "detail": "",
-              "note": ""
+              "note": "",
+              "link": {
+                "text": "航空券を表示する予定",
+                "disabled": true,
+                "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
+              }
             },
             {
               "time": "14:35",

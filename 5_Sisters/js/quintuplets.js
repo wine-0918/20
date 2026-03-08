@@ -379,29 +379,13 @@ function generateTimelineItem(item) {
     }
     
     if (item.link) {
-        // リンクタイプに基づいてクラスを設定
-        let linkClass = 'link';
-        if (item.link.type === 'menu') {
-            linkClass = 'link link-menu';
-        } else {
-            const isMapLink = item.link.url.includes('x.gd') || item.link.url.includes('maps.app.goo.gl');
-            linkClass = isMapLink ? 'link link-map' : 'link';
-        }
-        html += `<a href="${item.link.url}" target="_blank" class="${linkClass}">${item.link.text}</a>`;
+        html += renderScheduleLink(item.link);
     }
     
     if (item.links && item.links.length > 0) {
         html += `<div class="links-container">`;
         item.links.forEach(link => {
-            // リンクタイプに基づいてクラスを設定
-            let linkClass = 'link';
-            if (link.type === 'menu') {
-                linkClass = 'link link-menu';
-            } else {
-                const isMapLink = link.url.includes('x.gd') || link.url.includes('maps.app.goo.gl');
-                linkClass = isMapLink ? 'link link-map' : 'link';
-            }
-            html += `<a href="${link.url}" target="_blank" class="${linkClass}">${link.text}</a>`;
+            html += renderScheduleLink(link);
         });
         html += `</div>`;
     }
@@ -412,6 +396,35 @@ function generateTimelineItem(item) {
     `;
     
     return html;
+}
+
+function getScheduleLinkClass(link) {
+    if (link.type === 'menu') {
+        return 'link link-menu';
+    }
+
+    if (link.disabled) {
+        return 'link link-disabled';
+    }
+
+    const url = link.url || '';
+    const isMapLink = url.includes('x.gd') || url.includes('maps.app.goo.gl');
+    return isMapLink ? 'link link-map' : 'link';
+}
+
+function renderScheduleLink(link) {
+    if (!link || !link.text) {
+        return '';
+    }
+
+    const linkClass = getScheduleLinkClass(link);
+
+    if (link.disabled || !link.url) {
+        const titleText = link.pendingMessage || '飛行機出発の2週間前にURLなどの詳細を追加予定';
+        return `<span class="${linkClass}" aria-disabled="true" title="${titleText}">${link.text}</span>`;
+    }
+
+    return `<a href="${link.url}" target="_blank" class="${linkClass}">${link.text}</a>`;
 }
 
 // 日程切り替え機能の設定

@@ -973,6 +973,19 @@ body {
     background: #0080ff;
 }
 
+.link-disabled {
+    background: #b8b8b8;
+    color: #f7f7f7;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+}
+
+.link-disabled:hover {
+    background: #b8b8b8;
+    transform: none;
+}
+
 .links-container {
     display: flex;
     flex-wrap: wrap;
@@ -1618,6 +1631,14 @@ body.dark-mode .link-map {
 body.dark-mode .link-map:hover {
     background: #4da6ff;
     color: white;
+}
+
+body.dark-mode .link-disabled,
+body.dark-mode .link-disabled:hover {
+    background: #5a5a66;
+    color: #d9d9df;
+    border-color: transparent;
+    transform: none;
 }
 
 body.dark-mode .route-section {
