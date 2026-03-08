@@ -319,10 +319,22 @@
               "title": "みそきん",
               "detail": "",
               "note": "",
-              "link": {
-                "text": "ホテル→みそきん",
-                "url": "https://x.gd/Ssngl"
-              }
+              "links": [
+                {
+                  "text": "ホテル→みそきん",
+                  "url": "https://x.gd/Ssngl"
+                },
+                {
+                  "text": "公式X",
+                  "url": "https://x.com/misokin_jp",
+                  "type": "menu"
+                },
+                {
+                  "text": "店内URL",
+                  "url": "https://misokin.jp",
+                  "type": "menu"
+                }
+              ]
             },
             {
               "time": "10:30",
