@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ff1493">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>大富豪 - ルール設定</title>
+    <link rel="stylesheet" href="../../css/quintuplets_home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .setup-container {
+            max-width: 700px;
+            width: calc(100% - 20px);
+            background: rgba(255, 255, 255, 0.72);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+            backdrop-filter: blur(6px);
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .setup-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('../../../Pictures/5_sisters/background.jpg') no-repeat center 36%;
+            background-size: cover;
+            opacity: 0.16;
+            transform: scale(1.04);
+            pointer-events: none;
+        }
+
+        .setup-container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .setup-title {
+            font-size: 1.8rem;
+            color: #ff1493;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 600px) {
+            .setup-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .settings-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            border: 2px solid #ffb6d9;
+        }
+
+        .settings-section h3 {
+            font-size: 1.3rem;
+            color: #ff1493;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .setting-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            min-height: 44px;
+            touch-action: manipulation;
+        }
+
+        .setting-item:hover {
+            border-color: #ffb6d9;
+            background: #fff5f7;
+        }
+
+        .setting-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            accent-color: #ff85b3;
+            flex-shrink: 0;
+        }
+
+        .setting-item span {
+            font-size: 1.05rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .cpu-difficulty {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .cpu-difficulty label {
+            font-weight: 700;
+            color: #ff1493;
+            min-width: 80px;
+            font-size: 1.05rem;
+        }
+
+        .cpu-difficulty select {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ffb6d9;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Noto Serif JP', serif;
+            cursor: pointer;
+            background: white;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            min-height: 44px;
+        }
+
+        .cpu-difficulty select:focus {
+            outline: none;
+            border-color: #ff85b3;
+            box-shadow: 0 0 10px rgba(255, 133, 179, 0.2);
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff85b3, #ff69b4);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Serif JP', serif;
+            margin-top: 30px;
+            box-shadow: 0 5px 20px rgba(255, 133, 179, 0.3);
+            min-height: 52px;
+            touch-action: manipulation;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <button class="home-back-btn" onclick="location.href='../game_selection.html'">← ゲーム選択に戻る</button>
+    
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 80px 20px 40px;">
+        <div class="setup-container">
+            <h1 class="setup-title">大富豪 - ルール設定</h1>
+            
+            <div class="settings-section">
+                <h3>🎴 特殊ルール</h3>
+                <label class="setting-item">
+                    <input type="checkbox" id="rule-8cut" checked>
+                    <span>8切り（8で場を流す）</span>
+                </label>
+                <label class="setting-item">
+                    <input type="checkbox" id="rule-revolution" checked>
+                    <span>革命（4枚で強さ逆転）</span>
+                </label>
+                <label class="setting-item">
+                    <input type="checkbox" id="rule-11back" checked>
+                    <span>11Back（Jで一時的に強さ逆転）</span>
+                </label>
+                <label class="setting-item">
+                    <input type="checkbox" id="rule-sequence" checked>
+                    <span>階段（3枚以上の連番）</span>
+                </label>
+                <label class="setting-item">
+                    <input type="checkbox" id="rule-shibari" checked>
+                    <span>縛り（同じスート連続）</span>
+                </label>
+                <label class="setting-item">
+                    <input type="checkbox" id="rule-miyakoochi" checked>
+                    <span>都落ち（大富豪が最下位→大貧民）</span>
+                </label>
+                <label class="setting-item">
+                    <input type="checkbox" id="rule-forbidden" checked>
+                    <span>反則上がり（ジョーカーで上がれない）</span>
+                </label>
+            </div>
+
+            <div class="settings-section">
+                <h3>🤖 CPU強さ設定</h3>
+                <div class="cpu-difficulty">
+                    <label>CPU1:</label>
+                    <select id="cpu1-difficulty">
+                        <option value="0">普通</option>
+                        <option value="1" selected>強い</option>
+                        <option value="2">恐怖</option>
+                        <option value="3">ぬぬぬ</option>
+                    </select>
+                </div>
+                <div class="cpu-difficulty">
+                    <label>CPU2:</label>
+                    <select id="cpu2-difficulty">
+                        <option value="0">普通</option>
+                        <option value="1" selected>強い</option>
+                        <option value="2">恐怖</option>
+                        <option value="3">ぬぬぬ</option>
+                    </select>
+                </div>
+                <div class="cpu-difficulty">
+                    <label>CPU3:</label>
+                    <select id="cpu3-difficulty">
+                        <option value="0">普通</option>
+                        <option value="1" selected>強い</option>
+                        <option value="2">恐怖</option>
+                        <option value="3">ぬぬぬ</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="start-btn" id="startGameBtn">ゲーム開始</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('startGameBtn').addEventListener('click', () => {
+            // 設定をlocalStorageに保存
+            const settings = {
+                rules: {
+                    cut8: document.getElementById('rule-8cut').checked,
+                    revolution: document.getElementById('rule-revolution').checked,
+                    jback: document.getElementById('rule-11back').checked,
+                    sequence: document.getElementById('rule-sequence').checked,
+                    shibari: document.getElementById('rule-shibari').checked,
+                    miyakoochi: document.getElementById('rule-miyakoochi').checked,
+                    forbidden: document.getElementById('rule-forbidden').checked
+                },
+                cpuDifficulty: {
+                    cpu1: parseInt(document.getElementById('cpu1-difficulty').value),
+                    cpu2: parseInt(document.getElementById('cpu2-difficulty').value),
+                    cpu3: parseInt(document.getElementById('cpu3-difficulty').value)
+                }
+            };
+            
+            localStorage.setItem('daifugoSettings', JSON.stringify(settings));
+            
+            // ゲーム画面に遷移
+            location.href = 'daifugo.html';
+        });
+    </script>
+</body>
+</html>

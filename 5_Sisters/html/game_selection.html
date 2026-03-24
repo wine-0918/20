@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ff1493">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="五等分ゲーム">
+    <link rel="apple-touch-icon" href="../../Pictures/5_sisters/miku.png">
+    <title>五等分の花嫁 - ゲーム選択</title>
+    <link rel="stylesheet" href="../css/quintuplets_home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="../manifest-icon3.json">
+</head>
+<body>
+    <button class="home-back-btn" onclick="location.href='quintuplets_home.html'">← ホームに戻る</button>
+    
+    <div class="container">
+        <header class="page-header">
+            <div class="title-hero">
+                <div class="decorative-line"></div>
+                <h1 class="main-title">ゲーム</h1>
+                <p class="subtitle">Games</p>
+                <div class="decorative-line"></div>
+            </div>
+        </header>
+
+        <nav class="navigation">
+            <button class="nav-button" data-page="daifugo" onclick="location.href='../game/Daifugo/daifugo-setup.html'">
+                <span class="icon">🃏</span>
+                <span class="button-text">大富豪</span>
+            </button>
+            <!-- 将来的に他のゲームを追加 -->
+        </nav>
+    </div>
+
+    <script src="../js/quintuplets_home.js"></script>
+</body>
+</html>
