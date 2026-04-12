@@ -37,8 +37,11 @@ class DaifugoAI {
     
     // 普通: ランダムまたは弱いカードを出す
     normalStrategy(playableCards) {
-        // 30%でパス
-        if (Math.random() < 0.3 && this.game.passedPlayers.size < 2) {
+        // 30%でパス（アクティブプレイヤーが複数いる time のみ）
+        const activeCount = this.game.players.filter(p =>
+            !this.game.finishedPlayers.some(fp => fp.id === p.id)
+        ).length;
+        if (Math.random() < 0.3 && this.game.passedPlayers.size < activeCount - 2) {
             return { type: 'pass' };
         }
         
@@ -258,31 +261,35 @@ class DaifugoAI {
     }
     
     find8Cut() {
+        const lastCount = this.game.lastPlayedCards.length;
         const eights = this.player.hand.filter(c => c.rank === '8');
-        if (eights.length > 0 && this.game.lastPlayedCards.length === 1) {
-            return [eights[0]];
+        // 場の枚数と同じ枚数だけ8を出せる場合に8切りを使う
+        if (eights.length >= lastCount && lastCount >= 1) {
+            return eights.slice(0, lastCount);
         }
         return null;
     }
     
     findLongestSequence() {
-        const sorted = [...this.player.hand].sort((a, b) => a.value - b.value);
+        const suits = ['spade', 'heart', 'diamond', 'club'];
         let longest = [];
-        let current = [sorted[0]];
         
-        for (let i = 1; i < sorted.length; i++) {
-            if (sorted[i].value === sorted[i-1].value + 1) {
-                current.push(sorted[i]);
-            } else {
-                if (current.length > longest.length) {
-                    longest = current;
+        for (const suit of suits) {
+            const suitCards = [...this.player.hand]
+                .filter(c => c.suit === suit)
+                .sort((a, b) => a.value - b.value);
+            if (suitCards.length < 2) continue;
+            
+            let current = [suitCards[0]];
+            for (let i = 1; i < suitCards.length; i++) {
+                if (suitCards[i].value === suitCards[i-1].value + 1) {
+                    current.push(suitCards[i]);
+                } else {
+                    if (current.length > longest.length) longest = current;
+                    current = [suitCards[i]];
                 }
-                current = [sorted[i]];
             }
-        }
-        
-        if (current.length > longest.length) {
-            longest = current;
+            if (current.length > longest.length) longest = current;
         }
         
         return longest.length >= 3 ? longest : null;
@@ -290,17 +297,23 @@ class DaifugoAI {
     
     findAllSequences(length) {
         const sequences = [];
-        const sorted = [...this.player.hand].sort((a, b) => a.value - b.value);
+        const suits = ['spade', 'heart', 'diamond', 'club'];
         
-        for (let i = 0; i <= sorted.length - length; i++) {
-            const seq = [sorted[i]];
-            for (let j = i + 1; j < sorted.length && seq.length < length; j++) {
-                if (sorted[j].value === seq[seq.length - 1].value + 1) {
-                    seq.push(sorted[j]);
+        for (const suit of suits) {
+            const suitCards = [...this.player.hand]
+                .filter(c => c.suit === suit)
+                .sort((a, b) => a.value - b.value);
+            
+            for (let i = 0; i <= suitCards.length - length; i++) {
+                const seq = [suitCards[i]];
+                for (let j = i + 1; j < suitCards.length && seq.length < length; j++) {
+                    if (suitCards[j].value === seq[seq.length - 1].value + 1) {
+                        seq.push(suitCards[j]);
+                    }
                 }
-            }
-            if (seq.length === length) {
-                sequences.push(seq);
+                if (seq.length === length) {
+                    sequences.push(seq);
+                }
             }
         }
         
