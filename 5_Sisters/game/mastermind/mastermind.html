@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>マスターマインド</title>
+    <title>ヒット＆ブロー</title>
     <link rel="stylesheet" href="mastermind.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -16,8 +17,8 @@
     <!-- ====== スタート画面 ====== -->
     <div id="screen-start" class="screen active">
         <div class="start-box">
-            <h1 class="game-title">MASTERMIND</h1>
-            <p class="game-subtitle">ヒット＆ブロー</p>
+            <h1 class="game-title">ヒット＆ブロー</h1>
+            <p class="game-subtitle">Hit &amp; Blow</p>
             <div class="rule-box">
                 <p>🔴 Hit：色も位置も正解</p>
                 <p>⚪ Blow：色は正解、位置が違う</p>
@@ -32,7 +33,9 @@
     <div id="screen-coin" class="screen">
         <div class="coin-box">
             <h2>先攻を決めます</h2>
-            <div id="coin" class="coin">🪙</div>
+            <div id="coin" class="coin">
+                <img id="coin-img" src="images/mastermind-miku.jpg" alt="coin">
+            </div>
             <p id="coin-result" class="coin-result"></p>
             <button class="btn-primary" id="btn-toss">コイントス！</button>
             <button class="btn-secondary hidden" id="btn-go-game">ゲームへ進む</button>
@@ -48,17 +51,10 @@
             <span id="turn-count">1 / 4 ターン目</span>
         </div>
 
-        <!-- ヒントラベル -->
-        <div class="hint-legend">
-            <span class="pin hit"></span>Hit：色と場所が正解
-            &nbsp;&nbsp;
-            <span class="pin blow"></span>Blow：色だけ正解
-        </div>
-
         <!-- ボード -->
         <div class="board-wrap">
             <div class="board" id="board">
-                <!-- レーン1P (ターン1-4) と 2P (ターン1-4) を JS で生成 -->
+                <!-- ヒント凡例とレーンはJSで生成 -->
             </div>
         </div>
 

@@ -7,6 +7,8 @@
 // 定数
 // =========================================
 const COLORS    = ['red', 'blue', 'green', 'yellow', 'purple', 'white'];
+const PLAYER_NAME = { 1: '三玖', 2: '五月' };
+const pName = p => PLAYER_NAME[p];
 const MAX_SLOTS = 4;   // コードの長さ
 const MAX_TURNS = 4;   // 1人あたりのターン数（合計8回）
 const TOTAL_LANES = MAX_TURNS * 2; // 8レーン
@@ -79,30 +81,35 @@ btnToss.addEventListener('click', () => {
     coinResult.textContent = '';
     btnGoGame.classList.add('hidden');
 
+    const coinImg = document.getElementById('coin-img');
+    // ミく↔いつきを交互に指す画像で切り替え
+    const FRONT = 'images/mastermind-miku.jpg';
+    const BACK  = 'images/mastermind-ituki.jpg';
     let count = 0;
     const interval = setInterval(() => {
-        coinEl.textContent = count % 2 === 0 ? '🪙' : '💰';
+        coinImg.src = count % 2 === 0 ? FRONT : BACK;
         count++;
-    }, 150);
+    }, 100);
 
     setTimeout(() => {
         clearInterval(interval);
         coinEl.classList.remove('spinning');
-        coinEl.textContent = '🪙';
 
         const first = Math.random() < 0.5 ? 1 : 2;
-        state.firstPlayer  = first;
+        state.firstPlayer   = first;
         state.currentPlayer = first;
-        coinResult.textContent = `${first}P が先攻！`;
+        // 表=みく(1P先攻)、裏=いつき(2P先攻) のイメージで結果側も画像に展示
+        coinImg.src = first === 1 ? FRONT : BACK;
+        coinResult.textContent = first === 1 ? '三玖の先攻！' : '五月の先攻！';
         btnGoGame.classList.remove('hidden');
         btnToss.disabled = false;
-    }, 1500);
+    }, 700);
 });
 
 btnGoGame.addEventListener('click', () => {
     initGame();
     // パス画面を挟む
-    showPassScreen(`${state.currentPlayer}P のターンです`, '準備ができたら「準備OK」を押してください');
+    showPassScreen(`${pName(state.currentPlayer)} のターンです`, '準備ができたら「準備OK」を押してください');
 });
 
 // =========================================
@@ -112,6 +119,7 @@ function initGame() {
     // ランダム正解コード（重複なし）
     const shuffled = [...COLORS].sort(() => Math.random() - 0.5);
     state.answer = shuffled.slice(0, MAX_SLOTS);
+    console.log('%c【正解コード】', 'color:#ff1493;font-weight:bold;font-size:14px;', state.answer.join(' → '));
     state.turn         = [0, 0];
     state.history      = [];
     state.currentGuess  = [];
@@ -130,8 +138,15 @@ function initGame() {
 function buildBoard() {
     board.innerHTML = '';
 
-    // 先攻を1番とし、ターン順にレーンを並べる
-    // 1P:1 2P:1 1P:2 2P:2 ...（交互）
+    // ヒント凡例
+    const legend = document.createElement('div');
+    legend.classList.add('hint-legend');
+    legend.innerHTML =
+        `<span><i class="pin hit" style="display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--hit-color);"></i>Hit：色と位置が正解</span>` +
+        `<span><i class="pin blow" style="display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--blow-color);"></i>Blow：色だけ正解</span>`;
+    board.appendChild(legend);
+
+    // 行ベース：1P→2P交互に8行
     for (let t = 0; t < MAX_TURNS; t++) {
         for (let p = 0; p < 2; p++) {
             const player = p === 0 ? state.firstPlayer : (state.firstPlayer === 1 ? 2 : 1);
@@ -143,24 +158,15 @@ function buildBoard() {
             lane.dataset.player = player;
             lane.dataset.turnIndex = t;
 
-            // レーン番号ラベル
-            const laneNum = document.createElement('div');
-            laneNum.classList.add('lane-num');
-            laneNum.innerHTML = `${laneIndex + 1}<span class="player-indicator">${player}P</span>`;
-            lane.appendChild(laneNum);
+            // 左：ターン情報
+            const laneInfo = document.createElement('div');
+            laneInfo.classList.add('lane-info');
+            laneInfo.innerHTML =
+                `<div class="lane-num">${laneIndex + 1}</div>` +
+                `<span class="player-badge">${pName(player)}</span>`;
+            lane.appendChild(laneInfo);
 
-            // 判定ピンエリア
-            const pinArea = document.createElement('div');
-            pinArea.classList.add('pin-area');
-            pinArea.id = `pins-${laneIndex}`;
-            for (let i = 0; i < MAX_SLOTS; i++) {
-                const pin = document.createElement('div');
-                pin.classList.add('pin');
-                pinArea.appendChild(pin);
-            }
-            lane.appendChild(pinArea);
-
-            // スロットエリア
+            // 中央：スロット（横4つ）
             const slotArea = document.createElement('div');
             slotArea.classList.add('slot-area');
             slotArea.id = `slots-${laneIndex}`;
@@ -172,6 +178,17 @@ function buildBoard() {
                 slotArea.appendChild(slot);
             }
             lane.appendChild(slotArea);
+
+            // 右：判定ピン（2×2）
+            const pinArea = document.createElement('div');
+            pinArea.classList.add('pin-area');
+            pinArea.id = `pins-${laneIndex}`;
+            for (let i = 0; i < MAX_SLOTS; i++) {
+                const pin = document.createElement('div');
+                pin.classList.add('pin');
+                pinArea.appendChild(pin);
+            }
+            lane.appendChild(pinArea);
 
             board.appendChild(lane);
         }
@@ -248,12 +265,16 @@ function renderCurrentGuess(laneIndex) {
     const slotArea = document.getElementById(`slots-${laneIndex}`);
     if (!slotArea) return;
     const slots = slotArea.querySelectorAll('.slot');
+    // 現在のボール数（アニメ適用用）
+    const prevCount = Array.from(slots).filter(s => s.children.length > 0).length;
     slots.forEach((slot, i) => {
         slot.innerHTML = '';
         if (state.currentGuess[i]) {
             const ball = document.createElement('div');
             ball.classList.add('ball');
             ball.dataset.color = state.currentGuess[i];
+            // 新しく追加されたボールにのみアニメーション
+            if (i >= prevCount) ball.classList.add('placing');
             slot.appendChild(ball);
         }
     });
@@ -273,7 +294,7 @@ function updateSubmitBtn() {
 function updateTurnUI() {
     const p = state.currentPlayer;
     const t = state.turn[p - 1] + 1; // 1-indexed
-    turnLabel.textContent = `${p}P のターン`;
+    turnLabel.textContent = `${pName(p)} のターン`;
     turnCount.textContent = `${t} / ${MAX_TURNS} ターン目`;
 
     // アクティブレーンを強調
@@ -307,7 +328,8 @@ btnSubmit.addEventListener('click', () => {
 
     // 勝敗判定
     if (hit === MAX_SLOTS) {
-        endGame(p);
+        // ピンアニメーション完了後にモーダル表示
+        setTimeout(() => endGame(p), 900);
         return;
     }
 
@@ -317,7 +339,7 @@ btnSubmit.addEventListener('click', () => {
     // 全ターン消費チェック
     const allDone = state.turn[0] >= MAX_TURNS && state.turn[1] >= MAX_TURNS;
     if (allDone) {
-        endGame('draw');
+        setTimeout(() => endGame('draw'), 900);
         return;
     }
 
@@ -328,17 +350,19 @@ btnSubmit.addEventListener('click', () => {
     const nextTurnIdx = state.turn[nextPlayer - 1];
     if (nextTurnIdx >= MAX_TURNS) {
         // もう一方のプレイヤーが続ける
-        updateTurnUI();
+        setTimeout(() => updateTurnUI(), 900);
         return;
     }
 
     state.currentPlayer = nextPlayer;
 
-    // パス画面を挟む
-    showPassScreen(
-        `端末を ${nextPlayer}P に渡してください`,
-        `${nextPlayer}P のターンです。準備ができたら「準備OK」を押してください。`
-    );
+    // 結果を見せてからパス画面へ（1.5秒待機）
+    setTimeout(() => {
+        showPassScreen(
+            `端末を${pName(nextPlayer)}に渡してください`,
+            `${pName(nextPlayer)} のターンです。準備ができたら「準備OK」を押してください。`
+        );
+    }, 1500);
 });
 
 // =========================================
@@ -373,8 +397,22 @@ function showPins(laneIndex, hit, blow) {
     if (!pinArea) return;
     const pins = pinArea.querySelectorAll('.pin');
     let idx = 0;
-    for (let h = 0; h < hit; h++, idx++) pins[idx].classList.add('hit');
-    for (let b = 0; b < blow; b++, idx++) pins[idx].classList.add('blow');
+    for (let h = 0; h < hit; h++, idx++) {
+        const pin = pins[idx];
+        const delay = idx * 80;
+        setTimeout(() => {
+            pin.classList.add('hit', 'pop');
+            pin.addEventListener('animationend', () => pin.classList.remove('pop'), { once: true });
+        }, delay);
+    }
+    for (let b = 0; b < blow; b++, idx++) {
+        const pin = pins[idx];
+        const delay = idx * 80;
+        setTimeout(() => {
+            pin.classList.add('blow', 'pop');
+            pin.addEventListener('animationend', () => pin.classList.remove('pop'), { once: true });
+        }, delay);
+    }
 }
 
 // =========================================
@@ -397,7 +435,7 @@ function endGame(winner) {
         modalTitle.textContent   = '引き分け';
         modalMessage.textContent = '誰も正解できませんでした。\n正解はこちらです。';
     } else {
-        modalTitle.textContent   = `${winner}P の勝ち！🎉`;
+        modalTitle.textContent   = `${pName(winner)} の勝ち！🎉`;
         modalMessage.textContent = `正解コードはこちらです。`;
     }
 
