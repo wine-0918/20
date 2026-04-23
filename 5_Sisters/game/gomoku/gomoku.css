@@ -1,0 +1,399 @@
+/* =========================================
+   GOMOKU CSS — モバイルファースト
+   15×15のボード
+   ========================================= */
+
+:root {
+    --bg-image: url('../mastermind/images/mastermind-bg.jpg');
+    --board-color: rgba(255,255,255,0.08);
+    --text-dark: #333;
+    --text-light: #fff;
+    --accent: #ff1493;
+    --accent2: #ff85b3;
+    --banner-h: 52px;
+    --black-stone: #333;
+    --white-stone: #f5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Noto Serif JP', serif;
+    background: #fdf0f6;
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    touch-action: manipulation;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: url('gomoku-banner.jpg') center/cover no-repeat;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* 戻るボタン */
+.back-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 300;
+    padding: 10px 18px;
+    min-height: 44px;
+    background: rgba(255,255,255,0.9);
+    border: 2px solid #ff85b3;
+    border-radius: 22px;
+    color: #ff1493;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: 'Noto Serif JP', serif;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255,133,179,0.25);
+    backdrop-filter: blur(4px);
+}
+.back-btn:active { opacity: 0.8; }
+
+/* 画面管理 */
+.screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+.screen.active { display: flex; }
+
+/* 共通ボタン */
+.btn-primary {
+    padding: 16px 36px;
+    min-height: 52px;
+    background: linear-gradient(135deg, #ff85b3, #ff1493);
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Noto Serif JP', serif;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255,133,179,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:active { transform: scale(0.98); box-shadow: 0 2px 6px rgba(255,133,179,0.3); }
+
+.btn-secondary {
+    padding: 12px 28px;
+    min-height: 44px;
+    background: rgba(255,255,255,0.85);
+    border: 2px solid var(--accent);
+    border-radius: 22px;
+    color: var(--accent);
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: 'Noto Serif JP', serif;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255,133,179,0.2);
+    transition: transform 0.2s;
+}
+.btn-secondary:active { transform: scale(0.98); }
+.btn-secondary.hidden { display: none; }
+
+.btn-reset {
+    padding: 12px 24px;
+    min-height: 44px;
+    background: rgba(255,255,255,0.9);
+    border: 2px solid var(--accent);
+    border-radius: 22px;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: 'Noto Serif JP', serif;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255,133,179,0.2);
+    transition: transform 0.2s;
+}
+.btn-reset:active { transform: scale(0.98); }
+
+/* ===== スタート画面 ===== */
+.start-box {
+    text-align: center;
+    padding: 20px;
+    max-width: 90vw;
+}
+
+.game-title {
+    font-size: 2.2rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-shadow: 0 2px 4px rgba(255,20,147,0.1);
+}
+
+.game-subtitle {
+    font-size: 0.9rem;
+    color: var(--accent2);
+    font-weight: 300;
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+}
+
+.rule-box {
+    background: rgba(255,255,255,0.7);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+.rule-box p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #333;
+    margin: 8px 0;
+}
+
+/* ===== コイントス画面 ===== */
+.coin-box {
+    text-align: center;
+    padding: 20px;
+}
+
+.coin-box h2 {
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-bottom: 24px;
+}
+
+.coin {
+    width: 140px;
+    height: 140px;
+    margin: 32px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(255,20,147,0.2);
+    border: 4px solid rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+.coin img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coin-result {
+    font-size: 1.2rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 24px 0;
+    min-height: 28px;
+}
+
+.coin-box .btn-primary {
+    margin-bottom: 12px;
+}
+
+/* ===== メインゲーム画面 ===== */
+.turn-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--banner-h);
+    background: linear-gradient(135deg, rgba(255,85,179,0.8), rgba(255,20,147,0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    gap: 16px;
+}
+
+#turn-label {
+    font-size: 1.05rem;
+}
+
+.board-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--banner-h) + 12px) 12px 12px 12px;
+    overflow: auto;
+}
+
+.board {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 90vmin;
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    gap: 1px;
+    background: rgba(200,150,100,0.3);
+    border: 2px solid rgba(200,150,100,0.5);
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.cell {
+    background: rgba(255,200,150,0.4);
+    border: 1px solid rgba(200,150,100,0.3);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s;
+    border-radius: 2px;
+}
+
+.cell:active {
+    background: rgba(255,200,150,0.6);
+}
+
+.cell.empty:hover {
+    background: rgba(255,200,150,0.5);
+}
+
+.stone {
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) inset, 0 2px 4px rgba(255,255,255,0.4);
+}
+
+.stone.black {
+    background: radial-gradient(circle at 35% 35%, #555, var(--black-stone));
+    border: 1px solid #000;
+}
+
+.stone.white {
+    background: radial-gradient(circle at 35% 35%, #fff, #e0e0e0);
+    border: 1px solid #ccc;
+}
+
+.game-actions {
+    padding: 12px 12px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* ===== モーダル ===== */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 400;
+    backdrop-filter: blur(2px);
+}
+
+.modal.hidden { display: none; }
+
+.modal-box {
+    background: rgba(255,255,255,0.95);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 85vw;
+    text-align: center;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    backdrop-filter: blur(8px);
+}
+
+.modal-box h2 {
+    font-size: 1.6rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.modal-message {
+    font-size: 1.05rem;
+    color: #333;
+    margin: 16px 0 24px 0;
+    line-height: 1.6;
+}
+
+#modal-message {
+    font-size: 1.05rem;
+    color: #333;
+    margin: 16px 0 24px 0;
+    line-height: 1.6;
+}
+
+.modal-box .btn-primary {
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.modal-box .btn-secondary {
+    width: 100%;
+}
+
+/* ===== パス画面 ===== */
+.pass-box {
+    text-align: center;
+    padding: 20px;
+}
+
+.pass-box h2 {
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.pass-box p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 28px;
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-height: 600px) {
+    .start-box, .coin-box, .pass-box {
+        padding: 12px;
+    }
+
+    .game-title {
+        font-size: 1.8rem;
+    }
+
+    .rule-box {
+        padding: 12px;
+        margin-bottom: 16px;
+    }
+
+    .rule-box p {
+        font-size: 0.85rem;
+        margin: 4px 0;
+    }
+}
