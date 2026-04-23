@@ -30,8 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupEventListeners() {
     document.getElementById('btn-start').addEventListener('click', goToCoinToss);
     document.getElementById('btn-toss').addEventListener('click', tossCoin);
-    document.getElementById('btn-go-game').addEventListener('click', goToGame);
-    document.getElementById('btn-pass-ok').addEventListener('click', goToGame);
+    document.getElementById('btn-go-game').addEventListener('click', () => {
+        goToGame();
+        showPassMessage();
+    });
+    document.getElementById('btn-pass-ok').addEventListener('click', () => showScreen('game'));
     document.getElementById('btn-reset').addEventListener('click', resetGame);
     document.getElementById('btn-next-round').addEventListener('click', resetGame);
     document.getElementById('btn-back').addEventListener('click', () => history.back());
@@ -80,8 +83,6 @@ function goToGame() {
     gameState.winner = null;
     renderBoard();
     updateTurnBanner();
-    showScreen('game');
-    showPassMessage();
 }
 
 function showPassMessage() {

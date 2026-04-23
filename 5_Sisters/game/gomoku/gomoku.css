@@ -10,7 +10,7 @@
     --text-light: #fff;
     --accent: #ff1493;
     --accent2: #ff85b3;
-    --banner-h: 52px;
+    --banner-h: clamp(40px, 5vh, 60px);
     --black-stone: #333;
     --white-stone: #f5f5f5;
 }
@@ -51,20 +51,20 @@ body::before {
 /* 戻るボタン */
 .back-btn {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: clamp(8px, 2vh, 15px);
+    left: clamp(8px, 2vw, 15px);
     z-index: 300;
-    padding: 10px 18px;
-    min-height: 44px;
+    padding: clamp(8px, 1.5vh, 12px) clamp(14px, 3vw, 20px);
+    min-height: clamp(40px, 5vh, 48px);
     background: rgba(255,255,255,0.9);
-    border: 2px solid #ff85b3;
-    border-radius: 22px;
+    border: clamp(1px, 0.2vmin, 3px) solid #ff85b3;
+    border-radius: clamp(18px, 4vw, 28px);
     color: #ff1493;
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
     font-weight: 700;
     font-family: 'Noto Serif JP', serif;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(255,133,179,0.25);
+    box-shadow: 0 clamp(2px, 0.5vh, 4px) clamp(8px, 1.5vmin, 12px) rgba(255,133,179,0.25);
     backdrop-filter: blur(4px);
 }
 .back-btn:active { opacity: 0.8; }
@@ -83,50 +83,50 @@ body::before {
 
 /* 共通ボタン */
 .btn-primary {
-    padding: 16px 36px;
-    min-height: 52px;
+    padding: clamp(14px, 2.5vh, 18px) clamp(30px, 6vw, 40px);
+    min-height: clamp(48px, 6vh, 56px);
     background: linear-gradient(135deg, #ff85b3, #ff1493);
     border: none;
-    border-radius: 30px;
+    border-radius: clamp(24px, 5vw, 32px);
     color: #fff;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     font-weight: 700;
     font-family: 'Noto Serif JP', serif;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(255,133,179,0.3);
+    box-shadow: 0 clamp(2px, 0.5vh, 4px) clamp(10px, 1.5vmin, 14px) rgba(255,133,179,0.3);
     transition: transform 0.2s, box-shadow 0.2s;
 }
-.btn-primary:active { transform: scale(0.98); box-shadow: 0 2px 6px rgba(255,133,179,0.3); }
+.btn-primary:active { transform: scale(0.98); box-shadow: 0 clamp(1px, 0.3vh, 2px) clamp(6px, 1vmin, 8px) rgba(255,133,179,0.3); }
 
 .btn-secondary {
-    padding: 12px 28px;
-    min-height: 44px;
+    padding: clamp(10px, 1.5vh, 14px) clamp(24px, 5vw, 32px);
+    min-height: clamp(42px, 5.5vh, 50px);
     background: rgba(255,255,255,0.85);
-    border: 2px solid var(--accent);
-    border-radius: 22px;
+    border: clamp(1.5px, 0.3vmin, 2.5px) solid var(--accent);
+    border-radius: clamp(18px, 4vw, 26px);
     color: var(--accent);
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2.3vw, 1rem);
     font-weight: 700;
     font-family: 'Noto Serif JP', serif;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(255,133,179,0.2);
+    box-shadow: 0 clamp(1px, 0.3vh, 2px) clamp(6px, 1vmin, 10px) rgba(255,133,179,0.2);
     transition: transform 0.2s;
 }
 .btn-secondary:active { transform: scale(0.98); }
 .btn-secondary.hidden { display: none; }
 
 .btn-reset {
-    padding: 12px 24px;
-    min-height: 44px;
+    padding: clamp(10px, 1.5vh, 14px) clamp(20px, 4vw, 28px);
+    min-height: clamp(42px, 5.5vh, 50px);
     background: rgba(255,255,255,0.9);
-    border: 2px solid var(--accent);
-    border-radius: 22px;
+    border: clamp(1.5px, 0.3vmin, 2.5px) solid var(--accent);
+    border-radius: clamp(18px, 4vw, 26px);
     color: var(--accent);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2.2vw, 0.95rem);
     font-weight: 700;
     font-family: 'Noto Serif JP', serif;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(255,133,179,0.2);
+    box-shadow: 0 clamp(1px, 0.3vh, 2px) clamp(6px, 1vmin, 10px) rgba(255,133,179,0.2);
     transition: transform 0.2s;
 }
 .btn-reset:active { transform: scale(0.98); }
@@ -134,63 +134,63 @@ body::before {
 /* ===== スタート画面 ===== */
 .start-box {
     text-align: center;
-    padding: 20px;
+    padding: clamp(16px, 3vh, 24px);
     max-width: 90vw;
 }
 
 .game-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
     color: var(--accent);
     font-weight: 700;
-    margin-bottom: 4px;
-    text-shadow: 0 2px 4px rgba(255,20,147,0.1);
+    margin-bottom: clamp(3px, 0.5vh, 6px);
+    text-shadow: 0 clamp(1px, 0.3vmin, 2px) clamp(3px, 0.8vmin, 5px) rgba(255,20,147,0.1);
 }
 
 .game-subtitle {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2.2vw, 1rem);
     color: var(--accent2);
     font-weight: 300;
-    margin-bottom: 24px;
-    letter-spacing: 2px;
+    margin-bottom: clamp(16px, 3vh, 28px);
+    letter-spacing: 0.15em;
 }
 
 .rule-box {
     background: rgba(255,255,255,0.7);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: clamp(8px, 2vw, 14px);
+    padding: clamp(12px, 2vh, 18px);
+    margin-bottom: clamp(24px, 4vh, 36px);
+    box-shadow: 0 clamp(2px, 0.5vh, 4px) clamp(8px, 1.5vmin, 14px) rgba(0,0,0,0.08);
     text-align: center;
     backdrop-filter: blur(8px);
 }
 
 .rule-box p {
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2.2vw, 1.05rem);
     line-height: 1.6;
     color: #333;
-    margin: 8px 0;
+    margin: clamp(6px, 1vh, 10px) 0;
 }
 
 /* ===== コイントス画面 ===== */
 .coin-box {
     text-align: center;
-    padding: 20px;
+    padding: clamp(16px, 3vh, 24px);
 }
 
 .coin-box h2 {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
     color: var(--accent);
-    margin-bottom: 24px;
+    margin-bottom: clamp(16px, 3vh, 28px);
 }
 
 .coin {
-    width: 140px;
-    height: 140px;
-    margin: 32px auto;
+    width: clamp(100px, 25vmin, 160px);
+    height: clamp(100px, 25vmin, 160px);
+    margin: clamp(20px, 3.5vh, 36px) auto;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(255,20,147,0.2);
-    border: 4px solid rgba(255,255,255,0.8);
+    box-shadow: 0 clamp(4px, 1vh, 8px) clamp(16px, 3vmin, 28px) rgba(255,20,147,0.2);
+    border: clamp(2px, 0.5vmin, 4px) solid rgba(255,255,255,0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -203,16 +203,25 @@ body::before {
     object-fit: cover;
 }
 
+.coin.spinning { animation: spin 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite; }
+@keyframes spin {
+    0%   { transform: rotateY(0deg) rotateX(0deg) scale(1); }
+    25%  { transform: rotateY(90deg) rotateX(10deg) scale(1.1); }
+    50%  { transform: rotateY(180deg) rotateX(0deg) scale(0.95); }
+    75%  { transform: rotateY(270deg) rotateX(-10deg) scale(1.1); }
+    100% { transform: rotateY(360deg) rotateX(0deg) scale(1); }
+}
+
 .coin-result {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.4rem);
     color: var(--accent);
     font-weight: 700;
-    margin: 24px 0;
-    min-height: 28px;
+    margin: clamp(16px, 2.5vh, 28px) 0;
+    min-height: clamp(24px, 3vh, 32px);
 }
 
 .coin-box .btn-primary {
-    margin-bottom: 12px;
+    margin-bottom: clamp(10px, 1.5vh, 14px);
 }
 
 /* ===== メインゲーム画面 ===== */
@@ -228,14 +237,14 @@ body::before {
     justify-content: center;
     color: #fff;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
     backdrop-filter: blur(4px);
     z-index: 100;
-    gap: 16px;
+    gap: clamp(10px, 2vw, 16px);
 }
 
 #turn-label {
-    font-size: 1.05rem;
+    font-size: clamp(0.95rem, 2.8vw, 1.3rem);
 }
 
 .board-wrap {
@@ -243,35 +252,35 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: calc(var(--banner-h) + 12px) 12px 12px 12px;
+    padding: calc(var(--banner-h) + clamp(3px, 0.8vh, 5px)) clamp(3px, 0.8vw, 6px) clamp(3px, 0.8vh, 5px) clamp(3px, 0.8vw, 6px);
     overflow: auto;
 }
 
 .board {
-    width: 100%;
+    width: min(96vw, calc(100vh - var(--banner-h) - 80px));
     aspect-ratio: 1 / 1;
-    max-width: 90vmin;
+    max-width: none;
     display: grid;
     grid-template-columns: repeat(15, 1fr);
     grid-template-rows: repeat(15, 1fr);
-    gap: 1px;
+    gap: clamp(0.5px, 0.1vmin, 1px);
     background: rgba(200,150,100,0.3);
-    border: 2px solid rgba(200,150,100,0.5);
-    border-radius: 4px;
-    padding: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: clamp(1.5px, 0.3vmin, 2.5px) solid rgba(200,150,100,0.5);
+    border-radius: clamp(2px, 0.5vmin, 4px);
+    padding: clamp(4px, 0.8vmin, 8px);
+    box-shadow: 0 clamp(2px, 0.5vh, 4px) clamp(8px, 1.5vmin, 14px) rgba(0,0,0,0.1);
 }
 
 .cell {
     background: rgba(255,200,150,0.4);
-    border: 1px solid rgba(200,150,100,0.3);
+    border: clamp(0.5px, 0.1vmin, 1px) solid rgba(200,150,100,0.3);
     cursor: pointer;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.1s;
-    border-radius: 2px;
+    border-radius: clamp(1px, 0.2vmin, 2px);
 }
 
 .cell:active {
@@ -286,23 +295,23 @@ body::before {
     width: 75%;
     height: 75%;
     border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2) inset, 0 2px 4px rgba(255,255,255,0.4);
+    box-shadow: 0 clamp(1px, 0.2vmin, 2px) clamp(3px, 0.5vmin, 5px) rgba(0,0,0,0.2) inset, 0 clamp(1px, 0.2vmin, 2px) clamp(3px, 0.5vmin, 5px) rgba(255,255,255,0.4);
 }
 
 .stone.black {
     background: radial-gradient(circle at 35% 35%, #555, var(--black-stone));
-    border: 1px solid #000;
+    border: clamp(0.5px, 0.1vmin, 1px) solid #000;
 }
 
 .stone.white {
     background: radial-gradient(circle at 35% 35%, #fff, #e0e0e0);
-    border: 1px solid #ccc;
+    border: clamp(0.5px, 0.1vmin, 1px) solid #ccc;
 }
 
 .game-actions {
-    padding: 12px 12px;
+    padding: clamp(8px, 1.5vh, 14px) clamp(8px, 1.5vw, 14px);
     display: flex;
-    gap: 12px;
+    gap: clamp(8px, 1.5vw, 14px);
     justify-content: center;
 }
 
@@ -322,36 +331,36 @@ body::before {
 
 .modal-box {
     background: rgba(255,255,255,0.95);
-    border-radius: 16px;
-    padding: 28px;
+    border-radius: clamp(12px, 3vw, 20px);
+    padding: clamp(20px, 4vh, 32px);
     max-width: 85vw;
     text-align: center;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 clamp(8px, 2vmin, 16px) clamp(24px, 4vmin, 40px) rgba(0,0,0,0.2);
     backdrop-filter: blur(8px);
 }
 
 .modal-box h2 {
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
     color: var(--accent);
-    margin-bottom: 16px;
+    margin-bottom: clamp(12px, 2vh, 18px);
 }
 
 .modal-message {
-    font-size: 1.05rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
     color: #333;
-    margin: 16px 0 24px 0;
+    margin: clamp(12px, 2vh, 18px) 0 clamp(18px, 3vh, 28px) 0;
     line-height: 1.6;
 }
 
 #modal-message {
-    font-size: 1.05rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
     color: #333;
-    margin: 16px 0 24px 0;
+    margin: clamp(12px, 2vh, 18px) 0 clamp(18px, 3vh, 28px) 0;
     line-height: 1.6;
 }
 
 .modal-box .btn-primary {
-    margin-bottom: 12px;
+    margin-bottom: clamp(8px, 1.5vh, 12px);
     width: 100%;
 }
 
@@ -362,38 +371,38 @@ body::before {
 /* ===== パス画面 ===== */
 .pass-box {
     text-align: center;
-    padding: 20px;
+    padding: clamp(16px, 3vh, 24px);
 }
 
 .pass-box h2 {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
     color: var(--accent);
-    margin-bottom: 16px;
+    margin-bottom: clamp(12px, 2vh, 18px);
 }
 
 .pass-box p {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
     color: #333;
-    margin-bottom: 28px;
+    margin-bottom: clamp(20px, 3.5vh, 32px);
 }
 
 /* ===== レスポンシブ ===== */
 @media (max-height: 600px) {
     .start-box, .coin-box, .pass-box {
-        padding: 12px;
+        padding: clamp(10px, 2vh, 16px);
     }
 
     .game-title {
-        font-size: 1.8rem;
+        font-size: clamp(1.6rem, 5vw, 2rem);
     }
 
     .rule-box {
-        padding: 12px;
-        margin-bottom: 16px;
+        padding: clamp(10px, 1.5vh, 14px);
+        margin-bottom: clamp(12px, 2vh, 16px);
     }
 
     .rule-box p {
-        font-size: 0.85rem;
-        margin: 4px 0;
+        font-size: clamp(0.75rem, 2vw, 0.9rem);
+        margin: clamp(2px, 0.5vh, 4px) 0;
     }
 }
