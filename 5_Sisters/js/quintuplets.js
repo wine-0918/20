@@ -1,7 +1,5 @@
 // JSONデータを読み込んでスケジュールを動的に生成
 let scheduleData = null;
-let hasWork = true; // デフォルトは仕事ありの状態
-let lunchOption = 'misokichi'; // デフォルトはみそきん
 
 // 基本設定
 let highlightCurrentTime = false; // デフォルトで現在時刻ハイライトをOFF
@@ -145,8 +143,8 @@ function generateSchedule() {
 // 1日目の生成
 function generateDay1(day1Data) {
     const container = document.getElementById('day-1');
-    const data = hasWork ? day1Data.hasWork : day1Data.noWork;
-    const routeData = hasWork ? day1Data.route : day1Data.noWork.route;
+    const data = day1Data.noWork;
+    const routeData = day1Data.noWork.route;
     
     let html = `<h2 class="day-title">${day1Data.title}`;
     
@@ -291,18 +289,16 @@ function generateDay2(day2Data) {
 // 3日目の生成
 function generateDay3(day3Data) {
     const container = document.getElementById('day-3');
-    const workData = hasWork ? day3Data.hasWork : day3Data.noWork;
-    const data = workData[lunchOption]; // みそきん or レッドロック
-    
+
     let html = `<h2 class="day-title">${day3Data.title}</h2>`;
-    
+
     // ルートセクション（アコーディオン形式）
-    if (data.route) {
+    if (day3Data.route) {
         html += `
             <div class="route-section">
                 <div class="route-section-header">
                     <div class="route-header-content">
-                        <h3 class="section-title">${data.route.title}</h3>
+                        <h3 class="section-title">${day3Data.route.title}</h3>
                         <span class="route-hint">クリックして開閉</span>
                     </div>
                     <span class="route-toggle-icon">▼</span>
@@ -310,38 +306,38 @@ function generateDay3(day3Data) {
                 <div class="route-content">
                     <div class="route-flow">
         `;
-        
-        data.route.points.forEach((point, index) => {
+
+        day3Data.route.points.forEach((point, index) => {
             html += `<span class="route-point">${point}</span>`;
-            if (index < data.route.points.length - 1) {
+            if (index < day3Data.route.points.length - 1) {
                 html += `<span class="route-arrow">→</span>`;
             }
         });
-        
+
         html += `
                     </div>
                 </div>
             </div>
         `;
     }
-    
+
     html += `<div class="schedule-timeline">`;
-    
+
     // タイムライン
-    data.timeline.forEach(item => {
+    day3Data.timeline.forEach(item => {
         html += generateTimelineItem(item);
     });
-    
+
     html += `</div>`;
-    
+
     // 補足
-    if (data.notes && data.notes.length > 0) {
+    if (day3Data.notes && day3Data.notes.length > 0) {
         html += `
             <div class="note-box">
                 <div class="note-title">補足</div>
                 <ul>
         `;
-        data.notes.forEach(note => {
+        day3Data.notes.forEach(note => {
             html += `<li>${note}</li>`;
         });
         html += `
@@ -349,7 +345,7 @@ function generateDay3(day3Data) {
             </div>
         `;
     }
-    
+
     container.innerHTML = html;
 }
 
@@ -467,18 +463,6 @@ function setupAccordion() {
 
 // ローカルストレージから設定を読み込み
 function loadSettings() {
-    // 仕事の有無
-    const savedHasWork = localStorage.getItem('hasWork');
-    if (savedHasWork !== null) {
-        hasWork = savedHasWork === 'true';
-    }
-    
-    // 昼ごはんの選択
-    const savedLunchOption = localStorage.getItem('lunchOption');
-    if (savedLunchOption !== null) {
-        lunchOption = savedLunchOption;
-    }
-    
     // 基本設定
     const savedHighlight = localStorage.getItem('highlightCurrentTime');
     if (savedHighlight !== null) {
@@ -500,18 +484,7 @@ function loadSettings() {
     if (savedAppIcon !== null) {
         appIcon = savedAppIcon;
     }
-    
-    // ラジオボタンの状態を設定
-    const hasWorkRadios = document.querySelectorAll('input[name="hasWork"]');
-    hasWorkRadios.forEach(radio => {
-        radio.checked = radio.value === String(hasWork);
-    });
-    
-    const lunchRadios = document.querySelectorAll('input[name="lunchOption"]');
-    lunchRadios.forEach(radio => {
-        radio.checked = radio.value === lunchOption;
-    });
-    
+
     // チェックボックスの状態を設定
     const highlightCheckbox = document.getElementById('highlightCurrentTime');
     if (highlightCheckbox) highlightCheckbox.checked = highlightCurrentTime;
@@ -531,32 +504,6 @@ function loadSettings() {
 
 // フィルター機能の設定
 function setupFilters() {
-    // 仕事の有無のラジオボタン
-    const hasWorkRadios = document.querySelectorAll('input[name="hasWork"]');
-    hasWorkRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                hasWork = this.value === 'true';
-                localStorage.setItem('hasWork', hasWork);
-                generateSchedule();
-                setupAccordion();
-            }
-        });
-    });
-    
-    // 昼ごはんのラジオボタン
-    const lunchRadios = document.querySelectorAll('input[name="lunchOption"]');
-    lunchRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                lunchOption = this.value;
-                localStorage.setItem('lunchOption', lunchOption);
-                generateSchedule();
-                setupAccordion();
-            }
-        });
-    });
-    
     // 基本設定のチェックボックス
     const highlightCheckbox = document.getElementById('highlightCurrentTime');
     if (highlightCheckbox) {
