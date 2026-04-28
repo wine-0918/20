@@ -6,6 +6,8 @@ const BOARD_SIZE = 15;
 const EMPTY = 0;
 const BLACK = 1;
 const WHITE = 2;
+const PLAYER_NAME = { 1: '三玖', 2: '五月' };
+const pName = p => PLAYER_NAME[p];
 
 let gameState = {
     board: [],
@@ -59,22 +61,49 @@ function goToCoinToss() {
 }
 
 function tossCoin() {
-    const result = Math.random() < 0.5;
-    const resultText = result ? '1P：黒' : '2P：黒';
+    const btnToss = document.getElementById('btn-toss');
+    const btnGoGame = document.getElementById('btn-go-game');
+    const coinEl = document.getElementById('coin');
+    const coinImg = document.getElementById('coin-img');
+    const coinResult = document.getElementById('coin-result');
 
-    if (result) {
-        gameState.player1Stone = BLACK;
-        gameState.player2Stone = WHITE;
-    } else {
-        gameState.player1Stone = WHITE;
-        gameState.player2Stone = BLACK;
-    }
+    btnToss.disabled = true;
+    coinEl.classList.add('spinning');
+    coinResult.textContent = '';
+    btnGoGame.classList.add('hidden');
 
-    gameState.currentPlayer = BLACK;
+    const FRONT = '../mastermind/images/mastermind-miku.jpg';
+    const BACK  = '../mastermind/images/mastermind-ituki.jpg';
+    let count = 0;
+    const interval = setInterval(() => {
+        coinImg.src = count % 2 === 0 ? FRONT : BACK;
+        count++;
+    }, 100);
 
-    document.getElementById('coin-result').textContent = resultText;
-    document.getElementById('btn-toss').classList.add('hidden');
-    document.getElementById('btn-go-game').classList.remove('hidden');
+    setTimeout(() => {
+        clearInterval(interval);
+        coinEl.classList.remove('spinning');
+
+        const result = Math.random() < 0.5;
+        const player1 = result ? '三玖' : '五月';
+        const color = result ? '黒' : '白';
+        const resultText = `${player1}（${color}）の先攻！`;
+
+        if (result) {
+            gameState.player1Stone = BLACK;
+            gameState.player2Stone = WHITE;
+        } else {
+            gameState.player1Stone = WHITE;
+            gameState.player2Stone = BLACK;
+        }
+
+        gameState.currentPlayer = BLACK;
+
+        coinImg.src = result ? FRONT : BACK;
+        coinResult.textContent = resultText;
+        btnGoGame.classList.remove('hidden');
+        btnToss.disabled = false;
+    }, 700);
 }
 
 function goToGame() {
@@ -86,7 +115,8 @@ function goToGame() {
 }
 
 function showPassMessage() {
-    const msg = gameState.player1Stone === BLACK ? '1Pが先手（黒）です' : '1Pが後手（白）です';
+    const color = gameState.player1Stone === BLACK ? '黒' : '白';
+    const msg = `三玖が先手（${color}）です`;
     document.getElementById('pass-message').textContent = msg;
     showScreen('pass');
 }
@@ -103,6 +133,11 @@ function renderBoard() {
         const cell = document.createElement('div');
         cell.className = 'cell empty';
         cell.dataset.index = i;
+
+        const row = Math.floor(i / BOARD_SIZE);
+        const col = i % BOARD_SIZE;
+        cell.style.gridColumn = col + 2;
+        cell.style.gridRow = row + 2;
 
         const stone = gameState.board[i];
         if (stone !== EMPTY) {
@@ -187,17 +222,19 @@ function checkWin(lastIndex) {
 // ========================================
 
 function updateTurnBanner() {
-    const playerNum = gameState.currentPlayer === gameState.player1Stone ? '1P' : '2P';
+    const isPlayer1Turn = gameState.currentPlayer === gameState.player1Stone;
+    const playerName = isPlayer1Turn ? '三玖' : '五月';
     const color = gameState.currentPlayer === BLACK ? '黒' : '白';
-    document.getElementById('turn-label').textContent = `${playerNum} のターン（${color}）`;
+    document.getElementById('turn-label').textContent = `${playerName} のターン（${color}）`;
 }
 
 function showResult() {
-    const playerNum = gameState.winner === gameState.player1Stone ? '1P' : '2P';
+    const isPlayer1Win = gameState.winner === gameState.player1Stone;
+    const playerName = isPlayer1Win ? '三玖' : '五月';
     const color = gameState.winner === BLACK ? '黒' : '白';
 
     document.getElementById('modal-title').textContent = '結果';
-    document.getElementById('modal-message').textContent = `${playerNum}（${color}）の勝利！\n5つ並びました！`;
+    document.getElementById('modal-message').textContent = `${playerName}（${color}）の勝利！\n5つ並びました！`;
 
     document.getElementById('modal-result').classList.remove('hidden');
 }
