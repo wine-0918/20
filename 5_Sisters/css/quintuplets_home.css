@@ -218,6 +218,21 @@ body::after {
     background-position: center 30%;
 }
 
+.nav-button[data-page="game"] {
+    background-image: url('../game/game-banner.jpg');
+    background-position: center;
+}
+
+.nav-button[data-page="mastermind"] {
+    background-image: url('../game/mastermind/mastermind-banner.jpg');
+    background-position: center;
+}
+
+.nav-button[data-page="gomoku"] {
+    background-image: url('../game/gomoku/gomoku-banner.jpg');
+    background-position: center;
+}
+
 .nav-button .icon {
     font-size: 2rem;
 }
