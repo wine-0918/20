@@ -159,7 +159,10 @@ function renderBoard() {
     boardEl.innerHTML = '';
 
     const colCount = gameState.cardCount <= 12 ? 4 : gameState.cardCount <= 16 ? 4 : 5;
+    const rowCount = Math.ceil(gameState.cardCount / colCount);
     boardEl.style.gridTemplateColumns = `repeat(${colCount}, 1fr)`;
+    boardEl.style.gridTemplateRows = `repeat(${rowCount}, 1fr)`;
+    boardEl.style.aspectRatio = `${colCount} / ${rowCount}`;
 
     gameState.cards.forEach((card, index) => {
         const cardEl = document.createElement('div');
