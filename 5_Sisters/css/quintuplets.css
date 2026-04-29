@@ -820,6 +820,21 @@ body {
     transform: translateX(5px);
 }
 
+/* 食事関連の項目 */
+.timeline-item.meal {
+    background: #fff8e1;
+    border-left-color: #ffc107;
+}
+
+.timeline-item.meal:hover {
+    background: #fffbe6;
+}
+
+.timeline-item.meal .item-time {
+    color: #f57f17;
+    border-right-color: #ffc107;
+}
+
 .timeline-item .time {
     font-size: 1.3rem;
     font-weight: 700;

@@ -130,25 +130,25 @@ class ItemsChecklistApp {
             const container = document.getElementById(`${bagType}-items`);
             if (!bagData || !container) return;
 
-            container.innerHTML = bagData.checklist
-                .map((item, index) => {
-                    const itemId = `${bagType}-${index}`;
-                    // item が文字列の場合とオブジェクトの場合に対応
-                    const itemText = typeof item === 'string' ? item : item.item;
-                    const description = typeof item === 'string' ? '' : (item.description || '');
-                    const descriptionHtml = description ? `<span class="item-description">${description}</span>` : '';
-                    
+            let globalIndex = 0;
+
+            if (bagData.sections) {
+                container.innerHTML = bagData.sections.map(section => {
+                    const itemsHtml = section.items
+                        .map(item => this.renderItemHtml(item, bagType, globalIndex++))
+                        .join('');
                     return `
-                        <div class="checklist-item">
-                            <input type="checkbox" id="${itemId}" data-bag="${bagType}" data-index="${index}">
-                            <label for="${itemId}" class="item-label">
-                                <span class="item-text">${itemText}</span>
-                                ${descriptionHtml}
-                            </label>
+                        <div class="checklist-section">
+                            <h3 class="section-label">${section.label}</h3>
+                            ${itemsHtml}
                         </div>
                     `;
-                })
-                .join('');
+                }).join('');
+            } else {
+                container.innerHTML = bagData.checklist
+                    .map((item, index) => this.renderItemHtml(item, bagType, index))
+                    .join('');
+            }
 
             container.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                 checkbox.addEventListener('change', () => {
@@ -160,6 +160,26 @@ class ItemsChecklistApp {
                 });
             });
         });
+    }
+
+    renderItemHtml(item, bagType, index) {
+        const itemId = `${bagType}-${index}`;
+        const itemText = typeof item === 'string' ? item : item.item;
+        const description = typeof item === 'string' ? '' : (item.description || '');
+        const note = typeof item === 'string' ? '' : (item.note || '');
+        const descriptionHtml = description ? `<span class="item-description">${description}</span>` : '';
+        const noteHtml = note ? `<span class="item-note">${note}</span>` : '';
+
+        return `
+            <div class="checklist-item">
+                <input type="checkbox" id="${itemId}" data-bag="${bagType}" data-index="${index}">
+                <label for="${itemId}" class="item-label">
+                    <span class="item-text">${itemText}</span>
+                    ${descriptionHtml}
+                    ${noteHtml}
+                </label>
+            </div>
+        `;
     }
 
     setupBagSelector() {
