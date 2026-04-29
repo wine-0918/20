@@ -136,8 +136,8 @@ function renderBoard() {
 
         const row = Math.floor(i / BOARD_SIZE);
         const col = i % BOARD_SIZE;
-        cell.style.gridColumn = col + 2;
-        cell.style.gridRow = row + 2;
+        cell.style.gridColumn = `${col + 2}`;
+        cell.style.gridRow = `${row + 2}`;
 
         const stone = gameState.board[i];
         if (stone !== EMPTY) {
@@ -158,17 +158,17 @@ function cellClicked(index) {
     }
 
     gameState.board[index] = gameState.currentPlayer;
+    renderBoard();
 
-    if (checkWin(index)) {
+    const winIndices = checkWin(index);
+    if (winIndices.length > 0) {
         gameState.gameOver = true;
         gameState.winner = gameState.currentPlayer;
-        showResult();
+        playWinAnimation(winIndices);
     } else {
         gameState.currentPlayer = gameState.currentPlayer === BLACK ? WHITE : BLACK;
         updateTurnBanner();
     }
-
-    renderBoard();
 }
 
 // ========================================
@@ -190,12 +190,14 @@ function checkWin(lastIndex) {
 
     for (const dir of directions) {
         let count = 1;
+        const winIndices = [lastIndex];
 
         // 正方向
         let r = row + dir.dr;
         let c = col + dir.dc;
         while (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE && gameState.board[r * BOARD_SIZE + c] === player) {
             count++;
+            winIndices.push(r * BOARD_SIZE + c);
             r += dir.dr;
             c += dir.dc;
         }
@@ -205,16 +207,17 @@ function checkWin(lastIndex) {
         c = col - dir.dc;
         while (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE && gameState.board[r * BOARD_SIZE + c] === player) {
             count++;
+            winIndices.unshift(r * BOARD_SIZE + c);
             r -= dir.dr;
             c -= dir.dc;
         }
 
         if (count >= 5) {
-            return true;
+            return winIndices.slice(0, 5);
         }
     }
 
-    return false;
+    return [];
 }
 
 // ========================================
@@ -226,6 +229,24 @@ function updateTurnBanner() {
     const playerName = isPlayer1Turn ? '三玖' : '五月';
     const color = gameState.currentPlayer === BLACK ? '黒' : '白';
     document.getElementById('turn-label').textContent = `${playerName} のターン（${color}）`;
+}
+
+function playWinAnimation(winIndices) {
+    winIndices.forEach((winIndex, delay) => {
+        setTimeout(() => {
+            const cell = document.querySelector(`[data-index="${winIndex}"]`);
+            if (cell) {
+                const stone = cell.querySelector('.stone');
+                if (stone) {
+                    stone.classList.add('win-pulse');
+                }
+            }
+        }, delay * 100);
+    });
+
+    setTimeout(() => {
+        showResult();
+    }, 1200);
 }
 
 function showResult() {

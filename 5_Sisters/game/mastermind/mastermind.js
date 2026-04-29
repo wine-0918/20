@@ -328,8 +328,8 @@ btnSubmit.addEventListener('click', () => {
 
     // 勝敗判定
     if (hit === MAX_SLOTS) {
-        // ピンアニメーション完了後にモーダル表示
-        setTimeout(() => endGame(p), 900);
+        // ピンアニメーション完了後に勝利アニメーション
+        setTimeout(() => playWinAnimation(laneIndex, p), 900);
         return;
     }
 
@@ -413,6 +413,28 @@ function showPins(laneIndex, hit, blow) {
             pin.addEventListener('animationend', () => pin.classList.remove('pop'), { once: true });
         }, delay);
     }
+}
+
+// =========================================
+// 勝利アニメーション
+// =========================================
+function playWinAnimation(laneIndex, winner) {
+    const slotArea = document.getElementById(`slots-${laneIndex}`);
+    if (!slotArea) {
+        endGame(winner);
+        return;
+    }
+
+    const slots = slotArea.querySelectorAll('.slot');
+    slots.forEach((slot, index) => {
+        setTimeout(() => {
+            slot.classList.add('win-animate');
+        }, index * 80);
+    });
+
+    setTimeout(() => {
+        endGame(winner);
+    }, 1800);
 }
 
 // =========================================
