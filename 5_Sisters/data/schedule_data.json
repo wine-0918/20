@@ -77,6 +77,12 @@
         },
         "timeline": [
           {
+            "time": "09:00",
+            "title": "清田整形外科",
+            "detail": "",
+            "note": ""
+          },
+          {
             "time": "12:00",
             "title": "家 出発",
             "detail": "",
@@ -264,7 +270,7 @@
           "timeline": [
             {
               "time": "19:30",
-              "title": "ホテルへ戻る",
+              "title": "ホテルへ戻り荷物を置く",
               "detail": "",
               "note": "",
               "link": {
