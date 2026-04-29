@@ -355,7 +355,7 @@ function generateTimelineItem(item) {
     const itemId = `item-${item.time.replace(':', '')}-${item.title.replace(/\s+/g, '-')}`;
 
     // 食事関連キーワードをチェック
-    const mealKeywords = ['朝食', '昼食', '夕食', 'ごはん', '食べる', '朝ご飯', '昼ご飯', '夜ご飯'];
+    const mealKeywords = ['朝食', '昼食', '夕食', 'ごはん', '食べる', '朝ご飯', '昼ご飯', '夜ご飯', '寿司'];
     const isMeal = mealKeywords.some(keyword => item.title.includes(keyword));
     const mealClass = isMeal ? ' meal' : '';
 
