@@ -263,19 +263,46 @@
           "sectionName": "夜",
           "timeline": [
             {
-              "time": "20:00",
-              "title": "会場付近で夜ご飯",
-              "detail": "",
-              "note": ""
-            },
-            {
-              "time": "21:30",
+              "time": "19:30",
               "title": "ホテルへ戻る",
               "detail": "",
               "note": "",
               "link": {
                 "text": "トヨタアリーナ→ホテル",
                 "url": "https://x.gd/81EvB"
+              }
+            },
+            {
+              "time": "20:00",
+              "title": "豊洲駅へ行く",
+              "detail": "",
+              "note": ""
+            },
+            {
+              "time": "20:30",
+              "title": "高級くら寿司へ行く",
+              "detail": "",
+              "note": "",
+              "links": [
+                {
+                  "text": "メニューを見る",
+                  "url": "https://www.kurasushi.co.jp/mutenkura/menu/",
+                  "type": "menu"
+                },
+                {
+                  "text": "くら寿司の詳細",
+                  "url": "https://x.gd/MSvY8"
+                }
+              ]
+            },
+            {
+              "time": "22:00",
+              "title": "ホテルへ帰る",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "くら寿司→ホテル",
+                "url": "https://x.gd/1q2QC"
               }
             },
             {
@@ -295,7 +322,7 @@
       "title": "3日目",
       "route": {
         "title": "移動ルート",
-        "points": ["ホテル", "豊洲市場", "羽田空港", "新千歳空港", "家"]
+        "points": ["ホテル", "羽田空港", "新千歳空港", "家"]
       },
       "timeline": [
         {
@@ -303,32 +330,6 @@
           "title": "起床、準備",
           "detail": "",
           "note": ""
-        },
-        {
-          "time": "07:30",
-          "title": "ホテル出発",
-          "detail": "",
-          "note": "",
-          "link": {
-            "text": "ホテル→豊洲市場",
-            "url": "https://x.gd/Unifu"
-          }
-        },
-        {
-          "time": "08:00",
-          "title": "豊洲市場で朝食",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "09:00",
-          "title": "ホテルへ戻る",
-          "detail": "",
-          "note": "",
-          "link": {
-            "text": "豊洲市場→ホテル",
-            "url": "https://x.gd/Unifu"
-          }
         },
         {
           "time": "09:30",
