@@ -174,10 +174,17 @@
               "title": "小倉山荘 西武池袋本店でお土産",
               "detail": "",
               "note": "",
-              "link": {
-                "text": "小倉→みそきん",
-                "url": "https://x.gd/dBu8v"
-              }
+              "links": [
+                {
+                  "text": "メニューを見る",
+                  "url": "https://ogurasansou.jp.net/products/",
+                  "type": "menu"
+                },
+                {
+                  "text": "小倉→みそきん",
+                  "url": "https://x.gd/dBu8v"
+                }
+              ]
             },
             {
               "time": "11:00",
