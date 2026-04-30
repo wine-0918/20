@@ -346,6 +346,30 @@ body {
     font-style: italic;
 }
 
+.item-note {
+    font-size: 0.75rem;
+    color: #e53935;
+    font-weight: normal;
+}
+
+/* セクション区切り */
+.checklist-section {
+    margin-bottom: 24px;
+}
+
+.section-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #c2185b;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    border-left: 3px solid #f48fb1;
+    padding: 4px 10px;
+    margin: 0 0 12px 0;
+    background: linear-gradient(90deg, #fff0f6, transparent);
+    border-radius: 0 6px 6px 0;
+}
+
 .checklist-item input[type="checkbox"]:checked + .item-label .item-text {
     text-decoration: line-through;
 }

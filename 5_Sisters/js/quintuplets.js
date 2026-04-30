@@ -353,9 +353,14 @@ function generateDay3(day3Data) {
 function generateTimelineItem(item) {
     // ユニークなIDを生成（時刻とタイトルから）
     const itemId = `item-${item.time.replace(':', '')}-${item.title.replace(/\s+/g, '-')}`;
-    
+
+    // 食事関連キーワードをチェック
+    const mealKeywords = ['朝食', '昼食', '夕食', 'ごはん', '食べる', '朝ご飯', '昼ご飯', '夜ご飯', '寿司'];
+    const isMeal = mealKeywords.some(keyword => item.title.includes(keyword));
+    const mealClass = isMeal ? ' meal' : '';
+
     let html = `
-        <div class="timeline-item" data-item-id="${itemId}">
+        <div class="timeline-item${mealClass}" data-item-id="${itemId}">
             <div class="item-time">${item.time}</div>
             <div class="item-content">
                 <div class="item-header">

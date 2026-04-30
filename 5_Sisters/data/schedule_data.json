@@ -25,12 +25,7 @@
             "time": "18:30",
             "title": "新千歳空港 発",
             "detail": "",
-            "note": "",
-            "link": {
-              "text": "航空券を表示する予定",
-              "disabled": true,
-              "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
-            }
+            "note": ""
           },
           {
             "time": "20:10",
@@ -40,7 +35,7 @@
           },
           {
             "time": "20:55",
-            "title": "リムジンバス 発",
+            "title": "リムジンバス（第２ターミナル→豊洲駅）発",
             "detail": "",
             "note": "",
             "link": {
@@ -82,6 +77,12 @@
         },
         "timeline": [
           {
+            "time": "09:00",
+            "title": "清田整形外科",
+            "detail": "",
+            "note": ""
+          },
+          {
             "time": "12:00",
             "title": "家 出発",
             "detail": "",
@@ -108,12 +109,7 @@
             "time": "18:30",
             "title": "新千歳空港 発",
             "detail": "",
-            "note": "",
-            "link": {
-              "text": "航空券を表示する予定",
-              "disabled": true,
-              "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
-            }
+            "note": ""
           },
           {
             "time": "20:10",
@@ -123,7 +119,7 @@
           },
           {
             "time": "20:55",
-            "title": "リムジンバス 発",
+            "title": "リムジンバス（第２ターミナル→豊洲駅）発",
             "detail": "",
             "note": "",
             "link": {
@@ -164,24 +160,41 @@
           "sectionName": "朝",
           "timeline": [
             {
-              "time": "06:30",
+              "time": "07:00",
               "title": "起床、準備",
               "detail": "",
               "note": ""
             },
             {
-              "time": "07:30",
+              "time": "08:30",
               "title": "ホテル出発",
               "detail": "",
               "note": "",
               "link": {
-                "text": "ホテル→みそきん",
-                "url": "https://x.gd/Ssngl"
+                "text": "ホテル→小倉山荘",
+                "url": "https://x.gd/HTaEwv"
               }
             },
             {
+              "time": "10:00",
+              "title": "小倉山荘 西武池袋本店でお土産",
+              "detail": "",
+              "note": "",
+              "links": [
+                {
+                  "text": "メニューを見る",
+                  "url": "https://ogurasansou.jp.net/products/",
+                  "type": "menu"
+                },
+                {
+                  "text": "小倉山荘→みそきん",
+                  "url": "https://x.gd/dBu8v"
+                }
+              ]
+            },
+            {
               "time": "11:00",
-              "title": "みそきん（予約）",
+              "title": "みそきんで昼ご飯",
               "detail": "",
               "note": "",
               "links": [
@@ -204,7 +217,7 @@
               "note": "",
               "link": {
                 "text": "みそきん→ホテル",
-                "url": "https://x.gd/r29Bl"
+                "url": "https://x.gd/Ca1Bb"
               }
             }
           ]
@@ -226,11 +239,7 @@
               "time": "15:15",
               "title": "トヨタアリーナ到着",
               "detail": "",
-              "note": "",
-              "link": {
-                "text": "ホテル→トヨタアリーナ",
-                "url": "https://x.gd/Uu54X"
-              }
+              "note": ""
             },
             {
               "time": "15:30",
@@ -249,7 +258,7 @@
               "note": ""
             },
             {
-              "time": "20:00",
+              "time": "19:30",
               "title": "イベント終了予定",
               "detail": "",
               "note": ""
@@ -260,19 +269,50 @@
           "sectionName": "夜",
           "timeline": [
             {
-              "time": "20:00",
-              "title": "会場付近で夜ご飯",
-              "detail": "",
-              "note": ""
-            },
-            {
-              "time": "21:30",
-              "title": "ホテルへ戻る",
+              "time": "19:30",
+              "title": "ホテルへ戻り荷物を置く",
               "detail": "",
               "note": "",
               "link": {
                 "text": "トヨタアリーナ→ホテル",
                 "url": "https://x.gd/81EvB"
+              }
+            },
+            {
+              "time": "20:00",
+              "title": "豊洲駅へ行く",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "ホテル→豊洲駅",
+                "url": "https://x.gd/4g26i"
+              }
+            },
+            {
+              "time": "20:30",
+              "title": "高級くら寿司へ行く",
+              "detail": "",
+              "note": "",
+              "links": [
+                {
+                  "text": "メニューを見る",
+                  "url": "https://www.kurasushi.co.jp/mutenkura/menu/",
+                  "type": "menu"
+                },
+                {
+                  "text": "豊洲駅 -> 高級くら寿司",
+                  "url": "https://x.gd/MSvY8"
+                }
+              ]
+            },
+            {
+              "time": "22:00",
+              "title": "ホテルへ帰る",
+              "detail": "",
+              "note": "",
+              "link": {
+                "text": "くら寿司→ホテル",
+                "url": "https://x.gd/1q2QC"
               }
             },
             {
@@ -292,67 +332,40 @@
       "title": "3日目",
       "route": {
         "title": "移動ルート",
-        "points": ["ホテル", "豊洲市場", "羽田空港", "新千歳空港", "家"]
+        "points": ["ホテル", "羽田空港", "新千歳空港", "家"]
       },
       "timeline": [
         {
-          "time": "06:00",
+          "time": "09:00",
           "title": "起床、準備",
           "detail": "",
           "note": ""
         },
         {
-          "time": "07:30",
-          "title": "ホテル出発",
+          "time": "10:00",
+          "title": "チェックアウトして羽田空港へ向かう",
           "detail": "",
           "note": "",
           "link": {
-            "text": "ホテル→豊洲市場",
-            "url": "https://x.gd/Unifu"
+            "text": "ホテル→羽田空港",
+            "url": "https://x.gd/I5X35"
           }
         },
         {
-          "time": "08:00",
-          "title": "豊洲市場",
-          "detail": "",
-          "note": ""
-        },
-        {
-          "time": "09:30",
-          "title": "羽田空港へ向かう",
-          "detail": "",
-          "note": "",
-          "link": {
-            "text": "豊洲市場→羽田空港",
-            "url": "https://x.gd/lmJ4D"
-          }
-        },
-        {
-          "time": "12:00",
+          "time": "11:00",
           "title": "羽田空港着、手続きなどを済ませる",
           "detail": "",
           "note": ""
         },
         {
-          "time": "12:20",
+          "time": "11:20",
           "title": "ブルーシールを食べる",
           "detail": "",
           "note": "",
           "link": {
             "text": "メニューを見る",
-            "url": "https://www.blueseal.co.jp/blueseal_topics/index.html",
+            "url": "https://www.blueseal.co.jp/products/flavor/",
             "type": "menu"
-          }
-        },
-        {
-          "time": "13:00",
-          "title": "羽田空港 発",
-          "detail": "",
-          "note": "",
-          "link": {
-            "text": "航空券を表示する予定",
-            "disabled": true,
-            "pendingMessage": "飛行機出発の2週間前にURLなどの詳細を追加予定"
           }
         },
         {
@@ -362,8 +375,8 @@
           "note": ""
         },
         {
-          "time": "16:30",
-          "title": "新千歳から家に帰る",
+          "time": "15:30",
+          "title": "新千歳から家に着く",
           "detail": "",
           "note": ""
         }
